@@ -1,0 +1,7276 @@
+﻿[
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 150,
+      "start": 0,
+      "end": 20,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubsetOf"
+      },
+      "elementId": "150",
+      "startNodeElementId": "0",
+      "endNodeElementId": "20"
+    },
+    "m": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 122,
+      "start": 0,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubspecializationOf"
+      },
+      "elementId": "122",
+      "startNodeElementId": "0",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 4,
+      "start": 0,
+      "end": 5,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Overlapping"
+      },
+      "elementId": "4",
+      "startNodeElementId": "0",
+      "endNodeElementId": "5"
+    },
+    "m": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 3,
+      "start": 0,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "3",
+      "startNodeElementId": "0",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 2,
+      "start": 0,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "2",
+      "startNodeElementId": "0",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 1,
+      "start": 0,
+      "end": 2,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Complementary"
+      },
+      "elementId": "1",
+      "startNodeElementId": "0",
+      "endNodeElementId": "2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    }
+  },
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    },
+    "r": {
+      "identity": 0,
+      "start": 0,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubsetOf"
+      },
+      "elementId": "0",
+      "startNodeElementId": "0",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 192,
+      "start": 1,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "subtypeOf"
+      },
+      "elementId": "192",
+      "startNodeElementId": "1",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 140,
+      "start": 1,
+      "end": 25,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Utilizes"
+      },
+      "elementId": "140",
+      "startNodeElementId": "1",
+      "endNodeElementId": "25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 9,
+      "start": 1,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Domain"
+      },
+      "elementId": "9",
+      "startNodeElementId": "1",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 8,
+      "start": 1,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application"
+      },
+      "elementId": "8",
+      "startNodeElementId": "1",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 7,
+      "start": 1,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subset"
+      },
+      "elementId": "7",
+      "startNodeElementId": "1",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 6,
+      "start": 1,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Broader Concept"
+      },
+      "elementId": "6",
+      "startNodeElementId": "1",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    },
+    "r": {
+      "identity": 5,
+      "start": 1,
+      "end": 2,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Parent"
+      },
+      "elementId": "5",
+      "startNodeElementId": "1",
+      "endNodeElementId": "2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 185,
+      "start": 2,
+      "end": 10,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subset Of"
+      },
+      "elementId": "185",
+      "startNodeElementId": "2",
+      "endNodeElementId": "10"
+    },
+    "m": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 152,
+      "start": 2,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubsetOf"
+      },
+      "elementId": "152",
+      "startNodeElementId": "2",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 14,
+      "start": 2,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "OverlapsWith"
+      },
+      "elementId": "14",
+      "startNodeElementId": "2",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 13,
+      "start": 2,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "TypeOf"
+      },
+      "elementId": "13",
+      "startNodeElementId": "2",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 12,
+      "start": 2,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "12",
+      "startNodeElementId": "2",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 11,
+      "start": 2,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Underlies"
+      },
+      "elementId": "11",
+      "startNodeElementId": "2",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    },
+    "r": {
+      "identity": 10,
+      "start": 2,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "10",
+      "startNodeElementId": "2",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    },
+    "r": {
+      "identity": 191,
+      "start": 3,
+      "end": 27,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application"
+      },
+      "elementId": "191",
+      "startNodeElementId": "3",
+      "endNodeElementId": "27"
+    },
+    "m": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    },
+    "r": {
+      "identity": 176,
+      "start": 3,
+      "end": 15,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "176",
+      "startNodeElementId": "3",
+      "endNodeElementId": "15"
+    },
+    "m": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    },
+    "r": {
+      "identity": 162,
+      "start": 3,
+      "end": 23,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "subfield_of"
+      },
+      "elementId": "162",
+      "startNodeElementId": "3",
+      "endNodeElementId": "23"
+    },
+    "m": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    },
+    "r": {
+      "identity": 96,
+      "start": 3,
+      "end": 12,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "application"
+      },
+      "elementId": "96",
+      "startNodeElementId": "3",
+      "endNodeElementId": "12"
+    },
+    "m": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 194,
+      "start": 4,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationArea"
+      },
+      "elementId": "194",
+      "startNodeElementId": "4",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 124,
+      "start": 4,
+      "end": 2,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "applicationDomain"
+      },
+      "elementId": "124",
+      "startNodeElementId": "4",
+      "endNodeElementId": "2"
+    },
+    "m": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 121,
+      "start": 4,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "121",
+      "startNodeElementId": "4",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 19,
+      "start": 4,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "19",
+      "startNodeElementId": "4",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 18,
+      "start": 4,
+      "end": 10,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ComponentOf"
+      },
+      "elementId": "18",
+      "startNodeElementId": "4",
+      "endNodeElementId": "10"
+    },
+    "m": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 17,
+      "start": 4,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "CloselyRelated"
+      },
+      "elementId": "17",
+      "startNodeElementId": "4",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 16,
+      "start": 4,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SharedTechnique"
+      },
+      "elementId": "16",
+      "startNodeElementId": "4",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    },
+    "r": {
+      "identity": 15,
+      "start": 4,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "InfluencedBy"
+      },
+      "elementId": "15",
+      "startNodeElementId": "4",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 153,
+      "start": 5,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "153",
+      "startNodeElementId": "5",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 24,
+      "start": 5,
+      "end": 13,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ParentConcept"
+      },
+      "elementId": "24",
+      "startNodeElementId": "5",
+      "endNodeElementId": "13"
+    },
+    "m": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 23,
+      "start": 5,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "EnablingTechnology"
+      },
+      "elementId": "23",
+      "startNodeElementId": "5",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 22,
+      "start": 5,
+      "end": 12,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "InterdisciplinaryField"
+      },
+      "elementId": "22",
+      "startNodeElementId": "5",
+      "endNodeElementId": "12"
+    },
+    "m": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 21,
+      "start": 5,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "RelatedTechnology"
+      },
+      "elementId": "21",
+      "startNodeElementId": "5",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    },
+    "r": {
+      "identity": 20,
+      "start": 5,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "20",
+      "startNodeElementId": "5",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 178,
+      "start": 6,
+      "end": 14,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "TypeOf"
+      },
+      "elementId": "178",
+      "startNodeElementId": "6",
+      "endNodeElementId": "14"
+    },
+    "m": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 29,
+      "start": 6,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application Area"
+      },
+      "elementId": "29",
+      "startNodeElementId": "6",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 28,
+      "start": 6,
+      "end": 15,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Specialization"
+      },
+      "elementId": "28",
+      "startNodeElementId": "6",
+      "endNodeElementId": "15"
+    },
+    "m": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 27,
+      "start": 6,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Closely Related Field"
+      },
+      "elementId": "27",
+      "startNodeElementId": "6",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 26,
+      "start": 6,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Parent Category"
+      },
+      "elementId": "26",
+      "startNodeElementId": "6",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    },
+    "r": {
+      "identity": 25,
+      "start": 6,
+      "end": 14,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subcategory"
+      },
+      "elementId": "25",
+      "startNodeElementId": "6",
+      "endNodeElementId": "14"
+    },
+    "m": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    },
+    "r": {
+      "identity": 34,
+      "start": 7,
+      "end": 19,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related to"
+      },
+      "elementId": "34",
+      "startNodeElementId": "7",
+      "endNodeElementId": "19"
+    },
+    "m": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    },
+    "r": {
+      "identity": 33,
+      "start": 7,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Utilizes"
+      },
+      "elementId": "33",
+      "startNodeElementId": "7",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    },
+    "r": {
+      "identity": 32,
+      "start": 7,
+      "end": 17,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Foundational"
+      },
+      "elementId": "32",
+      "startNodeElementId": "7",
+      "endNodeElementId": "17"
+    },
+    "m": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    },
+    "r": {
+      "identity": 31,
+      "start": 7,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application"
+      },
+      "elementId": "31",
+      "startNodeElementId": "7",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    },
+    "r": {
+      "identity": 30,
+      "start": 7,
+      "end": 16,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Specialization"
+      },
+      "elementId": "30",
+      "startNodeElementId": "7",
+      "endNodeElementId": "16"
+    },
+    "m": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 193,
+      "start": 8,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "superset_of"
+      },
+      "elementId": "193",
+      "startNodeElementId": "8",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 179,
+      "start": 8,
+      "end": 14,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Substantive_part_of"
+      },
+      "elementId": "179",
+      "startNodeElementId": "8",
+      "endNodeElementId": "14"
+    },
+    "m": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 170,
+      "start": 8,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ComponentOf"
+      },
+      "elementId": "170",
+      "startNodeElementId": "8",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 151,
+      "start": 8,
+      "end": 12,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationDomain"
+      },
+      "elementId": "151",
+      "startNodeElementId": "8",
+      "endNodeElementId": "12"
+    },
+    "m": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 123,
+      "start": 8,
+      "end": 23,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubsetOf"
+      },
+      "elementId": "123",
+      "startNodeElementId": "8",
+      "endNodeElementId": "23"
+    },
+    "m": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 39,
+      "start": 8,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Includes"
+      },
+      "elementId": "39",
+      "startNodeElementId": "8",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 38,
+      "start": 8,
+      "end": 22,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "OverlapsWith"
+      },
+      "elementId": "38",
+      "startNodeElementId": "8",
+      "endNodeElementId": "22"
+    },
+    "m": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 37,
+      "start": 8,
+      "end": 21,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "InheritsFrom"
+      },
+      "elementId": "37",
+      "startNodeElementId": "8",
+      "endNodeElementId": "21"
+    },
+    "m": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 36,
+      "start": 8,
+      "end": 20,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SimilarConcept"
+      },
+      "elementId": "36",
+      "startNodeElementId": "8",
+      "endNodeElementId": "20"
+    },
+    "m": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    },
+    "r": {
+      "identity": 35,
+      "start": 8,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IsA"
+      },
+      "elementId": "35",
+      "startNodeElementId": "8",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    },
+    "r": {
+      "identity": 44,
+      "start": 9,
+      "end": 25,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application Domain"
+      },
+      "elementId": "44",
+      "startNodeElementId": "9",
+      "endNodeElementId": "25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    },
+    "r": {
+      "identity": 43,
+      "start": 9,
+      "end": 24,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Supporting Concept"
+      },
+      "elementId": "43",
+      "startNodeElementId": "9",
+      "endNodeElementId": "24"
+    },
+    "m": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    },
+    "r": {
+      "identity": 42,
+      "start": 9,
+      "end": 23,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subconcept"
+      },
+      "elementId": "42",
+      "startNodeElementId": "9",
+      "endNodeElementId": "23"
+    },
+    "m": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    },
+    "r": {
+      "identity": 41,
+      "start": 9,
+      "end": 20,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Overlap Concept"
+      },
+      "elementId": "41",
+      "startNodeElementId": "9",
+      "endNodeElementId": "20"
+    },
+    "m": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    },
+    "r": {
+      "identity": 40,
+      "start": 9,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Companion Concept"
+      },
+      "elementId": "40",
+      "startNodeElementId": "9",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 182,
+      "start": 10,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "is_subfield_of"
+      },
+      "elementId": "182",
+      "startNodeElementId": "10",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 49,
+      "start": 10,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "49",
+      "startNodeElementId": "10",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 48,
+      "start": 10,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "OverlapsWith"
+      },
+      "elementId": "48",
+      "startNodeElementId": "10",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 47,
+      "start": 10,
+      "end": 16,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Supersedes"
+      },
+      "elementId": "47",
+      "startNodeElementId": "10",
+      "endNodeElementId": "16"
+    },
+    "m": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 46,
+      "start": 10,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "RelatedTo"
+      },
+      "elementId": "46",
+      "startNodeElementId": "10",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    },
+    "r": {
+      "identity": 45,
+      "start": 10,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubFieldOf"
+      },
+      "elementId": "45",
+      "startNodeElementId": "10",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 189,
+      "start": 11,
+      "end": 25,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Uses"
+      },
+      "elementId": "189",
+      "startNodeElementId": "11",
+      "endNodeElementId": "25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 163,
+      "start": 11,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "OutputOf"
+      },
+      "elementId": "163",
+      "startNodeElementId": "11",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 141,
+      "start": 11,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "is_specialized_by"
+      },
+      "elementId": "141",
+      "startNodeElementId": "11",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 54,
+      "start": 11,
+      "end": 29,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "broader_domain"
+      },
+      "elementId": "54",
+      "startNodeElementId": "11",
+      "endNodeElementId": "29"
+    },
+    "m": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 53,
+      "start": 11,
+      "end": 28,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "synonym"
+      },
+      "elementId": "53",
+      "startNodeElementId": "11",
+      "endNodeElementId": "28"
+    },
+    "m": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 52,
+      "start": 11,
+      "end": 27,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "similar_concept"
+      },
+      "elementId": "52",
+      "startNodeElementId": "11",
+      "endNodeElementId": "27"
+    },
+    "m": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 51,
+      "start": 11,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "supertype_of"
+      },
+      "elementId": "51",
+      "startNodeElementId": "11",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    },
+    "r": {
+      "identity": 50,
+      "start": 11,
+      "end": 26,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "subtype_of"
+      },
+      "elementId": "50",
+      "startNodeElementId": "11",
+      "endNodeElementId": "26"
+    },
+    "m": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 175,
+      "start": 12,
+      "end": 26,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "AppliesTo"
+      },
+      "elementId": "175",
+      "startNodeElementId": "12",
+      "endNodeElementId": "26"
+    },
+    "m": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 172,
+      "start": 12,
+      "end": 28,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationOf"
+      },
+      "elementId": "172",
+      "startNodeElementId": "12",
+      "endNodeElementId": "28"
+    },
+    "m": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 59,
+      "start": 12,
+      "end": 33,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Foundational Concept"
+      },
+      "elementId": "59",
+      "startNodeElementId": "12",
+      "endNodeElementId": "33"
+    },
+    "m": {
+      "identity": 33,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Thermodynamics"
+      },
+      "elementId": "33"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 58,
+      "start": 12,
+      "end": 32,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Technique Used In"
+      },
+      "elementId": "58",
+      "startNodeElementId": "12",
+      "endNodeElementId": "32"
+    },
+    "m": {
+      "identity": 32,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Aided Design (CAD)"
+      },
+      "elementId": "32"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 57,
+      "start": 12,
+      "end": 31,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Discipline"
+      },
+      "elementId": "57",
+      "startNodeElementId": "12",
+      "endNodeElementId": "31"
+    },
+    "m": {
+      "identity": 31,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Manufacturing"
+      },
+      "elementId": "31"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 56,
+      "start": 12,
+      "end": 30,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Interdisciplinary Field"
+      },
+      "elementId": "56",
+      "startNodeElementId": "12",
+      "endNodeElementId": "30"
+    },
+    "m": {
+      "identity": 30,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Materials Science"
+      },
+      "elementId": "30"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    },
+    "r": {
+      "identity": 55,
+      "start": 12,
+      "end": 5,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Branch Of"
+      },
+      "elementId": "55",
+      "startNodeElementId": "12",
+      "endNodeElementId": "5"
+    },
+    "m": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 190,
+      "start": 13,
+      "end": 25,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Utilizes"
+      },
+      "elementId": "190",
+      "startNodeElementId": "13",
+      "endNodeElementId": "25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 187,
+      "start": 13,
+      "end": 26,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Specialization"
+      },
+      "elementId": "187",
+      "startNodeElementId": "13",
+      "endNodeElementId": "26"
+    },
+    "m": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 64,
+      "start": 13,
+      "end": 35,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ConsequenceOf"
+      },
+      "elementId": "64",
+      "startNodeElementId": "13",
+      "endNodeElementId": "35"
+    },
+    "m": {
+      "identity": 35,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Process Optimization"
+      },
+      "elementId": "35"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 63,
+      "start": 13,
+      "end": 34,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "BroaderThan"
+      },
+      "elementId": "63",
+      "startNodeElementId": "13",
+      "endNodeElementId": "34"
+    },
+    "m": {
+      "identity": 34,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computing"
+      },
+      "elementId": "34"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 62,
+      "start": 13,
+      "end": 5,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ExtensionOf"
+      },
+      "elementId": "62",
+      "startNodeElementId": "13",
+      "endNodeElementId": "5"
+    },
+    "m": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 61,
+      "start": 13,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "61",
+      "startNodeElementId": "13",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    },
+    "r": {
+      "identity": 60,
+      "start": 13,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Synonym"
+      },
+      "elementId": "60",
+      "startNodeElementId": "13",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 188,
+      "start": 14,
+      "end": 13,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IS_A"
+      },
+      "elementId": "188",
+      "startNodeElementId": "14",
+      "endNodeElementId": "13"
+    },
+    "m": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 171,
+      "start": 14,
+      "end": 17,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "BasedOn"
+      },
+      "elementId": "171",
+      "startNodeElementId": "14",
+      "endNodeElementId": "17"
+    },
+    "m": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 99,
+      "start": 14,
+      "end": 13,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ImplementationMechanism"
+      },
+      "elementId": "99",
+      "startNodeElementId": "14",
+      "endNodeElementId": "13"
+    },
+    "m": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 97,
+      "start": 14,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "application"
+      },
+      "elementId": "97",
+      "startNodeElementId": "14",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 69,
+      "start": 14,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application Domain"
+      },
+      "elementId": "69",
+      "startNodeElementId": "14",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 68,
+      "start": 14,
+      "end": 36,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Similar Concept"
+      },
+      "elementId": "68",
+      "startNodeElementId": "14",
+      "endNodeElementId": "36"
+    },
+    "m": {
+      "identity": 36,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Pattern Recognition"
+      },
+      "elementId": "36"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 67,
+      "start": 14,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subconcept"
+      },
+      "elementId": "67",
+      "startNodeElementId": "14",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 66,
+      "start": 14,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Sibling Concept"
+      },
+      "elementId": "66",
+      "startNodeElementId": "14",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    },
+    "r": {
+      "identity": 65,
+      "start": 14,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Parent Concept"
+      },
+      "elementId": "65",
+      "startNodeElementId": "14",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 98,
+      "start": 15,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationDomain"
+      },
+      "elementId": "98",
+      "startNodeElementId": "15",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 74,
+      "start": 15,
+      "end": 38,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "used in the training of"
+      },
+      "elementId": "74",
+      "startNodeElementId": "15",
+      "endNodeElementId": "38"
+    },
+    "m": {
+      "identity": 38,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Backpropagation"
+      },
+      "elementId": "38"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 73,
+      "start": 15,
+      "end": 3,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "closely related to"
+      },
+      "elementId": "73",
+      "startNodeElementId": "15",
+      "endNodeElementId": "3"
+    },
+    "m": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 72,
+      "start": 15,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "part of the field of"
+      },
+      "elementId": "72",
+      "startNodeElementId": "15",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 71,
+      "start": 15,
+      "end": 37,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "applied to"
+      },
+      "elementId": "71",
+      "startNodeElementId": "15",
+      "endNodeElementId": "37"
+    },
+    "m": {
+      "identity": 37,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Image Recognition"
+      },
+      "elementId": "37"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    },
+    "r": {
+      "identity": 70,
+      "start": 15,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "is a type of"
+      },
+      "elementId": "70",
+      "startNodeElementId": "15",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    },
+    "r": {
+      "identity": 79,
+      "start": 16,
+      "end": 41,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Specialization"
+      },
+      "elementId": "79",
+      "startNodeElementId": "16",
+      "endNodeElementId": "41"
+    },
+    "m": {
+      "identity": 41,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Modeling"
+      },
+      "elementId": "41"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    },
+    "r": {
+      "identity": 78,
+      "start": 16,
+      "end": 40,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Prerequisite"
+      },
+      "elementId": "78",
+      "startNodeElementId": "16",
+      "endNodeElementId": "40"
+    },
+    "m": {
+      "identity": 40,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Management"
+      },
+      "elementId": "40"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    },
+    "r": {
+      "identity": 77,
+      "start": 16,
+      "end": 39,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Tool"
+      },
+      "elementId": "77",
+      "startNodeElementId": "16",
+      "endNodeElementId": "39"
+    },
+    "m": {
+      "identity": 39,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Visualization"
+      },
+      "elementId": "39"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    },
+    "r": {
+      "identity": 76,
+      "start": 16,
+      "end": 21,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Hyponym"
+      },
+      "elementId": "76",
+      "startNodeElementId": "16",
+      "endNodeElementId": "21"
+    },
+    "m": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    },
+    "r": {
+      "identity": 75,
+      "start": 16,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Hyponym"
+      },
+      "elementId": "75",
+      "startNodeElementId": "16",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 95,
+      "start": 17,
+      "end": 15,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Applies"
+      },
+      "elementId": "95",
+      "startNodeElementId": "17",
+      "endNodeElementId": "15"
+    },
+    "m": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 84,
+      "start": 17,
+      "end": 44,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Field Of Study"
+      },
+      "elementId": "84",
+      "startNodeElementId": "17",
+      "endNodeElementId": "44"
+    },
+    "m": {
+      "identity": 44,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Random Processes"
+      },
+      "elementId": "44"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 83,
+      "start": 17,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Builds Upon"
+      },
+      "elementId": "83",
+      "startNodeElementId": "17",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 82,
+      "start": 17,
+      "end": 43,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Has Overlap With"
+      },
+      "elementId": "82",
+      "startNodeElementId": "17",
+      "endNodeElementId": "43"
+    },
+    "m": {
+      "identity": 43,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Theory"
+      },
+      "elementId": "43"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 81,
+      "start": 17,
+      "end": 42,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Shares Foundations With"
+      },
+      "elementId": "81",
+      "startNodeElementId": "17",
+      "endNodeElementId": "42"
+    },
+    "m": {
+      "identity": 42,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mathematical Logic"
+      },
+      "elementId": "42"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    },
+    "r": {
+      "identity": 80,
+      "start": 17,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Applies To"
+      },
+      "elementId": "80",
+      "startNodeElementId": "17",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 160,
+      "start": 18,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "application_of"
+      },
+      "elementId": "160",
+      "startNodeElementId": "18",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 89,
+      "start": 18,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Complementary Concept"
+      },
+      "elementId": "89",
+      "startNodeElementId": "18",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 88,
+      "start": 18,
+      "end": 46,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Field"
+      },
+      "elementId": "88",
+      "startNodeElementId": "18",
+      "endNodeElementId": "46"
+    },
+    "m": {
+      "identity": 46,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Big Data"
+      },
+      "elementId": "46"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 87,
+      "start": 18,
+      "end": 22,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application Area"
+      },
+      "elementId": "87",
+      "startNodeElementId": "18",
+      "endNodeElementId": "22"
+    },
+    "m": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 86,
+      "start": 18,
+      "end": 45,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Similar Concept"
+      },
+      "elementId": "86",
+      "startNodeElementId": "18",
+      "endNodeElementId": "45"
+    },
+    "m": {
+      "identity": 45,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Graphics"
+      },
+      "elementId": "45"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    },
+    "r": {
+      "identity": 85,
+      "start": 18,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Prerequisite"
+      },
+      "elementId": "85",
+      "startNodeElementId": "18",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 120,
+      "start": 19,
+      "end": 21,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "is prerequisite for"
+      },
+      "elementId": "120",
+      "startNodeElementId": "19",
+      "endNodeElementId": "21"
+    },
+    "m": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 94,
+      "start": 19,
+      "end": 51,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Supervises"
+      },
+      "elementId": "94",
+      "startNodeElementId": "19",
+      "endNodeElementId": "51"
+    },
+    "m": {
+      "identity": 51,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Quality Control"
+      },
+      "elementId": "51"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 93,
+      "start": 19,
+      "end": 50,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Concept"
+      },
+      "elementId": "93",
+      "startNodeElementId": "19",
+      "endNodeElementId": "50"
+    },
+    "m": {
+      "identity": 50,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Randomization"
+      },
+      "elementId": "50"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 92,
+      "start": 19,
+      "end": 49,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Narrower Term"
+      },
+      "elementId": "92",
+      "startNodeElementId": "19",
+      "endNodeElementId": "49"
+    },
+    "m": {
+      "identity": 49,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Survey Design"
+      },
+      "elementId": "49"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 91,
+      "start": 19,
+      "end": 48,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Broader Term"
+      },
+      "elementId": "91",
+      "startNodeElementId": "19",
+      "endNodeElementId": "48"
+    },
+    "m": {
+      "identity": 48,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Collection Techniques"
+      },
+      "elementId": "48"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    },
+    "r": {
+      "identity": 90,
+      "start": 19,
+      "end": 47,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Includes"
+      },
+      "elementId": "90",
+      "startNodeElementId": "19",
+      "endNodeElementId": "47"
+    },
+    "m": {
+      "identity": 47,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Analysis"
+      },
+      "elementId": "47"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 183,
+      "start": 20,
+      "end": 6,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubtypeOf"
+      },
+      "elementId": "183",
+      "startNodeElementId": "20",
+      "endNodeElementId": "6"
+    },
+    "m": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 173,
+      "start": 20,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubsetOf"
+      },
+      "elementId": "173",
+      "startNodeElementId": "20",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 104,
+      "start": 20,
+      "end": 52,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IsGoalOf"
+      },
+      "elementId": "104",
+      "startNodeElementId": "20",
+      "endNodeElementId": "52"
+    },
+    "m": {
+      "identity": 52,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Knowledge Discovery"
+      },
+      "elementId": "52"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 103,
+      "start": 20,
+      "end": 47,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "UsesMethodologyFrom"
+      },
+      "elementId": "103",
+      "startNodeElementId": "20",
+      "endNodeElementId": "47"
+    },
+    "m": {
+      "identity": 47,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Analysis"
+      },
+      "elementId": "47"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 102,
+      "start": 20,
+      "end": 40,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Requires"
+      },
+      "elementId": "102",
+      "startNodeElementId": "20",
+      "endNodeElementId": "40"
+    },
+    "m": {
+      "identity": 40,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Management"
+      },
+      "elementId": "40"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 101,
+      "start": 20,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IsTypeOf"
+      },
+      "elementId": "101",
+      "startNodeElementId": "20",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    },
+    "r": {
+      "identity": 100,
+      "start": 20,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IsSpecializationOf"
+      },
+      "elementId": "100",
+      "startNodeElementId": "20",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 186,
+      "start": 21,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationOf"
+      },
+      "elementId": "186",
+      "startNodeElementId": "21",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 144,
+      "start": 21,
+      "end": 25,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application of Statistical Modeling"
+      },
+      "elementId": "144",
+      "startNodeElementId": "21",
+      "endNodeElementId": "25"
+    },
+    "m": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 109,
+      "start": 21,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "CloselyRelatedField"
+      },
+      "elementId": "109",
+      "startNodeElementId": "21",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 108,
+      "start": 21,
+      "end": 17,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "FoundationalTheory"
+      },
+      "elementId": "108",
+      "startNodeElementId": "21",
+      "endNodeElementId": "17"
+    },
+    "m": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 107,
+      "start": 21,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ComplementarySkill"
+      },
+      "elementId": "107",
+      "startNodeElementId": "21",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 106,
+      "start": 21,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "OverlappingConcept"
+      },
+      "elementId": "106",
+      "startNodeElementId": "21",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    },
+    "r": {
+      "identity": 105,
+      "start": 21,
+      "end": 53,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subcategory"
+      },
+      "elementId": "105",
+      "startNodeElementId": "21",
+      "endNodeElementId": "53"
+    },
+    "m": {
+      "identity": 53,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Regression Analysis"
+      },
+      "elementId": "53"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    },
+    "r": {
+      "identity": 114,
+      "start": 22,
+      "end": 55,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Concept"
+      },
+      "elementId": "114",
+      "startNodeElementId": "22",
+      "endNodeElementId": "55"
+    },
+    "m": {
+      "identity": 55,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Decision Support System"
+      },
+      "elementId": "55"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    },
+    "r": {
+      "identity": 113,
+      "start": 22,
+      "end": 18,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subset Of"
+      },
+      "elementId": "113",
+      "startNodeElementId": "22",
+      "endNodeElementId": "18"
+    },
+    "m": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    },
+    "r": {
+      "identity": 112,
+      "start": 22,
+      "end": 54,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Component Part"
+      },
+      "elementId": "112",
+      "startNodeElementId": "22",
+      "endNodeElementId": "54"
+    },
+    "m": {
+      "identity": 54,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Reporting"
+      },
+      "elementId": "54"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    },
+    "r": {
+      "identity": 111,
+      "start": 22,
+      "end": 8,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Broader Category"
+      },
+      "elementId": "111",
+      "startNodeElementId": "22",
+      "endNodeElementId": "8"
+    },
+    "m": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    },
+    "r": {
+      "identity": 110,
+      "start": 22,
+      "end": 20,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Hyponym"
+      },
+      "elementId": "110",
+      "startNodeElementId": "22",
+      "endNodeElementId": "20"
+    },
+    "m": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 184,
+      "start": 23,
+      "end": 0,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ImplementationDomain"
+      },
+      "elementId": "184",
+      "startNodeElementId": "23",
+      "endNodeElementId": "0"
+    },
+    "m": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 119,
+      "start": 23,
+      "end": 58,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Overlaps With"
+      },
+      "elementId": "119",
+      "startNodeElementId": "23",
+      "endNodeElementId": "58"
+    },
+    "m": {
+      "identity": 58,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Extraction"
+      },
+      "elementId": "58"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 118,
+      "start": 23,
+      "end": 57,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Has Relationship With"
+      },
+      "elementId": "118",
+      "startNodeElementId": "23",
+      "endNodeElementId": "57"
+    },
+    "m": {
+      "identity": 57,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Topic Modeling"
+      },
+      "elementId": "57"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 117,
+      "start": 23,
+      "end": 56,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Involves The Use Of"
+      },
+      "elementId": "117",
+      "startNodeElementId": "23",
+      "endNodeElementId": "56"
+    },
+    "m": {
+      "identity": 56,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition (NER)"
+      },
+      "elementId": "56"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 116,
+      "start": 23,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Specializes In"
+      },
+      "elementId": "116",
+      "startNodeElementId": "23",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    },
+    "r": {
+      "identity": 115,
+      "start": 23,
+      "end": 10,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Is A Subtype Of"
+      },
+      "elementId": "115",
+      "startNodeElementId": "23",
+      "endNodeElementId": "10"
+    },
+    "m": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 181,
+      "start": 24,
+      "end": 19,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "IsRelatedTo"
+      },
+      "elementId": "181",
+      "startNodeElementId": "24",
+      "endNodeElementId": "19"
+    },
+    "m": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 143,
+      "start": 24,
+      "end": 14,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Application"
+      },
+      "elementId": "143",
+      "startNodeElementId": "24",
+      "endNodeElementId": "14"
+    },
+    "m": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 142,
+      "start": 24,
+      "end": 14,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationOf"
+      },
+      "elementId": "142",
+      "startNodeElementId": "24",
+      "endNodeElementId": "14"
+    },
+    "m": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 129,
+      "start": 24,
+      "end": 63,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Hyponym"
+      },
+      "elementId": "129",
+      "startNodeElementId": "24",
+      "endNodeElementId": "63"
+    },
+    "m": {
+      "identity": 63,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Performance Metrics"
+      },
+      "elementId": "63"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 128,
+      "start": 24,
+      "end": 62,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Sibling"
+      },
+      "elementId": "128",
+      "startNodeElementId": "24",
+      "endNodeElementId": "62"
+    },
+    "m": {
+      "identity": 62,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Caching Mechanisms"
+      },
+      "elementId": "62"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 127,
+      "start": 24,
+      "end": 61,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Equivalent"
+      },
+      "elementId": "127",
+      "startNodeElementId": "24",
+      "endNodeElementId": "61"
+    },
+    "m": {
+      "identity": 61,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Plan Analysis"
+      },
+      "elementId": "61"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 126,
+      "start": 24,
+      "end": 60,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Child"
+      },
+      "elementId": "126",
+      "startNodeElementId": "24",
+      "endNodeElementId": "60"
+    },
+    "m": {
+      "identity": 60,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Indexing Techniques"
+      },
+      "elementId": "60"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    },
+    "r": {
+      "identity": 125,
+      "start": 24,
+      "end": 59,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Parent"
+      },
+      "elementId": "125",
+      "startNodeElementId": "24",
+      "endNodeElementId": "59"
+    },
+    "m": {
+      "identity": 59,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Design"
+      },
+      "elementId": "59"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 177,
+      "start": 25,
+      "end": 28,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subsumes"
+      },
+      "elementId": "177",
+      "startNodeElementId": "25",
+      "endNodeElementId": "28"
+    },
+    "m": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 164,
+      "start": 25,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "uses"
+      },
+      "elementId": "164",
+      "startNodeElementId": "25",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 161,
+      "start": 25,
+      "end": 7,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Provides"
+      },
+      "elementId": "161",
+      "startNodeElementId": "25",
+      "endNodeElementId": "7"
+    },
+    "m": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 134,
+      "start": 25,
+      "end": 67,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related To"
+      },
+      "elementId": "134",
+      "startNodeElementId": "25",
+      "endNodeElementId": "67"
+    },
+    "m": {
+      "identity": 67,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "SEO"
+      },
+      "elementId": "67"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 133,
+      "start": 25,
+      "end": 66,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Component Of"
+      },
+      "elementId": "133",
+      "startNodeElementId": "25",
+      "endNodeElementId": "66"
+    },
+    "m": {
+      "identity": 66,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Web Crawlers"
+      },
+      "elementId": "66"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 132,
+      "start": 25,
+      "end": 16,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related To"
+      },
+      "elementId": "132",
+      "startNodeElementId": "25",
+      "endNodeElementId": "16"
+    },
+    "m": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 131,
+      "start": 25,
+      "end": 65,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Uses"
+      },
+      "elementId": "131",
+      "startNodeElementId": "25",
+      "endNodeElementId": "65"
+    },
+    "m": {
+      "identity": 65,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Algorithms"
+      },
+      "elementId": "65"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    },
+    "r": {
+      "identity": 130,
+      "start": 25,
+      "end": 64,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Parent"
+      },
+      "elementId": "130",
+      "startNodeElementId": "25",
+      "endNodeElementId": "64"
+    },
+    "m": {
+      "identity": 64,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Internet"
+      },
+      "elementId": "64"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 174,
+      "start": 26,
+      "end": 29,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "174",
+      "startNodeElementId": "26",
+      "endNodeElementId": "29"
+    },
+    "m": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 154,
+      "start": 26,
+      "end": 5,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "ApplicationOf"
+      },
+      "elementId": "154",
+      "startNodeElementId": "26",
+      "endNodeElementId": "5"
+    },
+    "m": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 139,
+      "start": 26,
+      "end": 69,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "139",
+      "startNodeElementId": "26",
+      "endNodeElementId": "69"
+    },
+    "m": {
+      "identity": 69,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition"
+      },
+      "elementId": "69"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 138,
+      "start": 26,
+      "end": 68,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "PreconditionFor"
+      },
+      "elementId": "138",
+      "startNodeElementId": "26",
+      "endNodeElementId": "68"
+    },
+    "m": {
+      "identity": 68,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Part-Of-Speech Tagging"
+      },
+      "elementId": "68"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 137,
+      "start": 26,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SpecializationOf"
+      },
+      "elementId": "137",
+      "startNodeElementId": "26",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 136,
+      "start": 26,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "FieldOfStudy"
+      },
+      "elementId": "136",
+      "startNodeElementId": "26",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    },
+    "r": {
+      "identity": 135,
+      "start": 26,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "SubfieldOf"
+      },
+      "elementId": "135",
+      "startNodeElementId": "26",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    },
+    "r": {
+      "identity": 149,
+      "start": 27,
+      "end": 72,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Similar To"
+      },
+      "elementId": "149",
+      "startNodeElementId": "27",
+      "endNodeElementId": "72"
+    },
+    "m": {
+      "identity": 72,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mood Detection"
+      },
+      "elementId": "72"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    },
+    "r": {
+      "identity": 148,
+      "start": 27,
+      "end": 71,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Component Of"
+      },
+      "elementId": "148",
+      "startNodeElementId": "27",
+      "endNodeElementId": "71"
+    },
+    "m": {
+      "identity": 71,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Facial Expression Analysis"
+      },
+      "elementId": "71"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    },
+    "r": {
+      "identity": 147,
+      "start": 27,
+      "end": 29,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Equivalent Concept"
+      },
+      "elementId": "147",
+      "startNodeElementId": "27",
+      "endNodeElementId": "29"
+    },
+    "m": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    },
+    "r": {
+      "identity": 146,
+      "start": 27,
+      "end": 70,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related To"
+      },
+      "elementId": "146",
+      "startNodeElementId": "27",
+      "endNodeElementId": "70"
+    },
+    "m": {
+      "identity": 70,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Traits"
+      },
+      "elementId": "70"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    },
+    "r": {
+      "identity": 145,
+      "start": 27,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subset Of"
+      },
+      "elementId": "145",
+      "startNodeElementId": "27",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    },
+    "r": {
+      "identity": 159,
+      "start": 28,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Discipline"
+      },
+      "elementId": "159",
+      "startNodeElementId": "28",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    },
+    "r": {
+      "identity": 158,
+      "start": 28,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Methodology Employed By"
+      },
+      "elementId": "158",
+      "startNodeElementId": "28",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    },
+    "r": {
+      "identity": 157,
+      "start": 28,
+      "end": 26,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Technique Used In"
+      },
+      "elementId": "157",
+      "startNodeElementId": "28",
+      "endNodeElementId": "26"
+    },
+    "m": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    },
+    "r": {
+      "identity": 156,
+      "start": 28,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Field"
+      },
+      "elementId": "156",
+      "startNodeElementId": "28",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    },
+    "r": {
+      "identity": 155,
+      "start": 28,
+      "end": 11,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Subfield Of"
+      },
+      "elementId": "155",
+      "startNodeElementId": "28",
+      "endNodeElementId": "11"
+    },
+    "m": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 180,
+      "start": 29,
+      "end": 9,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "RelatedThroughApplication"
+      },
+      "elementId": "180",
+      "startNodeElementId": "29",
+      "endNodeElementId": "9"
+    },
+    "m": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 169,
+      "start": 29,
+      "end": 1,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Enabling Technology"
+      },
+      "elementId": "169",
+      "startNodeElementId": "29",
+      "endNodeElementId": "1"
+    },
+    "m": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 168,
+      "start": 29,
+      "end": 75,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Related Concept"
+      },
+      "elementId": "168",
+      "startNodeElementId": "29",
+      "endNodeElementId": "75"
+    },
+    "m": {
+      "identity": 75,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Analysis"
+      },
+      "elementId": "75"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 167,
+      "start": 29,
+      "end": 4,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Collaborative Discipline"
+      },
+      "elementId": "167",
+      "startNodeElementId": "29",
+      "endNodeElementId": "4"
+    },
+    "m": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 166,
+      "start": 29,
+      "end": 74,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Overlapping Field"
+      },
+      "elementId": "166",
+      "startNodeElementId": "29",
+      "endNodeElementId": "74"
+    },
+    "m": {
+      "identity": 74,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Human-Computer Interaction"
+      },
+      "elementId": "74"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    },
+    "r": {
+      "identity": 165,
+      "start": 29,
+      "end": 73,
+      "type": "RELATED_TO",
+      "properties": {
+        "type": "Domain"
+      },
+      "elementId": "165",
+      "startNodeElementId": "29",
+      "endNodeElementId": "73"
+    },
+    "m": {
+      "identity": 73,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotional Intelligence"
+      },
+      "elementId": "73"
+    }
+  },
+  {
+    "n": {
+      "identity": 30,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Materials Science"
+      },
+      "elementId": "30"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 31,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Manufacturing"
+      },
+      "elementId": "31"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 32,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Aided Design (CAD)"
+      },
+      "elementId": "32"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 33,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Thermodynamics"
+      },
+      "elementId": "33"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 34,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computing"
+      },
+      "elementId": "34"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 35,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Process Optimization"
+      },
+      "elementId": "35"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 36,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Pattern Recognition"
+      },
+      "elementId": "36"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 37,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Image Recognition"
+      },
+      "elementId": "37"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 38,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Backpropagation"
+      },
+      "elementId": "38"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 39,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Visualization"
+      },
+      "elementId": "39"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 40,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Management"
+      },
+      "elementId": "40"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 41,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Modeling"
+      },
+      "elementId": "41"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 42,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mathematical Logic"
+      },
+      "elementId": "42"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 43,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Theory"
+      },
+      "elementId": "43"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 44,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Random Processes"
+      },
+      "elementId": "44"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 45,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Graphics"
+      },
+      "elementId": "45"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 46,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Big Data"
+      },
+      "elementId": "46"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 47,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Analysis"
+      },
+      "elementId": "47"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 48,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Collection Techniques"
+      },
+      "elementId": "48"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 49,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Survey Design"
+      },
+      "elementId": "49"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 50,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Randomization"
+      },
+      "elementId": "50"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 51,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Quality Control"
+      },
+      "elementId": "51"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 52,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Knowledge Discovery"
+      },
+      "elementId": "52"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 53,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Regression Analysis"
+      },
+      "elementId": "53"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 54,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Reporting"
+      },
+      "elementId": "54"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 55,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Decision Support System"
+      },
+      "elementId": "55"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 56,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition (NER)"
+      },
+      "elementId": "56"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 57,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Topic Modeling"
+      },
+      "elementId": "57"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 58,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Extraction"
+      },
+      "elementId": "58"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 59,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Design"
+      },
+      "elementId": "59"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 60,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Indexing Techniques"
+      },
+      "elementId": "60"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 61,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Plan Analysis"
+      },
+      "elementId": "61"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 62,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Caching Mechanisms"
+      },
+      "elementId": "62"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 63,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Performance Metrics"
+      },
+      "elementId": "63"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 64,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Internet"
+      },
+      "elementId": "64"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 65,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Algorithms"
+      },
+      "elementId": "65"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 66,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Web Crawlers"
+      },
+      "elementId": "66"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 67,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "SEO"
+      },
+      "elementId": "67"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 68,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Part-Of-Speech Tagging"
+      },
+      "elementId": "68"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 69,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition"
+      },
+      "elementId": "69"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 70,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Traits"
+      },
+      "elementId": "70"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 71,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Facial Expression Analysis"
+      },
+      "elementId": "71"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 72,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mood Detection"
+      },
+      "elementId": "72"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 73,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotional Intelligence"
+      },
+      "elementId": "73"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 74,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Human-Computer Interaction"
+      },
+      "elementId": "74"
+    },
+    "r": null,
+    "m": null
+  },
+  {
+    "n": {
+      "identity": 75,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Analysis"
+      },
+      "elementId": "75"
+    },
+    "r": null,
+    "m": null
+  }
+]

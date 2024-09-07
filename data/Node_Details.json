@@ -1,0 +1,914 @@
+﻿[
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Artificial Intelligence"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Machine Learning"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Science"
+      },
+      "elementId": "2"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Vision"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Natural Language Processing"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Robotics"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Deep Learning"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistics"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Analytics"
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Retrieval"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Mining"
+      },
+      "elementId": "10"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sentiment Analysis"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mechanical Engineering"
+      },
+      "elementId": "12"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Automation"
+      },
+      "elementId": "13"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Neural Networks"
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Convolutional Neural Networks"
+      },
+      "elementId": "15"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Analysis"
+      },
+      "elementId": "16"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Probability Theory"
+      },
+      "elementId": "17"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Visualization"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Sampling Methods"
+      },
+      "elementId": "19"
+    }
+  },
+  {
+    "n": {
+      "identity": 20,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Mining"
+      },
+      "elementId": "20"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Modeling"
+      },
+      "elementId": "21"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Business Intelligence"
+      },
+      "elementId": "22"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Document Analysis"
+      },
+      "elementId": "23"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Optimization"
+      },
+      "elementId": "24"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Search Engines"
+      },
+      "elementId": "25"
+    }
+  },
+  {
+    "n": {
+      "identity": 26,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Text Classification"
+      },
+      "elementId": "26"
+    }
+  },
+  {
+    "n": {
+      "identity": 27,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotion Recognition"
+      },
+      "elementId": "27"
+    }
+  },
+  {
+    "n": {
+      "identity": 28,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Opinion Mining"
+      },
+      "elementId": "28"
+    }
+  },
+  {
+    "n": {
+      "identity": 29,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Affective Computing"
+      },
+      "elementId": "29"
+    }
+  },
+  {
+    "n": {
+      "identity": 30,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Materials Science"
+      },
+      "elementId": "30"
+    }
+  },
+  {
+    "n": {
+      "identity": 31,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Manufacturing"
+      },
+      "elementId": "31"
+    }
+  },
+  {
+    "n": {
+      "identity": 32,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computer Aided Design (CAD)"
+      },
+      "elementId": "32"
+    }
+  },
+  {
+    "n": {
+      "identity": 33,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Thermodynamics"
+      },
+      "elementId": "33"
+    }
+  },
+  {
+    "n": {
+      "identity": 34,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Computing"
+      },
+      "elementId": "34"
+    }
+  },
+  {
+    "n": {
+      "identity": 35,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Process Optimization"
+      },
+      "elementId": "35"
+    }
+  },
+  {
+    "n": {
+      "identity": 36,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Pattern Recognition"
+      },
+      "elementId": "36"
+    }
+  },
+  {
+    "n": {
+      "identity": 37,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Image Recognition"
+      },
+      "elementId": "37"
+    }
+  },
+  {
+    "n": {
+      "identity": 38,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Backpropagation"
+      },
+      "elementId": "38"
+    }
+  },
+  {
+    "n": {
+      "identity": 39,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Visualization"
+      },
+      "elementId": "39"
+    }
+  },
+  {
+    "n": {
+      "identity": 40,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Management"
+      },
+      "elementId": "40"
+    }
+  },
+  {
+    "n": {
+      "identity": 41,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Predictive Modeling"
+      },
+      "elementId": "41"
+    }
+  },
+  {
+    "n": {
+      "identity": 42,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mathematical Logic"
+      },
+      "elementId": "42"
+    }
+  },
+  {
+    "n": {
+      "identity": 43,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Theory"
+      },
+      "elementId": "43"
+    }
+  },
+  {
+    "n": {
+      "identity": 44,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Random Processes"
+      },
+      "elementId": "44"
+    }
+  },
+  {
+    "n": {
+      "identity": 45,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Graphics"
+      },
+      "elementId": "45"
+    }
+  },
+  {
+    "n": {
+      "identity": 46,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Big Data"
+      },
+      "elementId": "46"
+    }
+  },
+  {
+    "n": {
+      "identity": 47,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Statistical Analysis"
+      },
+      "elementId": "47"
+    }
+  },
+  {
+    "n": {
+      "identity": 48,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Collection Techniques"
+      },
+      "elementId": "48"
+    }
+  },
+  {
+    "n": {
+      "identity": 49,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Survey Design"
+      },
+      "elementId": "49"
+    }
+  },
+  {
+    "n": {
+      "identity": 50,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Randomization"
+      },
+      "elementId": "50"
+    }
+  },
+  {
+    "n": {
+      "identity": 51,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Data Quality Control"
+      },
+      "elementId": "51"
+    }
+  },
+  {
+    "n": {
+      "identity": 52,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Knowledge Discovery"
+      },
+      "elementId": "52"
+    }
+  },
+  {
+    "n": {
+      "identity": 53,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Regression Analysis"
+      },
+      "elementId": "53"
+    }
+  },
+  {
+    "n": {
+      "identity": 54,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Reporting"
+      },
+      "elementId": "54"
+    }
+  },
+  {
+    "n": {
+      "identity": 55,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Decision Support System"
+      },
+      "elementId": "55"
+    }
+  },
+  {
+    "n": {
+      "identity": 56,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition (NER)"
+      },
+      "elementId": "56"
+    }
+  },
+  {
+    "n": {
+      "identity": 57,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Topic Modeling"
+      },
+      "elementId": "57"
+    }
+  },
+  {
+    "n": {
+      "identity": 58,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Information Extraction"
+      },
+      "elementId": "58"
+    }
+  },
+  {
+    "n": {
+      "identity": 59,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Database Design"
+      },
+      "elementId": "59"
+    }
+  },
+  {
+    "n": {
+      "identity": 60,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Indexing Techniques"
+      },
+      "elementId": "60"
+    }
+  },
+  {
+    "n": {
+      "identity": 61,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Query Plan Analysis"
+      },
+      "elementId": "61"
+    }
+  },
+  {
+    "n": {
+      "identity": 62,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Caching Mechanisms"
+      },
+      "elementId": "62"
+    }
+  },
+  {
+    "n": {
+      "identity": 63,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Performance Metrics"
+      },
+      "elementId": "63"
+    }
+  },
+  {
+    "n": {
+      "identity": 64,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Internet"
+      },
+      "elementId": "64"
+    }
+  },
+  {
+    "n": {
+      "identity": 65,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Algorithms"
+      },
+      "elementId": "65"
+    }
+  },
+  {
+    "n": {
+      "identity": 66,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Web Crawlers"
+      },
+      "elementId": "66"
+    }
+  },
+  {
+    "n": {
+      "identity": 67,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "SEO"
+      },
+      "elementId": "67"
+    }
+  },
+  {
+    "n": {
+      "identity": 68,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Part-Of-Speech Tagging"
+      },
+      "elementId": "68"
+    }
+  },
+  {
+    "n": {
+      "identity": 69,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Named Entity Recognition"
+      },
+      "elementId": "69"
+    }
+  },
+  {
+    "n": {
+      "identity": 70,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Traits"
+      },
+      "elementId": "70"
+    }
+  },
+  {
+    "n": {
+      "identity": 71,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Facial Expression Analysis"
+      },
+      "elementId": "71"
+    }
+  },
+  {
+    "n": {
+      "identity": 72,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Mood Detection"
+      },
+      "elementId": "72"
+    }
+  },
+  {
+    "n": {
+      "identity": 73,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Emotional Intelligence"
+      },
+      "elementId": "73"
+    }
+  },
+  {
+    "n": {
+      "identity": 74,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Human-Computer Interaction"
+      },
+      "elementId": "74"
+    }
+  },
+  {
+    "n": {
+      "identity": 75,
+      "labels": [
+        "Concept"
+      ],
+      "properties": {
+        "name": "Personality Analysis"
+      },
+      "elementId": "75"
+    }
+  }
+]
