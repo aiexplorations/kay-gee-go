@@ -3,11 +3,10 @@
 This project builds a knowledge graph using Neo4j and an LLM service. It is designed to be run in a Docker container.  
 Large language models are used to retrieve related concepts and mine relationships between concepts. The purpose of this project is to build a knowledge graph that can be used for further analysis or as a foundation for a semantic search engine. 
 
-
-
 ## Setup
 
 1. Ensure Docker and Docker Compose are installed on your system.
+2. Navigate to the project directory `kg-builder`.
 2. Run `docker-compose up --build` to start the application and Neo4j.
 
 ## Usage
@@ -58,5 +57,16 @@ This file handles the connection to the Neo4j database and provides functions to
 - **CreateRelationship**: A function that creates a relationship between two concepts in the Neo4j database using a Cypher query. It ensures that the concepts are created if they do not already exist.
 
 - **connectToNeo4jWithRetry**: A helper function that attempts to connect to the Neo4j database multiple times, logging the attempts and errors. It validates the connection parameters before attempting to connect.
+
+
+# Build process
+
+1. Run `docker-compose up --build` to start the application and Neo4j.
+2. The application will automatically start building the knowledge graph from the seed concept "Artificial Intelligence".
+3. If you want to change the seed concept, you can do so by modifying the `seedConcept` variable in the `main` function in `cmd/kg-builder/main.go`. Option to provide the seed concept via a command line argument is in development.
+
+
+
+
 
 

@@ -32,14 +32,18 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 	Do not return any explanations, markdown formatting, or additional text.
 	`, concept, concept)
 
+	// Marshal the request body
 	requestBody, err := json.Marshal(map[string]string{
 		"model":  "llama3.1:latest", // TODO: Make this configurable
 		"prompt": prompt,            // TODO: Make this configurable
 	})
+
+	// Check if the request body was marshalled successfully
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
+	// Send the request to the LLM service
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		return nil, fmt.Errorf("failed to make request: %w", err)
@@ -50,6 +54,7 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
+	// Read the response from the LLM service
 	var fullResponse strings.Builder
 	scanner := bufio.NewScanner(resp.Body)
 	for scanner.Scan() {
@@ -62,10 +67,12 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 		}
 	}
 
+	// Check if there was an error reading the response
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("error reading response: %w", err)
 	}
 
+	// Unmarshal the response into a slice of Concept structs
 	var concepts []models.Concept
 	if err := json.Unmarshal([]byte(fullResponse.String()), &concepts); err != nil {
 		fmt.Printf("Raw LLM response: %s\n", fullResponse.String())
@@ -75,6 +82,7 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 	return concepts, nil
 }
 
+// MineRelationship sends a request to the LLM service to determine if there is a relationship between two concepts.
 func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 	url := "http://host.docker.internal:11434/api/generate"
 	prompt := fmt.Sprintf(`You are an expert ontologist and respond only in JSON. 
@@ -103,16 +111,19 @@ func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
+	// Send the request to the LLM service
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		return nil, fmt.Errorf("failed to make request: %w", err)
 	}
 	defer resp.Body.Close()
 
+	// Check if the response status code is OK
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
+	// Read the response from the LLM service
 	var fullResponse strings.Builder
 	scanner := bufio.NewScanner(resp.Body)
 	for scanner.Scan() {
@@ -125,16 +136,19 @@ func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 		}
 	}
 
+	// Check if there was an error reading the response
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("error reading response: %w", err)
 	}
 
+	// Unmarshal the response into a Concept struct
 	var concept models.Concept
 	if err := json.Unmarshal([]byte(fullResponse.String()), &concept); err != nil {
 		fmt.Printf("Raw LLM response: %s\n", fullResponse.String())
 		return nil, fmt.Errorf("failed to unmarshal concept: %w", err)
 	}
 
+	// Check if the relationship is empty
 	if concept.Relation == "" {
 		return nil, nil // No relationship found
 	}
