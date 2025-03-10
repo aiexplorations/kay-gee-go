@@ -1,0 +1,1 @@
+[{"name":"Metadata","relation":"contains","relatedTo":"Indexing"},{"name":"Search Engine","relation":"uses","relatedTo":"Indexing"},{"name":"Document","relation":"isIndexedBy","relatedTo":"Indexing"},{"name":"Database","relation":"indexesDataIn","relatedTo":"Indexing"},{"name":"Web Crawler","relation":"generates","relatedTo":"Indexing"}]

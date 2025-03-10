@@ -1,0 +1,1 @@
+[{"name":"Derivative","relation":"derives_from","relatedTo":"Gradient"},{"name":"Learning Rate","relation":"applies_to","relatedTo":"Gradient"},{"name":"Steepest Ascent","relation":"refers_to","relatedTo":"Gradient"},{"name":"Perceptron Rule","relation":"employs","relatedTo":"Gradient"},{"name":"Optimization Algorithm","relation":"includes","relatedTo":"Gradient"}]

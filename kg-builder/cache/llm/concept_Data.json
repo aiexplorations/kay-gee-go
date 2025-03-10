@@ -1,0 +1,1 @@
+[{"name":"Information","relation":"is_related_to","relatedTo":"Data"},{"name":"Metadata","relation":"is_related_to","relatedTo":"Data"},{"name":"Insight","relation":"generated_from","relatedTo":"Data"},{"name":"Knowledge","relation":"derived_from","relatedTo":"Data"},{"name":"Analysis","relation":"used_in","relatedTo":"Data"}]

@@ -1,0 +1,1 @@
+[{"name":"Probability","relation":"IS_A","relatedTo":"Likelihood"},{"name":"Possibility","relation":"IS_A","relatedTo":"Likelihood"},{"name":"Uncertainty","relation":"HAS_PROPERTY","relatedTo":"Likelihood"},{"name":"Forecasting","relation":"USES","relatedTo":"Likelihood"},{"name":"Statistical_model","relation":"INVOLVES","relatedTo":"Likelihood"}]

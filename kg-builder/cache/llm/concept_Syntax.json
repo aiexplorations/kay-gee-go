@@ -1,0 +1,1 @@
+[{"name":"Semantics","relation":"relates_to","relatedTo":"Syntax"},{"name":"Grammar","relation":"relates_to","relatedTo":"Syntax"},{"name":"Parsing","relation":"relates_to","relatedTo":"Syntax"},{"name":"Lexicon","relation":"relates_to","relatedTo":"Syntax"},{"name":"Semiotics","relation":"relates_to","relatedTo":"Syntax"}]

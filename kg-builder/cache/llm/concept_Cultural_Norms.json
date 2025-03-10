@@ -1,0 +1,1 @@
+[{"name":"Language","relation":"Uses","relatedTo":"Cultural Norms"},{"name":"Customs","relation":"Influences","relatedTo":"Cultural Norms"},{"name":"Traditions","relation":"FormsOfExpression","relatedTo":"Cultural Norms"},{"name":"Folklore","relation":"DepictedIn","relatedTo":"Cultural Norms"},{"name":"Education","relation":"Promotes","relatedTo":"Cultural Norms"}]

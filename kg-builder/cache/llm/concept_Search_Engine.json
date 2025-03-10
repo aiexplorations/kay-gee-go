@@ -1,0 +1,1 @@
+[{"name":"Web Crawlers","relation":"Produces","relatedTo":"Search Engine"},{"name":"Indexing Service","relation":"Uses","relatedTo":"Search Engine"},{"name":"Query Parser","relation":"Consumes","relatedTo":"Search Engine"},{"name":"User Interface","relation":"Provides","relatedTo":"Search Engine"},{"name":"Webpages","relation":"Contains","relatedTo":"Search Engine"}]

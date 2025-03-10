@@ -1,0 +1,1 @@
+[{"name":"Norms","relation":"defines","relatedTo":"Standardization"},{"name":"Regulations","relation":"defines","relatedTo":"Standardization"},{"name":"Specifications","relation":"defines","relatedTo":"Standardization"},{"name":"Protocols","relation":"applies to","relatedTo":"Standardization"},{"name":"Models","relation":"applied in creating","relatedTo":"Standardization"}]

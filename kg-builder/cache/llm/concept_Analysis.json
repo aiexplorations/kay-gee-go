@@ -1,0 +1,1 @@
+[{"name":"Synthesis","relation":"oppositeOf","relatedTo":"Analysis"},{"name":"Critique","relation":"derivesFrom","relatedTo":"Analysis"},{"name":"Correlation","relation":"usedIn","relatedTo":"Analysis"},{"name":"Induction","relation":"appliesTo","relatedTo":"Analysis"},{"name":"Synthesis","relation":"oppositeOf","relatedTo":"Analysis"}]

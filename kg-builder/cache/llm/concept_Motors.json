@@ -1,0 +1,1 @@
+[{"name":"Engine","relation":"derivesFrom","relatedTo":"Motors"},{"name":"Vehicle","relation":"contains","relatedTo":"Motors"},{"name":"Electricity","relation":"requires","relatedTo":"Motors"},{"name":"Mechanics","relation":"appliesTo","relatedTo":"Motors"},{"name":"Hydraulics","relation":"comparesTo","relatedTo":"Motors"}]

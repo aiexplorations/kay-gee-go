@@ -1,0 +1,22 @@
+# Knowledge Graph Enricher Configuration
+
+# Neo4j Configuration
+neo4j:
+  uri: "bolt://neo4j:7687"
+  user: "neo4j"
+  password: "password"
+  max_retries: 5
+  retry_interval_seconds: 5
+
+# LLM Configuration
+llm:
+  url: "http://host.docker.internal:11434/api/generate"
+  model: "qwen2.5:3b"
+  cache_dir: "./cache/llm"
+
+# Enricher Configuration
+enricher:
+  batch_size: 10
+  interval_seconds: 60
+  max_relationships: 100
+  concurrency: 5 

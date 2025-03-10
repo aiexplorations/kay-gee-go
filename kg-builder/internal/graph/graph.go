@@ -2,18 +2,19 @@ package graph
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"math/rand" // Keep this import as we'll use it in getRandomPair
 	"sync"
 	"time"
 
+	"kg-builder/internal/config"
+	apperrors "kg-builder/internal/errors"
 	"kg-builder/internal/models"
 	kgneo4j "kg-builder/internal/neo4j"
 
 	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
-
-const maxNodes = 100
 
 // GraphBuilder struct
 type GraphBuilder struct {
@@ -23,21 +24,43 @@ type GraphBuilder struct {
 	processedConcepts  map[string]bool
 	nodeCount          int
 	mutex              sync.Mutex
+	config             *config.GraphConfig
 }
 
 // NewGraphBuilder creates a new GraphBuilder instance
-func NewGraphBuilder(driver neo4j.Driver, getRelatedConcepts func(string) ([]models.Concept, error), mineRelationship func(string, string) (*models.Concept, error)) *GraphBuilder {
+func NewGraphBuilder(driver neo4j.Driver, getRelatedConcepts func(string) ([]models.Concept, error), mineRelationship func(string, string) (*models.Concept, error), config *config.GraphConfig) *GraphBuilder {
+	if driver == nil {
+		log.Fatal("Neo4j driver cannot be nil")
+	}
+	
+	if getRelatedConcepts == nil {
+		log.Fatal("getRelatedConcepts function cannot be nil")
+	}
+	
+	if mineRelationship == nil {
+		log.Fatal("mineRelationship function cannot be nil")
+	}
+	
 	return &GraphBuilder{
 		driver:             driver,
 		getRelatedConcepts: getRelatedConcepts,
 		mineRelationship:   mineRelationship,
 		processedConcepts:  make(map[string]bool),
 		nodeCount:          0,
+		config:             config,
 	}
 }
 
 // BuildGraph builds the knowledge graph
 func (gb *GraphBuilder) BuildGraph(seedConcept string, maxNodes int, timeout time.Duration) error {
+	if seedConcept == "" {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "seed concept cannot be empty")
+	}
+	
+	if maxNodes <= 0 {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "maxNodes must be greater than 0")
+	}
+	
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -45,7 +68,7 @@ func (gb *GraphBuilder) BuildGraph(seedConcept string, maxNodes int, timeout tim
 	queue <- seedConcept                 // Add the seed concept to the queue
 
 	var wg sync.WaitGroup
-	workerCount := 10 // Adjust this number based on your needs and system capabilities
+	workerCount := gb.config.WorkerCount // Use the configured worker count
 
 	for i := 0; i < workerCount; i++ {
 		wg.Add(1)
@@ -62,12 +85,13 @@ func (gb *GraphBuilder) BuildGraph(seedConcept string, maxNodes int, timeout tim
 	case <-ctx.Done():
 		if ctx.Err() == context.DeadlineExceeded {
 			log.Printf("Timeout reached after processing %d concepts", gb.nodeCount)
+			return apperrors.NewGraphError(apperrors.ErrTimeout, "graph building timed out")
 		}
+		return apperrors.NewGraphError(ctx.Err(), "context cancelled")
 	case <-done:
 		log.Printf("Graph building completed, processed %d concepts", gb.nodeCount)
+		return nil
 	}
-
-	return nil
 }
 
 func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue chan string) {
@@ -83,7 +107,7 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 			}
 
 			gb.mutex.Lock()
-			if gb.processedConcepts[concept] || gb.nodeCount >= maxNodes {
+			if gb.processedConcepts[concept] || gb.nodeCount >= gb.config.MaxNodes {
 				gb.mutex.Unlock()
 				continue
 			}
@@ -103,7 +127,7 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 			log.Printf("Found %d related concepts for %s", len(relatedConcepts), concept)
 			for _, rc := range relatedConcepts {
 				gb.mutex.Lock()
-				if gb.nodeCount >= maxNodes {
+				if gb.nodeCount >= gb.config.MaxNodes {
 					gb.mutex.Unlock()
 					return
 				}
@@ -118,7 +142,7 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 				log.Printf("Successfully created relationship: %s -[%s]-> %s", concept, rc.Relation, rc.Name)
 
 				gb.mutex.Lock()
-				if !gb.processedConcepts[rc.Name] && gb.nodeCount < maxNodes {
+				if !gb.processedConcepts[rc.Name] && gb.nodeCount < gb.config.MaxNodes {
 					select {
 					case queue <- rc.Name:
 					default:
@@ -131,9 +155,27 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 	}
 }
 
-func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) {
+// MineRandomRelationships mines relationships between random pairs of concepts
+func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) error {
+	if count <= 0 {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "count must be greater than 0")
+	}
+	
+	if concurrency <= 0 {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "concurrency must be greater than 0")
+	}
+	
+	gb.mutex.Lock()
+	conceptCount := len(gb.processedConcepts)
+	gb.mutex.Unlock()
+	
+	if conceptCount < 2 {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "need at least 2 concepts to mine relationships")
+	}
+	
 	semaphore := make(chan struct{}, concurrency)
 	var wg sync.WaitGroup
+	errorsChan := make(chan error, count)
 
 	for i := 0; i < count; i++ {
 		wg.Add(1)
@@ -143,7 +185,7 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) {
 			defer func() { <-semaphore }()
 
 			concepts := gb.getRandomPair()
-			if concepts[0] == concepts[1] {
+			if concepts[0] == concepts[1] || concepts[0] == "" || concepts[1] == "" {
 				return
 			}
 
@@ -151,6 +193,7 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) {
 			concept, err := gb.mineRelationship(concepts[0], concepts[1])
 			if err != nil {
 				log.Printf("Error mining relationship: %v", err)
+				errorsChan <- apperrors.NewGraphError(err, "failed to mine relationship")
 				return
 			}
 
@@ -163,15 +206,35 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) {
 			err = kgneo4j.CreateRelationship(gb.driver, concepts[0], concepts[1], concept.Relation)
 			if err != nil {
 				log.Printf("Error creating relationship: %v", err)
+				errorsChan <- apperrors.NewGraphError(err, "failed to create relationship")
 				return
 			}
 			log.Printf("Successfully created relationship: %s -[%s]-> %s", concepts[0], concept.Relation, concepts[1])
 		}()
 	}
 
-	wg.Wait()
+	go func() {
+		wg.Wait()
+		close(errorsChan)
+	}()
+
+	// Collect errors
+	var errors []error
+	for err := range errorsChan {
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return apperrors.NewGraphError(
+			fmt.Errorf("%d errors occurred during mining", len(errors)),
+			"some relationship mining operations failed",
+		)
+	}
+
+	return nil
 }
 
+// getRandomPair returns a random pair of concepts from the processed concepts
 func (gb *GraphBuilder) getRandomPair() [2]string {
 	gb.mutex.Lock()
 	defer gb.mutex.Unlock()
@@ -192,4 +255,25 @@ func (gb *GraphBuilder) getRandomPair() [2]string {
 	}
 
 	return [2]string{concepts[i], concepts[j]}
+}
+
+// GetProcessedConcepts returns a copy of the processed concepts map
+func (gb *GraphBuilder) GetProcessedConcepts() map[string]bool {
+	gb.mutex.Lock()
+	defer gb.mutex.Unlock()
+	
+	result := make(map[string]bool, len(gb.processedConcepts))
+	for k, v := range gb.processedConcepts {
+		result[k] = v
+	}
+	
+	return result
+}
+
+// GetNodeCount returns the current node count
+func (gb *GraphBuilder) GetNodeCount() int {
+	gb.mutex.Lock()
+	defer gb.mutex.Unlock()
+	
+	return gb.nodeCount
 }

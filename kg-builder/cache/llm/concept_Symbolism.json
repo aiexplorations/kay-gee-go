@@ -1,0 +1,1 @@
+[{"name":"Metaphor","relation":"IS_A","relatedTo":"Symbolism"},{"name":"Allegory","relation":"IS_A","relatedTo":"Symbolism"},{"name":"Iconography","relation":"HAS_PROPERTY","relatedTo":"Symbolism"},{"name":"Imagery","relation":"HAS_PROPERTY","relatedTo":"Symbolism"},{"name":"Semiotics","relation":"PARENT_OF","relatedTo":"Symbolism"}]

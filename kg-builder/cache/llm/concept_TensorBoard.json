@@ -1,0 +1,1 @@
+[{"name":"Weights","relation":"Uses","relatedTo":"TensorBoard"},{"name":"Losses","relation":"Uses","relatedTo":"TensorBoard"},{"name":"Graphs","relation":"Displays","relatedTo":"TensorBoard"},{"name":"Optimizers","relation":"Trains With","relatedTo":"TensorBoard"},{"name":"Datasets","relation":"Evaluates On","relatedTo":"TensorBoard"}]

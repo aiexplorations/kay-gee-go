@@ -1,0 +1,1 @@
+[{"name":"Virtual Reality","relation":"Influences","relatedTo":"Simulation"},{"name":"Virtual Environment","relation":"Is_a","relatedTo":"Simulation"},{"name":"Game Engine","relation":"Used_for","relatedTo":"Simulation"},{"name":"Artificial Intelligence","relation":"Uses_in","relatedTo":"Simulation"},{"name":"Computer Graphics","relation":"Supports","relatedTo":"Simulation"}]

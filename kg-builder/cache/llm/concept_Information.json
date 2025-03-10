@@ -1,0 +1,1 @@
+[{"name":"Data","relation":"is_a","relatedTo":"Information"},{"name":"Knowledge","relation":"contains","relatedTo":"Information"},{"name":"Communication","relation":"uses_for","relatedTo":"Information"},{"name":"Search","relation":"produces_output_for","relatedTo":"Information"},{"name":"System","relation":"contains_information_modeling","relatedTo":"Information"}]

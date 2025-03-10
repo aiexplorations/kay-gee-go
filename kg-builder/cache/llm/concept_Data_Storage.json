@@ -1,0 +1,1 @@
+[{"name":"Database","relation":"contains","relatedTo":"Data Storage"},{"name":"Filesystem","relation":"uses","relatedTo":"Data Storage"},{"name":"Archives","relation":"holds","relatedTo":"Data Storage"},{"name":"Backup Systems","relation":"provides backup for","relatedTo":"Data Storage"},{"name":"Encryption Methods","relation":"protects","relatedTo":"Data Storage"}]
