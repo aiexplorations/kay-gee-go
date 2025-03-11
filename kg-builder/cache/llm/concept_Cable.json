@@ -1,0 +1,1 @@
+[{"name":"Wire","relation":"is_a","relatedTo":"Cable"},{"name":"Electrical Connector","relation":"used_for","relatedTo":"Cable"},{"name":"Optical Fiber","relation":"variant_of","relatedTo":"Cable"},{"name":"Data Transmission","relation":"processes","relatedTo":"Cable"},{"name":"Connection Point","relation":"part_of","relatedTo":"Cable"}]

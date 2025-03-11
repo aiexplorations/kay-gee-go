@@ -1,0 +1,1 @@
+[{"name":"Matter","relation":"DefinedBy","relatedTo":"Material"},{"name":"Properties","relation":"HasProperty","relatedTo":"Material"},{"name":"Chemical Composition","relation":"Comprises","relatedTo":"Material"},{"name":"Structure","relation":"ConsistsOf","relatedTo":"Material"},{"name":"Transformation","relation":"TransformsInto","relatedTo":"Material"}]

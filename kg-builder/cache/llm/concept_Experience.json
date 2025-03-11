@@ -1,0 +1,1 @@
+[{"name":"Memory","relation":"contains","relatedTo":"Experience"},{"name":"Emotion","relation":"elicits","relatedTo":"Experience"},{"name":"Feedback","relation":"produces","relatedTo":"Experience"},{"name":"Learning","relation":"outcome_of","relatedTo":"Experience"},{"name":"Analysis","relation":"result_in","relatedTo":"Experience"}]

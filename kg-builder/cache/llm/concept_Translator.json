@@ -1,0 +1,1 @@
+[{"name":"Textbook","relation":"Involves","relatedTo":"Translator"},{"name":"Language","relation":"Uses","relatedTo":"Translator"},{"name":"Cultural Understanding","relation":"Enhances","relatedTo":"Translator"},{"name":"Interpretation","relation":"Involved In","relatedTo":"Translator"},{"name":"Translation Software","relation":"Uses","relatedTo":"Translator"}]

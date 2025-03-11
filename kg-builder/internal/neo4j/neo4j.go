@@ -3,6 +3,7 @@ package neo4j
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"time"
 
 	apperrors "kg-builder/internal/errors"
@@ -186,4 +187,76 @@ func QueryRelationships(driver neo4j.Driver) ([]map[string]string, error) {
 	}
 
 	return result.([]map[string]string), nil
+}
+
+// GetLowConnectivityConcepts retrieves concepts with the least number of connections from the Neo4j database
+func GetLowConnectivityConcepts(driver neo4j.Driver, limit int) ([]string, error) {
+	if driver == nil {
+		return nil, apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "Neo4j driver is nil")
+	}
+
+	if limit <= 0 {
+		limit = 10 // Default to 10 concepts if limit is not specified or invalid
+	}
+
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+	defer session.Close()
+
+	result, err := session.ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		// This query counts both incoming and outgoing relationships for each concept
+		// and orders them by the total count in ascending order (least connected first)
+		query := `
+			MATCH (c:Concept)
+			OPTIONAL MATCH (c)-[r1:RELATED_TO]->()
+			OPTIONAL MATCH ()-[r2:RELATED_TO]->(c)
+			WITH c, count(r1) + count(r2) AS connectivity
+			ORDER BY connectivity ASC
+			LIMIT $limit
+			RETURN c.name AS name, connectivity
+		`
+		params := map[string]interface{}{
+			"limit": limit,
+		}
+		
+		result, err := tx.Run(query, params)
+		if err != nil {
+			return nil, apperrors.NewDatabaseError(err, "failed to execute Cypher query")
+		}
+
+		var concepts []string
+		for result.Next() {
+			record := result.Record()
+			name, _ := record.Get("name")
+			concepts = append(concepts, name.(string))
+		}
+
+		if err = result.Err(); err != nil {
+			return nil, apperrors.NewDatabaseError(err, "error while iterating over results")
+		}
+
+		return concepts, nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return result.([]string), nil
+}
+
+// GetRandomLowConnectivityConcept retrieves a random concept from the low connectivity concepts
+func GetRandomLowConnectivityConcept(driver neo4j.Driver, limit int) (string, error) {
+	concepts, err := GetLowConnectivityConcepts(driver, limit)
+	if err != nil {
+		return "", err
+	}
+
+	if len(concepts) == 0 {
+		return "", apperrors.NewDatabaseError(apperrors.ErrNotFound, "no concepts found")
+	}
+
+	// Select a random concept from the low connectivity concepts
+	rand.Seed(time.Now().UnixNano())
+	randomIndex := rand.Intn(len(concepts))
+	return concepts[randomIndex], nil
 }

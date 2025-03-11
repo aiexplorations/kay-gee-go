@@ -1,0 +1,1 @@
+[{"name":"Engineering","relation":"SpecializationOf","relatedTo":"Mechanics"},{"name":"Physics","relation":"PrerequisiteFor","relatedTo":"Mechanics"},{"name":"Materials Science","relation":"CollaboratesWith","relatedTo":"Mechanics"},{"name":"Applied Mathematics","relation":"Supports","relatedTo":"Mechanics"},{"name":"Calculus","relation":"UsedFor","relatedTo":"Mechanics"}]

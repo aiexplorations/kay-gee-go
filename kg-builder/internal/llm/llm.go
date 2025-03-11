@@ -1,7 +1,6 @@
 package llm
 
 import (
-	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -70,6 +69,7 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 
 	// Create a retry function
 	var concepts []models.Concept
+	var err error
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
 		// Create the request body
 		prompt := fmt.Sprintf(`Generate 5 concepts related to "%s". 
@@ -150,38 +150,39 @@ Do not include any explanations, markdown formatting, or additional text. Return
 	return concepts, nil
 }
 
-// MineRelationship sends a request to the LLM service to determine if there is a relationship between two concepts.
-func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
+// MineRelationship sends a request to the LLM service to mine a relationship between two concepts.
+func MineRelationship(conceptA, conceptB string) (*models.Concept, error) {
 	if cfg == nil {
 		return nil, apperrors.NewLLMError(apperrors.ErrInvalidInput, "LLM service not initialized")
 	}
 
 	// Create a cache key for the relationship
-	cacheKey := fmt.Sprintf("%s|%s", concept1, concept2)
-	
+	cacheKey := conceptA + "_" + conceptB
+
 	// Check cache first
 	cacheMutex.RLock()
-	if concept, ok := relationshipCache[cacheKey]; ok {
+	if relationship, ok := relationshipCache[cacheKey]; ok {
 		cacheMutex.RUnlock()
-		log.Printf("Cache hit for relationship: %s -> %s", concept1, concept2)
-		return concept, nil
+		log.Printf("Cache hit for relationship: %s", cacheKey)
+		return relationship, nil
 	}
 	cacheMutex.RUnlock()
 
 	// Create a retry function
-	var concept *models.Concept
+	var relationship *models.Concept
+	var err error
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
 		// Create the request body
-		prompt := fmt.Sprintf(`Determine if there is a specific relationship between "%s" and "%s".
-If there is a relationship, return ONLY a JSON object with the following structure:
+		prompt := fmt.Sprintf(`Determine a specific relationship between the concepts "%s" and "%s".
+If there is a meaningful relationship, return a JSON object with the following structure:
 {
   "name": "%s",
-  "relation": "specific relation to %s",
+  "relation": "specific relationship type",
   "relatedTo": "%s"
 }
-If there is no clear relationship, return an empty JSON object: {}
-Do not include any explanations, markdown formatting, or additional text. Return only the JSON object.`, 
-			concept1, concept2, concept1, concept2, concept2)
+If there is no meaningful relationship, return null.
+Do not include any explanations, markdown formatting, or additional text. Return only the JSON object or null.`,
+			conceptA, conceptB, conceptA, conceptB)
 		
 		requestBody, err := json.Marshal(map[string]interface{}{
 			"model":  cfg.Model,
@@ -233,9 +234,9 @@ Do not include any explanations, markdown formatting, or additional text. Return
 
 		// Check if the relationship is empty
 		if conceptData.Relation == "" {
-			concept = nil
+			relationship = nil
 		} else {
-			concept = &conceptData
+			relationship = &conceptData
 		}
 
 		return nil
@@ -247,13 +248,13 @@ Do not include any explanations, markdown formatting, or additional text. Return
 
 	// Cache the result
 	cacheMutex.Lock()
-	relationshipCache[cacheKey] = concept
+	relationshipCache[cacheKey] = relationship
 	cacheMutex.Unlock()
 	
 	// Save to disk
-	saveRelationshipCache(cacheKey, concept)
+	saveRelationshipCache(cacheKey, relationship)
 
-	return concept, nil
+	return relationship, nil
 }
 
 // Helper functions for configuration

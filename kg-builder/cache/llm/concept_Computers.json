@@ -1,0 +1,1 @@
+[{"name":"Software","relation":"uses","relatedTo":"Computers"},{"name":"Hardware","relation":"contains","relatedTo":"Computers"},{"name":"Networks","relation":"interactsWith","relatedTo":"Computers"},{"name":"Data","relation":"processedBy","relatedTo":"Computers"},{"name":"Artificial Intelligence","relation":"employs","relatedTo":"Computers"}]

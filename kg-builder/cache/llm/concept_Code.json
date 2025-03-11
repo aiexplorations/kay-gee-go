@@ -1,0 +1,1 @@
+[{"name":"Programmer","relation":"creates","relatedTo":"Code"},{"name":"Compiler","relation":"uses","relatedTo":"Code"},{"name":"Debugging","relation":"applied_to","relatedTo":"Code"},{"name":"Algorithm","relation":"contained_in","relatedTo":"Code"},{"name":"Functionality","relation":"produced_by","relatedTo":"Code"}]

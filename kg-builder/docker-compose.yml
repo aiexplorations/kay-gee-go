@@ -2,8 +2,8 @@ services:
   neo4j:
     image: neo4j:4.4
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "7475:7474"
+      - "7688:7687"
     environment:
       - NEO4J_AUTH=neo4j/password
     volumes:
@@ -35,7 +35,7 @@ services:
       - NEO4J_USER=neo4j
       - NEO4J_PASSWORD=password
       - LLM_URL=http://host.docker.internal:11434/api/generate
-      - LLM_MODEL=llama3.1:latest
+      - LLM_MODEL=qwen2.5:3b
     volumes:
       - ./cache:/app/cache
       - ./config.yaml:/app/config.yaml

@@ -1,0 +1,1 @@
+[{"name":"Software Development","relation":"uses","relatedTo":"Coding"},{"name":"Programming Languages","relation":"employs","relatedTo":"Coding"},{"name":"Debugging","relation":"applied_to","relatedTo":"Coding"},{"name":"Algorithm","relation":"employed_in","relatedTo":"Coding"},{"name":"Version Control Systems","relation":"used_with","relatedTo":"Coding"}]

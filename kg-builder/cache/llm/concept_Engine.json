@@ -1,0 +1,1 @@
+[{"name":"Car","relation":"contains","relatedTo":"Engine"},{"name":"Motorcycle","relation":"contains","relatedTo":"Engine"},{"name":"Aircraft","relation":"contains","relatedTo":"Engine"},{"name":"Truck","relation":"contains","relatedTo":"Engine"},{"name":"Generator","relation":"uses","relatedTo":"Engine"}]

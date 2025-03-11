@@ -1,0 +1,1 @@
+[{"name":"Car","relation":"isa","relatedTo":"Vehicle"},{"name":"Truck","relation":"isa","relatedTo":"Vehicle"},{"name":"Bike","relation":"isa","relatedTo":"Vehicle"},{"name":"Motorcycle","relation":"isa","relatedTo":"Vehicle"},{"name":"Boat","relation":"canBeUsedAs","relatedTo":"Vehicle"}]

@@ -1,0 +1,1 @@
+[{"name":"Parsing Engine","relation":"Uses","relatedTo":"Syntax Checker"},{"name":"Compiler","relation":"ComponentOf","relatedTo":"Syntax Checker"},{"name":"Lexer","relation":"PartOf","relatedTo":"Syntax Checker"},{"name":"Error Handling System","relation":"Supports","relatedTo":"Syntax Checker"},{"name":"Preprocessor","relation":"CombinesWith","relatedTo":"Syntax Checker"}]

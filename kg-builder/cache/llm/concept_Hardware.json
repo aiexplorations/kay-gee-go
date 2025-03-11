@@ -1,0 +1,1 @@
+[{"name":"Software","relation":"relates to","relatedTo":"Hardware"},{"name":"Maintenance","relation":"requires","relatedTo":"Hardware"},{"name":"Components","relation":"contains","relatedTo":"Hardware"},{"name":"Interfaces","relation":"communicates with","relatedTo":"Hardware"},{"name":"Protocols","relation":"uses","relatedTo":"Hardware"}]

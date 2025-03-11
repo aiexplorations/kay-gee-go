@@ -1,0 +1,1 @@
+[{"name":"Law","relation":"influences","relatedTo":"Regulator"},{"name":"Policy","relation":"defines","relatedTo":"Regulator"},{"name":"Enforcement Agency","relation":"operates","relatedTo":"Regulator"},{"name":"Standard","relation":"enforces","relatedTo":"Regulator"},{"name":"Compliance","relation":"adheres to","relatedTo":"Regulator"}]

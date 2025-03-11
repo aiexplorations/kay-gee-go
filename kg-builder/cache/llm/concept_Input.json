@@ -1,0 +1,1 @@
+[{"name":"Data","relation":"typeOf","relatedTo":"Input"},{"name":"Processor","relation":"requires","relatedTo":"Input"},{"name":"Output","relation":"outcomeOf","relatedTo":"Input"},{"name":"Parameter","relation":"contains","relatedTo":"Input"},{"name":"Instruction","relation":"gives rise to","relatedTo":"Input"}]

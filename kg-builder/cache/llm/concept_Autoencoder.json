@@ -1,0 +1,1 @@
+[{"name":"Encoder","relation":"ComponentOf","relatedTo":"Autoencoder"},{"name":"Decoder","relation":"ComponentOf","relatedTo":"Autoencoder"},{"name":"Compression","relation":"EffectOf","relatedTo":"Autoencoder"},{"name":"ReconstructionError","relation":"OutputOf","relatedTo":"Autoencoder"},{"name":"DeepLearning","relation":"FieldOfApplication","relatedTo":"Autoencoder"}]

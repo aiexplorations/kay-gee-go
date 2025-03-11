@@ -1,0 +1,1 @@
+[{"name":"Compiled Code","relation":"DerivesFrom","relatedTo":"Target Code"},{"name":"Executable File","relation":"Produces","relatedTo":"Target Code"},{"name":"Machine Language","relation":"TranslatesInto","relatedTo":"Target Code"},{"name":"Source Code","relation":"TransformsInto","relatedTo":"Target Code"},{"name":"Compiler","relation":"UsesFor","relatedTo":"Target Code"}]

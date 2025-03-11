@@ -1,0 +1,1 @@
+[{"name":"Ontology","relation":"uses","relatedTo":"Semantic Web"},{"name":"Web Services","relation":"relates to","relatedTo":"Semantic Web"},{"name":"SPARQL","relation":"used by","relatedTo":"Semantic Web"},{"name":"Triple Store","relation":"contains","relatedTo":"Semantic Web"},{"name":"Schema.org","relation":"inspired by/uses","relatedTo":"Semantic Web"}]

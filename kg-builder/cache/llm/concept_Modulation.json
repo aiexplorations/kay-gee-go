@@ -1,0 +1,1 @@
+[{"name":"Carrier Wave","relation":"Influences","relatedTo":"Modulation"},{"name":"Frequency Shift","relation":"ManifestsAs","relatedTo":"Modulation"},{"name":"Amplitude Modulation","relation":"IsA","relatedTo":"Modulation"},{"name":"Phase Shift","relation":"InvolvedWith","relatedTo":"Modulation"},{"name":"Radio Waves","relation":"GeneratedBy","relatedTo":"Modulation"}]
