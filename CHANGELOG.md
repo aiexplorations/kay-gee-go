@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] - 2025-03-12
+
+### Added
+- Integrated automatic repository optimization into the main script
+- Added new `optimize` command to the unified script for manual optimization
+- Added `--skip-optimization` flag to bypass automatic optimization
+- Created smart caching strategy that preserves recent and important cache files
+- Added options for aggressive optimization with `--aggressive` flag
+- Added customizable example preservation with `--keep-examples=N` parameter
+
+### Changed
+- Consolidated all management scripts into a single unified `kg.sh` script
+- Improved script organization with command-based interface
+- Enhanced help documentation with detailed examples
+- Optimized repository size by removing redundant files and binaries
+- Updated .gitignore to properly exclude cache files and binaries
+
+### Fixed
+- Fixed issue with redundant script files cluttering the repository
+- Resolved Git tracking of cache files that should be excluded
+- Fixed repository bloat by implementing automatic optimization
+- Addressed potential performance issues from excessive cache files
+
+## [0.6.0] - 2025-03-12
+
+### Added
+- Implemented low connectivity concept seeding to enhance graph diversity
+- Added `--use-low-connectivity` flag to enable building the graph using low connectivity concepts as seeds
+- Created new Neo4j functions to support low connectivity features:
+  - `GetLowConnectivityConcepts`: Retrieves concepts with the least number of connections
+  - `GetRandomLowConnectivityConcept`: Retrieves a random concept from low connectivity concepts
+- Added new graph building method `BuildGraphWithLowConnectivitySeeds` to utilize low connectivity concepts
+- Implemented comprehensive testing for the new low connectivity features
+
+### Changed
+- Renamed the entire deployment from "kg-builder" to "kaygeego" to avoid term overloading
+- Restructured Docker Compose services with clearer naming:
+  - Renamed services from "kg-builder", "kg-enricher", and "kg-frontend" to "builder", "enricher", and "frontend"
+  - Updated container names to use the "kaygeego-" prefix (kaygeego-neo4j, kaygeego-builder, etc.)
+  - Changed network name from "kg-network" to "kaygeego-network"
+- Updated all scripts and configuration files to use the new naming convention
+- Improved graph building algorithm to create more balanced and comprehensive knowledge graphs
+- Enhanced the diversity of the knowledge graph by focusing on expanding low-connectivity areas
+
+### Fixed
+- Fixed issues with isolated nodes by targeting low connectivity concepts for expansion
+- Improved graph balance by prioritizing concepts with fewer connections
+- Enhanced overall graph connectivity by creating more pathways between distant concepts
+- Fixed potential bottlenecks in graph expansion by diversifying seed concepts
+
 ## [0.5.3] - 2025-03-11
 
 ### Fixed
