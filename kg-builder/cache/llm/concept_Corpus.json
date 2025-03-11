@@ -1,1 +1,0 @@
-[{"name":"Text Corpus","relation":"Part-Of-Speech","relatedTo":"Corpus"},{"name":"Document Collection","relation":"Synonym","relatedTo":"Corpus"},{"name":"Library","relation":"Contains","relatedTo":"Corpus"},{"name":"Indexing System","relation":"Used-By","relatedTo":"Corpus"},{"name":"Annotation Scheme","relation":"Applied-To","relatedTo":"Corpus"}]

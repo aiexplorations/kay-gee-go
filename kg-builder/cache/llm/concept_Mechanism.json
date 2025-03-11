@@ -1,1 +1,0 @@
-[{"name":"Substrate","relation":"ComponentOf","relatedTo":"Mechanism"},{"name":"Process","relation":"ResultOf","relatedTo":"Mechanism"},{"name":"FeedbackLoop","relation":"PartOf","relatedTo":"Mechanism"},{"name":"EnergyTransfer","relation":"InvolvedIn","relatedTo":"Mechanism"},{"name":"ControlSystem","relation":"Uses","relatedTo":"Mechanism"}]

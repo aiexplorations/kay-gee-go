@@ -1,1 +1,0 @@
-[{"name":"Image Restoration","relation":"uses","relatedTo":"Inpainting"},{"name":"Computer Vision","relation":"applies_to","relatedTo":"Inpainting"},{"name":"Deep Learning","relation":"employs","relatedTo":"Inpainting"},{"name":"Art Restoration","relation":"involves","relatedTo":"Inpainting"},{"name":"Photorealism","relation":"target_of","relatedTo":"Inpainting"}]

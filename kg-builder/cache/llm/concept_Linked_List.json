@@ -1,1 +1,0 @@
-[{"name":"Node","relation":"Part-Of","relatedTo":"Linked List"},{"name":"ArrayList","relation":"Contrasted-To","relatedTo":"Linked List"},{"name":"Queue","relation":"Used-With","relatedTo":"Linked List"},{"name":"Stack","relation":"Used-With","relatedTo":"Linked List"},{"name":"Data Structure","relation":"Inherits-From","relatedTo":"Linked List"}]

@@ -38,7 +38,7 @@ done
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # Check if the enricher is already running
-if docker ps | grep -q kg-enricher; then
+if docker ps | grep -q kaygeego-enricher; then
   echo "Knowledge Graph Enricher is already running"
 else
   # Start the enricher
@@ -49,11 +49,11 @@ else
   echo "  Concurrency: $CONCURRENCY"
 
   # Use docker-compose to start the enricher
-  cd "$PROJECT_ROOT" && docker-compose up -d kg-enricher
+  cd "$PROJECT_ROOT" && docker-compose up -d enricher
 fi
 
 # Set environment variables for the enricher
-docker exec kg-enricher /bin/sh -c "export ENRICHER_BATCH_SIZE=$BATCH_SIZE && \
+docker exec kaygeego-enricher /bin/sh -c "export ENRICHER_BATCH_SIZE=$BATCH_SIZE && \
   export ENRICHER_INTERVAL_SECONDS=$INTERVAL && \
   export ENRICHER_MAX_RELATIONSHIPS=$MAX_RELATIONSHIPS && \
   export ENRICHER_CONCURRENCY=$CONCURRENCY && \

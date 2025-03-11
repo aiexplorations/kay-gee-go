@@ -1,1 +1,0 @@
-[{"name":"Data Acquisition","relation":"involves","relatedTo":"Sensors"},{"name":"IoT Devices","relation":"typeOf","relatedTo":"Sensors"},{"name":"Environmental Monitoring","relation":"applicationFor","relatedTo":"Sensors"},{"name":"Signal Processing","relation":"partOf","relatedTo":"Sensors"},{"name":"Communication Protocols","relation":"usedBy","relatedTo":"Sensors"}]

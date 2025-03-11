@@ -1,1 +1,0 @@
-[{"name":"Machine Learning","relation":"usesFor","relatedTo":"Algorithm"},{"name":"Artificial Intelligence","relation":"usesFor","relatedTo":"Algorithm"},{"name":"Data Structures","relation":"buildsWith","relatedTo":"Algorithm"},{"name":"Control Theory","relation":"usesFor","relatedTo":"Algorithm"},{"name":"Programming Language","relation":"createdIn","relatedTo":"Algorithm"}]

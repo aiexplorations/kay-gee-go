@@ -1,1 +1,0 @@
-[{"name":"Data Mining","relation":"Uses","relatedTo":"Big Data"},{"name":"Analytics","relation":"Produces","relatedTo":"Big Data"},{"name":"Visualization Tools","relation":"Supports","relatedTo":"Big Data"},{"name":"Storage Solutions","relation":"Requires","relatedTo":"Big Data"},{"name":"Machine Learning","relation":"Builds On","relatedTo":"Big Data"}]

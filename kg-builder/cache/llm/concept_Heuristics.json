@@ -1,1 +1,0 @@
-[{"name":"Rule-Based Systems","relation":"uses","relatedTo":"Heuristics"},{"name":"Machine Learning","relation":"applies to","relatedTo":"Heuristics"},{"name":"Pattern Recognition","relation":"employs","relatedTo":"Heuristics"},{"name":"Expert Systems","relation":"incorporates","relatedTo":"Heuristics"},{"name":"Decision Trees","relation":"utilizes","relatedTo":"Heuristics"}]

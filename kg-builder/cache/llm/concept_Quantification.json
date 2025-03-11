@@ -1,1 +1,0 @@
-[{"name":"Counting","relation":"hasPart","relatedTo":"Quantification"},{"name":"Measurement","relation":"isDefinedBy","relatedTo":"Quantification"},{"name":"Dimension","relation":"isA","relatedTo":"Quantification"},{"name":"Ratio","relation":"appliesTo","relatedTo":"Quantification"},{"name":"Estimation","relation":"canBeUsedFor","relatedTo":"Quantification"}]

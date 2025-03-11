@@ -43,7 +43,7 @@ done
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # Check if the builder is already running
-if docker ps | grep -q kg-builder; then
+if docker ps | grep -q kaygeego-builder; then
   echo "Knowledge Graph Builder is already running"
 else
   # Start the builder
@@ -55,11 +55,11 @@ else
   echo "  Concurrency: $CONCURRENCY"
 
   # Use docker-compose to start the builder
-  cd "$PROJECT_ROOT" && docker-compose up -d kg-builder
+  cd "$PROJECT_ROOT" && docker-compose up -d builder
 fi
 
 # Set environment variables for the builder
-docker exec kg-builder /bin/sh -c "export SEED_CONCEPT=\"$SEED\" && \
+docker exec kaygeego-builder /bin/sh -c "export SEED_CONCEPT=\"$SEED\" && \
   export MAX_NODES=$MAX_NODES && \
   export TIMEOUT=$TIMEOUT && \
   export RANDOM_RELATIONSHIPS=$RANDOM_RELATIONSHIPS && \

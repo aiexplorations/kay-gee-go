@@ -1,1 +1,0 @@
-[{"name":"Artifacts Management","relation":"MANAGES","relatedTo":"MLFlow"},{"name":"Experiment Tracking","relation":"TRACKS","relatedTo":"MLFlow"},{"name":"Model Registry","relation":"CONTAINS","relatedTo":"MLFlow"},{"name":"Dependency Management","relation":"MANAGES","relatedTo":"MLFlow"},{"name":"Version Control","relation":"USE_IN_CONJUNCTION_WITH","relatedTo":"MLFlow"}]

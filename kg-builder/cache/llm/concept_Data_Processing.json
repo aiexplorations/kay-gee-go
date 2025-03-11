@@ -1,1 +1,0 @@
-[{"name":"Data Storage","relation":"uses","relatedTo":"Data Processing"},{"name":"Data Cleaning","relation":"uses","relatedTo":"Data Processing"},{"name":"Data Transmission","relation":"uses","relatedTo":"Data Processing"},{"name":"Data Mining","relation":"uses","relatedTo":"Data Processing"},{"name":"Data Visualization","relation":"produces","relatedTo":"Data Processing"}]

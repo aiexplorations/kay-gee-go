@@ -1,1 +1,0 @@
-[{"name":"Productivity","relation":"Strengthener","relatedTo":"Efficiency"},{"name":"Cost-effectiveness","relation":"Strengthener","relatedTo":"Efficiency"},{"name":"Speed","relation":"Strengthener","relatedTo":"Efficiency"},{"name":"Quality","relation":"TradeOff","relatedTo":"Efficiency"},{"name":"Scalability","relation":"Strengthener","relatedTo":"Efficiency"}]

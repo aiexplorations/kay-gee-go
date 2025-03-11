@@ -1,1 +1,0 @@
-[{"name":"Automation","relation":"relates_to","relatedTo":"Robotics"},{"name":"Mechatronics","relation":"relates_to","relatedTo":"Robotics"},{"name":"Artificial Intelligence","relation":"uses_for","relatedTo":"Robotics"},{"name":"Computer Science","relation":"uses_for","relatedTo":"Robotics"},{"name":"Control Systems","relation":"uses_for","relatedTo":"Robotics"}]

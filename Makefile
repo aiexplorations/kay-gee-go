@@ -35,19 +35,19 @@ status:
 builder:
 	@echo "Building and running the builder component..."
 	@docker-compose up -d neo4j
-	@docker-compose up -d kg-builder
+	@docker-compose up -d builder
 
 # Build and run the enricher component only
 enricher:
 	@echo "Building and running the enricher component..."
 	@docker-compose up -d neo4j
-	@docker-compose up -d kg-enricher
+	@docker-compose up -d enricher
 
 # Build and run the frontend component only
 frontend:
 	@echo "Building and running the frontend component..."
 	@docker-compose up -d neo4j
-	@docker-compose up -d kg-frontend
+	@docker-compose up -d frontend
 
 # Show help
 help:

@@ -1,1 +1,0 @@
-[{"name":"Annotations","relation":"uses","relatedTo":"Bounding Boxes"},{"name":"Object Detection","relation":"applies_to","relatedTo":"Bounding Boxes"},{"name":"Image Segmentation","relation":"applies_to","relatedTo":"Bounding Boxes"},{"name":"Labeling","relation":"uses","relatedTo":"Bounding Boxes"},{"name":"Computer Vision","relation":"applies_to","relatedTo":"Bounding Boxes"}]

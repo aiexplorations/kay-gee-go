@@ -1,1 +1,0 @@
-[{"name":"Data","relation":"usedIn","relatedTo":"Statistics"},{"name":"Probability","relation":"usedIn","relatedTo":"Statistics"},{"name":"Meaningful Patterns","relation":"discoveredBy","relatedTo":"Statistics"},{"name":"Visualization Techniques","relation":"employedFor","relatedTo":"Statistics"},{"name":"Research Methods","relation":"appliedIn","relatedTo":"Statistics"}]

@@ -1,1 +1,0 @@
-[{"name":"Education","relation":"is-a","relatedTo":"Learning"},{"name":"Knowledge","relation":"produces","relatedTo":"Learning"},{"name":"Teacher","relation":"uses-for","relatedTo":"Learning"},{"name":"Student","relation":"needs","relatedTo":"Learning"},{"name":"Curriculum","relation":"contains","relatedTo":"Learning"}]

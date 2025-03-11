@@ -1,1 +1,0 @@
-[{"name":"Motors","relation":"Uses","relatedTo":"Actuators"},{"name":"Sensors","relation":"InteractsWith","relatedTo":"Actuators"},{"name":"Controllers","relation":"Controls","relatedTo":"Actuators"},{"name":"Power Supplies","relation":"ProvidesEnergyFor","relatedTo":"Actuators"},{"name":"Mechanical Components","relation":"PartOf","relatedTo":"Actuators"}]

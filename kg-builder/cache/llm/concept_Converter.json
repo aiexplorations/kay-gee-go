@@ -1,1 +1,0 @@
-[{"name":"Transformer","relation":"derivesFrom","relatedTo":"Converter"},{"name":"Encoder","relation":"derivesFrom","relatedTo":"Converter"},{"name":"Decoder","relation":"derivesFrom","relatedTo":"Converter"},{"name":"Inverter","relation":"derivesFrom","relatedTo":"Converter"},{"name":"Translator","relation":"derivesFrom","relatedTo":"Converter"}]

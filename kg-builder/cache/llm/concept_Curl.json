@@ -1,1 +1,0 @@
-[{"name":"Vector Field","relation":"DERIVED_FROM","relatedTo":"Curl"},{"name":"Divergence","relation":"COMPLEMENTARY_TO","relatedTo":"Curl"},{"name":"Partial Derivatives","relation":"NECESSARY_FOR","relatedTo":"Curl"},{"name":"Maxwell's Equations","relation":"INFLUENCES","relatedTo":"Curl"},{"name":"Topology","relation":"APPLIED_IN","relatedTo":"Curl"}]

@@ -1,1 +1,0 @@
-[{"name":"Data Model","relation":"derivesFrom","relatedTo":"Metadata"},{"name":"Schema","relation":"derivesFrom","relatedTo":"Metadata"},{"name":"Information Architecture","relation":"contains","relatedTo":"Metadata"},{"name":"Data Dictionary","relation":"includes","relatedTo":"Metadata"},{"name":"Documentation","relation":"references","relatedTo":"Metadata"}]

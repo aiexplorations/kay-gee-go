@@ -1,1 +1,0 @@
-[{"name":"Entropy","relation":"DERIVED_FROM","relatedTo":"Randomness"},{"name":"Stochasticity","relation":"DERIVED_FROM","relatedTo":"Randomness"},{"name":"Probability","relation":"CORRELATION","relatedTo":"Randomness"},{"name":"Predictability","relation":"ANTONYM_OF","relatedTo":"Randomness"},{"name":"Unpredictability","relation":"SYNONYM_OF","relatedTo":"Randomness"}]

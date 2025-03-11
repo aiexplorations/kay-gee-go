@@ -1,1 +1,0 @@
-[{"name":"Automation","relation":"uses","relatedTo":"Control System"},{"name":"Feedback Mechanism","relation":"requires","relatedTo":"Control System"},{"name":"Actuator","relation":"controls","relatedTo":"Control System"},{"name":"Sensor","relation":"monitors","relatedTo":"Control System"},{"name":"PID Controller","relation":"employs","relatedTo":"Control System"}]

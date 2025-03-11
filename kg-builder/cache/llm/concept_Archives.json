@@ -1,1 +1,0 @@
-[{"name":"Documents","relation":"contains","relatedTo":"Archives"},{"name":"Preservation","relation":"enables","relatedTo":"Archives"},{"name":"Storage","relation":"utilizedBy","relatedTo":"Archives"},{"name":"Cataloging","relation":"usedFor","relatedTo":"Archives"},{"name":"Management","relation":"manages","relatedTo":"Archives"}]

@@ -1,1 +1,0 @@
-[{"name":"Limitations","relation":"is_a","relatedTo":"Constraints"},{"name":"Restrictions","relation":"is_a","relatedTo":"Constraints"},{"name":"Conditions","relation":"is_type_of","relatedTo":"Constraints"},{"name":"Rules","relation":"is_a","relatedTo":"Constraints"},{"name":"Bounds","relation":"has_property","relatedTo":"Constraints"}]

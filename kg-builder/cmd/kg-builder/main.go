@@ -29,6 +29,7 @@ func main() {
 	concurrency := flag.Int("concurrency", 0, "Number of concurrent workers for mining random relationships")
 	statsOnly := flag.Bool("stats-only", false, "Only show statistics without building the graph")
 	showVersion := flag.Bool("version", false, "Show version information and exit")
+	useLowConnectivity := flag.Bool("use-low-connectivity", false, "Use low connectivity concepts as seeds for subsequent graph building")
 	flag.Parse()
 
 	// Load configuration from environment variables
@@ -86,6 +87,7 @@ func main() {
 	log.Printf("  Worker Count: %d", cfg.Graph.WorkerCount)
 	log.Printf("  Random Relationships: %d", cfg.Graph.RandomRelationships)
 	log.Printf("  Concurrency: %d", cfg.Graph.Concurrency)
+	log.Printf("  Use Low Connectivity: %t", *useLowConnectivity)
 
 	// Set up Neo4j connection
 	neo4jDriver, err := neo4j.SetupNeo4jConnection(&cfg.Neo4j) // Set up connection to Neo4j database
@@ -115,9 +117,19 @@ func main() {
 
 	// Build the graph
 	log.Printf("Starting graph building with seed concept: %s", cfg.Graph.SeedConcept) // Log the start of graph building
-	err = graphBuilder.BuildGraph(cfg.Graph.SeedConcept, cfg.Graph.MaxNodes, cfg.Graph.Timeout) // Build the graph
-	if err != nil {
-		log.Printf("Graph building stopped: %v", err) // Log any errors during graph building
+	
+	var buildErr error
+	if *useLowConnectivity {
+		// Build the graph using low connectivity concepts as seeds
+		log.Printf("Using low connectivity concepts as seeds for subsequent graph building")
+		buildErr = graphBuilder.BuildGraphWithLowConnectivitySeeds(cfg.Graph.SeedConcept, cfg.Graph.MaxNodes, cfg.Graph.Timeout)
+	} else {
+		// Build the graph using the traditional method
+		buildErr = graphBuilder.BuildGraph(cfg.Graph.SeedConcept, cfg.Graph.MaxNodes, cfg.Graph.Timeout)
+	}
+	
+	if buildErr != nil {
+		log.Printf("Graph building stopped: %v", buildErr) // Log any errors during graph building
 	} else {
 		log.Printf("Graph building completed successfully")
 	}

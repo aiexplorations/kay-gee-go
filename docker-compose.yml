@@ -1,7 +1,7 @@
 services:
   neo4j:
     image: neo4j:4.4
-    container_name: neo4j
+    container_name: kaygeego-neo4j
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -13,7 +13,7 @@ services:
       - neo4j_import:/var/lib/neo4j/import
       - neo4j_plugins:/plugins
     networks:
-      - kg-network
+      - kaygeego-network
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
       interval: 10s
@@ -22,19 +22,19 @@ services:
 
   wait-for-neo4j:
     image: busybox
-    container_name: wait-for-neo4j
+    container_name: kaygeego-wait-for-neo4j
     depends_on:
       neo4j:
         condition: service_healthy
     command: sleep 15
     networks:
-      - kg-network
+      - kaygeego-network
 
-  kg-builder:
+  builder:
     build:
-      context: .
-      dockerfile: build/builder/Dockerfile
-    container_name: kg-builder
+      context: ./kg-builder
+    image: kaygeego-builder
+    container_name: kaygeego-builder
     ports:
       - "5002:5000"
     depends_on:
@@ -46,18 +46,19 @@ services:
       - LLM_URL=http://host.docker.internal:11434/api/generate
       - LLM_MODEL=qwen2.5:3b
     volumes:
-      - ./cache/builder:/app/cache
-      - ./config/builder.yaml:/app/config.yaml
+      - ./kg-builder/cache:/app/cache
+      - ./kg-builder/config.yaml:/app/config.yaml
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - kg-network
+      - kaygeego-network
+    command: /kg-builder --use-low-connectivity
 
-  kg-enricher:
+  enricher:
     build:
-      context: .
-      dockerfile: build/enricher/Dockerfile
-    container_name: kg-enricher
+      context: ./kg-enricher
+    image: kaygeego-enricher
+    container_name: kaygeego-enricher
     ports:
       - "5003:5001"
     depends_on:
@@ -73,29 +74,28 @@ services:
       - ENRICHER_MAX_RELATIONSHIPS=100
       - ENRICHER_CONCURRENCY=5
     volumes:
-      - ./cache/enricher:/app/cache
-      - ./config/enricher.yaml:/app/config.yaml
+      - ./kg-enricher/cache:/app/cache
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - kg-network
+      - kaygeego-network
 
-  kg-frontend:
-    build:
-      context: ./kg-frontend
-      dockerfile: Dockerfile
-    container_name: kg-frontend
+  frontend:
+    image: nginx:alpine
+    container_name: kaygeego-frontend
     ports:
-      - "8080:8080"
+      - "8080:80"
+    volumes:
+      - ./kg-frontend:/usr/share/nginx/html
     depends_on:
       - neo4j
-      - kg-builder
-      - kg-enricher
+      - builder
+      - enricher
     networks:
-      - kg-network
+      - kaygeego-network
 
 networks:
-  kg-network:
+  kaygeego-network:
     driver: bridge
 
 volumes:

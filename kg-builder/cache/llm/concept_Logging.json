@@ -1,1 +1,0 @@
-[{"name":"Audit Trail","relation":"DERIVED_FROM","relatedTo":"Logging"},{"name":"Event Log","relation":"SPECIFIC_CASE_OF","relatedTo":"Logging"},{"name":"Data Collection","relation":"IMPACTS","relatedTo":"Logging"},{"name":"System Monitor","relation":"INFLUENCES","relatedTo":"Logging"},{"name":"Security Audit","relation":"USES_AS_INPUT_OR_OUTPUT_OF","relatedTo":"Logging"}]

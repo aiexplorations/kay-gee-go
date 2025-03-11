@@ -1,1 +1,0 @@
-[{"name":"Vertices","relation":"componentOf","relatedTo":"Graphs"},{"name":"Edges","relation":"componentOf","relatedTo":"Graphs"},{"name":"Node","relation":"instanceOf","relatedTo":"Graphs"},{"name":"Directed Graph","relation":"typeOf","relatedTo":"Graphs"},{"name":"Undirected Graph","relation":"typeOf","relatedTo":"Graphs"}]

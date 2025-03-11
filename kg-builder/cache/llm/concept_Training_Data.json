@@ -1,1 +1,0 @@
-[{"name":"Dataset","relation":"typeOf","relatedTo":"Training Data"},{"name":"Label","relation":"contains","relatedTo":"Training Data"},{"name":"Annotation","relation":"usedFor","relatedTo":"Training Data"},{"name":"Example","relation":"represents","relatedTo":"Training Data"},{"name":"Labelled Example","relation":"partOf","relatedTo":"Training Data"}]

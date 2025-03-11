@@ -1,1 +1,0 @@
-[{"name":"Repair","relation":"HAS_PART","relatedTo":"Maintenance"},{"name":"Inspection","relation":"HAS_PART","relatedTo":"Maintenance"},{"name":"Service","relation":"HAS_PART","relatedTo":"Maintenance"},{"name":"Preventive Action","relation":"HAS_PART","relatedTo":"Maintenance"},{"name":"Monitoring","relation":"HAS_PART","relatedTo":"Maintenance"}]

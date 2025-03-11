@@ -1,1 +1,0 @@
-[{"name":"Vector Field","relation":"Produces","relatedTo":"Line Integral"},{"name":"Scalar Function","relation":"Uses","relatedTo":"Line Integral"},{"name":"Gradient","relation":"Uses","relatedTo":"Line Integral"},{"name":"Contour","relation":"Produces","relatedTo":"Line Integral"},{"name":"Parametric Curve","relation":"Uses","relatedTo":"Line Integral"}]

@@ -1,1 +1,0 @@
-[{"name":"Electricity Supply","relation":"Uses","relatedTo":"Power Systems"},{"name":"Electrical Grid","relation":"ComponentsOf","relatedTo":"Power Systems"},{"name":"Generators","relation":"Produces","relatedTo":"Power Systems"},{"name":"Transformers","relation":"Modifies","relatedTo":"Power Systems"},{"name":"Distributors","relation":"Serves","relatedTo":"Power Systems"}]

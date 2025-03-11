@@ -1,1 +1,0 @@
-[{"name":"Input","relation":"INFLUENCES","relatedTo":"Feedback Loop"},{"name":"Output","relation":"INFLUENCED_BY","relatedTo":"Feedback Loop"},{"name":"Iteration","relation":"RESULT_OF","relatedTo":"Feedback Loop"},{"name":"Learning","relation":"RESULT_OF","relatedTo":"Feedback Loop"},{"name":"Control System","relation":"FUNCTIONED_BY","relatedTo":"Feedback Loop"}]

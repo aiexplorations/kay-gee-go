@@ -1,1 +1,0 @@
-[{"name":"Pile","relation":"IS_A","relatedTo":"Stacks"},{"name":"Layer","relation":"PART_OF","relatedTo":"Stacks"},{"name":"Framework","relation":"USES","relatedTo":"Stacks"},{"name":"Sequence","relation":"IN_SEQUENCE_WITH","relatedTo":"Stacks"},{"name":"Repository","relation":"CONTAINS_ORGANIZED_ITEMS","relatedTo":"Stacks"}]

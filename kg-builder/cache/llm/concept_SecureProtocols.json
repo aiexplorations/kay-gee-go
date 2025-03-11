@@ -1,1 +1,0 @@
-[{"name":"Encryption","relation":"uses","relatedTo":"SecureProtocols"},{"name":"Authentication","relation":"enables","relatedTo":"SecureProtocols"},{"name":"Authorization","relation":"supports","relatedTo":"SecureProtocols"},{"name":"Data Integrity","relation":"ensures","relatedTo":"SecureProtocols"},{"name":"Access Control","relation":"implements","relatedTo":"SecureProtocols"}]

@@ -1,1 +1,0 @@
-[{"name":"Component","relation":"PartOf","relatedTo":"Assembly"},{"name":"Engineering","relation":"UsedIn","relatedTo":"Assembly"},{"name":"Hardware","relation":"Includes","relatedTo":"Assembly"},{"name":"Software","relation":"Uses","relatedTo":"Assembly"},{"name":"Machine Tool","relation":"UsedFor","relatedTo":"Assembly"}]

@@ -142,19 +142,19 @@ fi
 
 if [ "$SKIP_BUILDER" = false ]; then
     print_yellow "Starting Knowledge Graph Builder..."
-    docker-compose up -d kg-builder
+    docker-compose up -d builder
     print_green "Knowledge Graph Builder started."
 fi
 
 if [ "$SKIP_ENRICHER" = false ]; then
     print_yellow "Starting Knowledge Graph Enricher..."
-    docker-compose up -d kg-enricher
+    docker-compose up -d enricher
     print_green "Knowledge Graph Enricher started."
 fi
 
 if [ "$SKIP_FRONTEND" = false ]; then
     print_yellow "Starting Knowledge Graph Frontend..."
-    docker-compose up -d kg-frontend
+    docker-compose up -d frontend
     print_green "Knowledge Graph Frontend started."
 fi
 

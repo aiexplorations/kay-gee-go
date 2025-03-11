@@ -64,19 +64,19 @@ done
 # Stop the application
 if [ "$SKIP_FRONTEND" = false ]; then
     print_yellow "Stopping Knowledge Graph Frontend..."
-    docker-compose stop kg-frontend
+    docker-compose stop frontend
     print_green "Knowledge Graph Frontend stopped."
 fi
 
 if [ "$SKIP_ENRICHER" = false ]; then
     print_yellow "Stopping Knowledge Graph Enricher..."
-    docker-compose stop kg-enricher
+    docker-compose stop enricher
     print_green "Knowledge Graph Enricher stopped."
 fi
 
 if [ "$SKIP_BUILDER" = false ]; then
     print_yellow "Stopping Knowledge Graph Builder..."
-    docker-compose stop kg-builder
+    docker-compose stop builder
     print_green "Knowledge Graph Builder stopped."
 fi
 

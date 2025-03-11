@@ -1,1 +1,0 @@
-[{"name":"Machine Learning","relation":"typeOf","relatedTo":"AI"},{"name":"Robotics","relation":"applicationAreaOf","relatedTo":"AI"},{"name":"Computer Vision","relation":"techniqueWithin","relatedTo":"AI"},{"name":"Natural Language Processing (NLP)","relation":"techniqueWithin","relatedTo":"AI"},{"name":"Data Mining","relation":"techniqueWithin","relatedTo":"AI"}]

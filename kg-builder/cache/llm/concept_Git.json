@@ -1,1 +1,0 @@
-[{"name":"Version Control","relation":"is_related_to","relatedTo":"Git"},{"name":"Source Code Management","relation":"is_related_to","relatedTo":"Git"},{"name":"Revision Control","relation":"is_related_to","relatedTo":"Git"},{"name":"Software Development","relation":"is_related_to","relatedTo":"Git"},{"name":"Data Management","relation":"is_related_to","relatedTo":"Git"}]

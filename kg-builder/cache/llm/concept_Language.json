@@ -1,1 +1,0 @@
-[{"name":"Words","relation":"contains","relatedTo":"Language"},{"name":"Speech","relation":"produces","relatedTo":"Language"},{"name":"Text","relation":"generatedFrom","relatedTo":"Language"},{"name":"Writing System","relation":"usedIn","relatedTo":"Language"},{"name":"Dialects","relation":"existsFor","relatedTo":"Language"}]

@@ -1,1 +1,0 @@
-[{"name":"Group","relation":"is a part of","relatedTo":"Collection"},{"name":"Set","relation":"is a type of","relatedTo":"Collection"},{"name":"Basket","relation":"contains items similar to","relatedTo":"Collection"},{"name":"Inventory","relation":"consists of items like","relatedTo":"Collection"},{"name":"Deck","relation":"holds items equivalent to","relatedTo":"Collection"}]

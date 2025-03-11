@@ -1,1 +1,0 @@
-[{"name":"Component","relation":"partOf","relatedTo":"System"},{"name":"Interface","relation":"relatesTo","relatedTo":"System"},{"name":"Policy","relation":"appliesTo","relatedTo":"System"},{"name":"Data","relation":"contains","relatedTo":"System"},{"name":"Administrator","relation":"responsibleFor","relatedTo":"System"}]

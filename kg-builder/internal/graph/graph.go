@@ -94,6 +94,45 @@ func (gb *GraphBuilder) BuildGraph(seedConcept string, maxNodes int, timeout tim
 	}
 }
 
+// BuildGraphWithLowConnectivitySeeds builds the knowledge graph using low connectivity concepts as seeds
+func (gb *GraphBuilder) BuildGraphWithLowConnectivitySeeds(initialSeedConcept string, targetNodeCount int, timeout time.Duration) error {
+	if initialSeedConcept == "" {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "initial seed concept cannot be empty")
+	}
+	
+	if targetNodeCount <= 0 {
+		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "targetNodeCount must be greater than 0")
+	}
+	
+	// Start with the initial seed concept
+	err := gb.BuildGraph(initialSeedConcept, gb.config.MaxNodes, timeout)
+	if err != nil {
+		return err
+	}
+	
+	// Continue building the graph with low connectivity concepts until we reach the target node count
+	for gb.nodeCount < targetNodeCount {
+		// Get a random low connectivity concept
+		lowConnectivityConcept, err := kgneo4j.GetRandomLowConnectivityConcept(gb.driver, 10)
+		if err != nil {
+			log.Printf("Error getting low connectivity concept: %v", err)
+			return err
+		}
+		
+		log.Printf("Using low connectivity concept as seed: %s", lowConnectivityConcept)
+		
+		// Build the graph with the low connectivity concept as seed
+		err = gb.BuildGraph(lowConnectivityConcept, targetNodeCount, timeout)
+		if err != nil {
+			log.Printf("Error building graph with low connectivity concept: %v", err)
+			// Continue with the next low connectivity concept even if there's an error
+			continue
+		}
+	}
+	
+	return nil
+}
+
 func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue chan string) {
 	defer wg.Done()
 

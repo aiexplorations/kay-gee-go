@@ -1,1 +1,0 @@
-[{"name":"Attribute","relation":"contains","relatedTo":"Data Set"},{"name":"Variable","relation":"uses","relatedTo":"Data Set"},{"name":"Feature","relation":"is described by","relatedTo":"Data Set"},{"name":"Metadata","relation":"provides information about","relatedTo":"Data Set"},{"name":"VariableType","relation":"defines properties of","relatedTo":"Data Set"}]

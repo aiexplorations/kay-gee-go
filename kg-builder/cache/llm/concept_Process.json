@@ -1,1 +1,0 @@
-[{"name":"Event","relation":"partOf","relatedTo":"Process"},{"name":"Activity","relation":"partOf","relatedTo":"Process"},{"name":"Transformation","relation":"resultOf","relatedTo":"Process"},{"name":"Action","relation":"initiatorOf","relatedTo":"Process"},{"name":"Sequence","relation":"contains","relatedTo":"Process"}]

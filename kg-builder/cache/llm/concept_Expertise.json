@@ -1,1 +1,0 @@
-[{"name":"Skillset","relation":"derivesFrom","relatedTo":"Expertise"},{"name":"Knowledge","relation":"isExpressedBy","relatedTo":"Expertise"},{"name":"Experience","relation":"enhances","relatedTo":"Expertise"},{"name":"Certification","relation":"requiredFor","relatedTo":"Expertise"},{"name":"Persistence","relation":"facilitates","relatedTo":"Expertise"}]

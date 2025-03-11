@@ -6,7 +6,7 @@
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # Check if the enricher is running
-if ! docker ps | grep -q kg-enricher; then
+if ! docker ps | grep -q kaygeego-enricher; then
   echo "Knowledge Graph Enricher is not running"
   exit 0
 fi
@@ -15,6 +15,6 @@ fi
 echo "Stopping Knowledge Graph Enricher..."
 
 # Use docker-compose to stop the enricher
-cd "$PROJECT_ROOT" && docker-compose stop kg-enricher
+cd "$PROJECT_ROOT" && docker-compose stop enricher
 
 echo "Knowledge Graph Enricher stopped successfully" 

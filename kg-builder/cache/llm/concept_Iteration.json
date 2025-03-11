@@ -1,1 +1,0 @@
-[{"name":"Repetition","relation":"subclass_of","relatedTo":"Iteration"},{"name":"Process","relation":"instance_of","relatedTo":"Iteration"},{"name":"Sequence","relation":"part_of","relatedTo":"Iteration"},{"name":"Refinement","relation":"consequence_of","relatedTo":"Iteration"},{"name":"Development","relation":"underlying_process","relatedTo":"Iteration"}]

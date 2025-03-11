@@ -1,1 +1,0 @@
-[{"name":"Quantity","relation":"InverseOf","relatedTo":"Quality"},{"name":"Perfection","relation":"SynonymOf","relatedTo":"Quality"},{"name":"Value","relation":"ComponentOf","relatedTo":"Quality"},{"name":"Standard","relation":"RelationType","relatedTo":"Quality"},{"name":"Maturity","relation":"SynonymOf","relatedTo":"Quality"}]

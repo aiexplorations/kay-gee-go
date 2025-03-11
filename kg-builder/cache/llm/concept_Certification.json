@@ -1,1 +1,0 @@
-[{"name":"Degree","relation":"typeOf","relatedTo":"Certification"},{"name":"License","relation":"typeOf","relatedTo":"Certification"},{"name":"SkillSet","relation":"hasAttribute","relatedTo":"Certification"},{"name":"Achievement","relation":"typeOf","relatedTo":"Certification"},{"name":"Credential","relation":"typeOf","relatedTo":"Certification"}]

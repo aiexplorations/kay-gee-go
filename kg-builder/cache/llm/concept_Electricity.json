@@ -1,1 +1,0 @@
-[{"name":"Power Plant","relation":"Produces","relatedTo":"Electricity"},{"name":"Magnetism","relation":"Influences","relatedTo":"Electricity"},{"name":"Electronics","relation":"Uses","relatedTo":"Electricity"},{"name":"Battery","relation":"Stores","relatedTo":"Electricity"},{"name":"Innovation","relation":"Improves","relatedTo":"Electricity"}]

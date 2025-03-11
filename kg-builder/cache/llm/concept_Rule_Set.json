@@ -1,1 +1,0 @@
-[{"name":"Regulatory Framework","relation":"derivesFrom","relatedTo":"Rule Set"},{"name":"Normative System","relation":"derivesFrom","relatedTo":"Rule Set"},{"name":"Set of Instructions","relation":"contains","relatedTo":"Rule Set"},{"name":"Codification","relation":"appliesTo","relatedTo":"Rule Set"},{"name":"Legal Code","relation":"includes","relatedTo":"Rule Set"}]

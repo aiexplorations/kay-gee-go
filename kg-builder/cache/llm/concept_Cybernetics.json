@@ -1,1 +1,0 @@
-[{"name":"Robotics","relation":"influences","relatedTo":"Cybernetics"},{"name":"Control Theory","relation":"applies_to","relatedTo":"Cybernetics"},{"name":"Signal Processing","relation":"applies_to","relatedTo":"Cybernetics"},{"name":"Teleoperation","relation":"uses","relatedTo":"Cybernetics"},{"name":"Automatic Control Systems","relation":"contains","relatedTo":"Cybernetics"}]

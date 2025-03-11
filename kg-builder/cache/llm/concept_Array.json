@@ -1,1 +1,0 @@
-[{"name":"List","relation":"subclassOf","relatedTo":"Array"},{"name":"Collection","relation":"instanceOf","relatedTo":"Array"},{"name":"Sequence","relation":"typeOf","relatedTo":"Array"},{"name":"Data Structure","relation":"hasComponent","relatedTo":"Array"},{"name":"Indexed Access","relation":"featureOf","relatedTo":"Array"}]

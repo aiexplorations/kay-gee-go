@@ -1,1 +1,0 @@
-[{"name":"Noise","relation":"OppositeOf","relatedTo":"Signals"},{"name":"Message","relation":"HasProperty","relatedTo":"Signals"},{"name":"Encoding","relation":"PrecedesOrIsAComponentOf","relatedTo":"Signals"},{"name":"Interference","relation":"Causes","relatedTo":"Signals"},{"name":"Transmission","relation":"FollowsFromOrIsResultOf","relatedTo":"Signals"}]

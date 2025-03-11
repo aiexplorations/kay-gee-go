@@ -1,1 +1,0 @@
-[{"name":"Data","relation":"uses","relatedTo":"Analytics"},{"name":"Machine Learning","relation":"contains","relatedTo":"Analytics"},{"name":"Big Data","relation":"involves","relatedTo":"Analytics"},{"name":"Visualization","relation":"produces","relatedTo":"Analytics"},{"name":"Predictive Modeling","relation":"employs","relatedTo":"Analytics"}]

@@ -1,1 +1,0 @@
-[{"name":"Robotics","relation":"uses","relatedTo":"Automation"},{"name":"Artificial Intelligence","relation":"employs","relatedTo":"Automation"},{"name":"Machine Learning","relation":"employs","relatedTo":"Automation"},{"name":"Control Systems","relation":"employs","relatedTo":"Automation"},{"name":"Computer Programming","relation":"uses","relatedTo":"Automation"}]

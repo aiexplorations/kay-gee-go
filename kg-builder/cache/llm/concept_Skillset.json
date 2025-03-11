@@ -1,1 +1,0 @@
-[{"name":"Proficiency","relation":"is-a","relatedTo":"Skillset"},{"name":"Knowledge","relation":"has-component","relatedTo":"Skillset"},{"name":"Experience","relation":"has-component","relatedTo":"Skillset"},{"name":"Habits","relation":"is-related-to","relatedTo":"Skillset"},{"name":"Toolset","relation":"includes","relatedTo":"Skillset"}]

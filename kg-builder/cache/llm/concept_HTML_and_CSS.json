@@ -1,1 +1,0 @@
-[{"name":"CSS3","relation":"builds_on","relatedTo":"HTML and CSS"},{"name":"JavaScript","relation":"depends_on","relatedTo":"HTML and CSS"},{"name":"Web browser","relation":"uses","relatedTo":"HTML and CSS"},{"name":"Bootstrap","relation":"includes","relatedTo":"HTML and CSS"},{"name":"Semantic HTML","relation":"enhances_with","relatedTo":"HTML and CSS"}]

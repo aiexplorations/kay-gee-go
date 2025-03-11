@@ -1,1 +1,0 @@
-[{"name":"Directory","relation":"contains","relatedTo":"Filesystem"},{"name":"File","relation":"containedIn","relatedTo":"Filesystem"},{"name":"Storage","relation":"uses","relatedTo":"Filesystem"},{"name":"Node","relation":"represents","relatedTo":"Filesystem"},{"name":"Permissions","relation":"definesAccessFor","relatedTo":"Filesystem"}]

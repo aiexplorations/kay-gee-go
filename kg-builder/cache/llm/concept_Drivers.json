@@ -1,1 +1,0 @@
-[{"name":"Vehicle","relation":"uses","relatedTo":"Drivers"},{"name":"RoadRules","relation":"applies_to","relatedTo":"Drivers"},{"name":"TransportationNeeds","relation":"addresses","relatedTo":"Drivers"},{"name":"TrafficLightTiming","relation":"influences","relatedTo":"Drivers"},{"name":"PassengerCount","relation":"determined_by","relatedTo":"Drivers"}]

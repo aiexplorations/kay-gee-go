@@ -1,1 +1,0 @@
-[{"name":"Metadata","relation":"DERIVED_FROM","relatedTo":"Data Dictionary"},{"name":"Schema","relation":"IS_A","relatedTo":"Data Dictionary"},{"name":"Field","relation":"HAS_PARTS_OF","relatedTo":"Data Dictionary"},{"name":"Term","relation":"RELATES_TO","relatedTo":"Data Dictionary"},{"name":"Key","relation":"CONTAINS_KEY_INFORMATION_FOR","relatedTo":"Data Dictionary"}]

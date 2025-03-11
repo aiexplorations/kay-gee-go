@@ -9,14 +9,14 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/password
     networks:
-      - kg-test-network
+      - kaygeego-test-network
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  kg-builder-test:
+  kaygeego-builder-test:
     build:
       context: .
       dockerfile: Dockerfile.test
@@ -36,9 +36,9 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - kg-test-network
+      - kaygeego-test-network
     command: go test -v ./internal/... ./cmd/...
 
 networks:
-  kg-test-network:
+  kaygeego-test-network:
     driver: bridge 

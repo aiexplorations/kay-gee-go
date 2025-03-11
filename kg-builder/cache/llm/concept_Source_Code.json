@@ -1,1 +1,0 @@
-[{"name":"Programmer","relation":"USES","relatedTo":"Source Code"},{"name":"Compiler","relation":"USES","relatedTo":"Source Code"},{"name":"Database","relation":"REFERENCES","relatedTo":"Source Code"},{"name":"Debugging Tool","relation":"UTILIZES","relatedTo":"Source Code"},{"name":"Executable File","relation":"DERIVED_FROM","relatedTo":"Source Code"}]

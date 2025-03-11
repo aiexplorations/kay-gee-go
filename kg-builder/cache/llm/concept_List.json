@@ -1,1 +1,0 @@
-[{"name":"Sequence","relation":"is type of","relatedTo":"List"},{"name":"Collection","relation":"is a kind of","relatedTo":"List"},{"name":"Order","relation":"is contained in","relatedTo":"List"},{"name":"Element","relation":"comprises","relatedTo":"List"},{"name":"Indexing","relation":"applies to","relatedTo":"List"}]

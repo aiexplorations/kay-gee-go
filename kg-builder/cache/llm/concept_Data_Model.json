@@ -1,1 +1,0 @@
-[{"name":"Entity Relationship Diagram (ERD)","relation":"DEREF","relatedTo":"Data Model"},{"name":"Normalization","relation":"DEREF","relatedTo":"Data Model"},{"name":"Database Schema","relation":"DEREF","relatedTo":"Data Model"},{"name":"Entity","relation":"DEREF","relatedTo":"Data Model"},{"name":"Attribute","relation":"DEREF","relatedTo":"Data Model"}]

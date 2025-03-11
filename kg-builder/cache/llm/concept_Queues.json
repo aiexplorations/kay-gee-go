@@ -1,1 +1,0 @@
-[{"name":"Buffer","relation":"uses","relatedTo":"Queues"},{"name":"Message Queue","relation":"is_a","relatedTo":"Queues"},{"name":"Waiting List","relation":"contains_items_or_people","relatedTo":"Queues"},{"name":"FIFO Structure","relation":"used_in_construction","relatedTo":"Queues"},{"name":"Semaphore","relation":"operates_similarly_to","relatedTo":"Queues"}]

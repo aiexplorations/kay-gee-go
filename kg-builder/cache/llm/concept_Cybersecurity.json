@@ -1,1 +1,0 @@
-[{"name":"Encryption","relation":"Influences","relatedTo":"Cybersecurity"},{"name":"Malware","relation":"ThreatTo","relatedTo":"Cybersecurity"},{"name":"IncidentResponsePlan","relation":"PartOf","relatedTo":"Cybersecurity"},{"name":"SecureProtocols","relation":"Supports","relatedTo":"Cybersecurity"},{"name":"UserEducation","relation":"Enables","relatedTo":"Cybersecurity"}]

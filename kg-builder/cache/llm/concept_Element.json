@@ -1,1 +1,0 @@
-[{"name":"Compound","relation":"is_a","relatedTo":"Element"},{"name":"Material","relation":"is_a","relatedTo":"Element"},{"name":"Property","relation":"has_property","relatedTo":"Element"},{"name":"Combustion","relation":"can_be_caused_by","relatedTo":"Element"},{"name":"Group in the Periodic Table","relation":"belongs_to","relatedTo":"Element"}]

@@ -1,1 +1,0 @@
-[{"name":"Repository","relation":"contains","relatedTo":"Commit History"},{"name":"Branches","relation":"includes","relatedTo":"Commit History"},{"name":"Commits","relation":"produces","relatedTo":"Commit History"},{"name":"Merge Requests","relation":"involves","relatedTo":"Commit History"},{"name":"Pull Requests","relation":"involves","relatedTo":"Commit History"}]

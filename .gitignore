@@ -36,3 +36,8 @@ backup_*/
 # OS-specific files
 .DS_Store
 Thumbs.db
+# Binaries
+kg-enricher/enricher
+kg-builder/builder
+*/*/enricher
+*/*/builder

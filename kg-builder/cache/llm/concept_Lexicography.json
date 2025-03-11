@@ -1,1 +1,0 @@
-[{"name":"Dictionary","relation":"is-a","relatedTo":"Lexicography"},{"name":"Etymology","relation":"uses-for","relatedTo":"Lexicography"},{"name":"Spelling","relation":"is-related-to","relatedTo":"Lexicography"},{"name":"Morphology","relation":"has-subject-area","relatedTo":"Lexicography"},{"name":"Syntax","relation":"has-subject-area","relatedTo":"Lexicography"}]
