@@ -1,0 +1,1 @@
+[{"name":"Speakers","relation":"InverseOf","relatedTo":"Microphones"},{"name":"Audio","relation":"DomainOrFieldOf","relatedTo":"Microphones"},{"name":"Sound","relation":"HasProperty","relatedTo":"Microphones"},{"name":"Recording","relation":"ResultsIn","relatedTo":"Microphones"},{"name":"Electronics","relation":"IsA","relatedTo":"Microphones"}]

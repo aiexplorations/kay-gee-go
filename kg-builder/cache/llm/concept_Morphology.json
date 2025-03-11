@@ -1,0 +1,1 @@
+[{"name":"Anatomy","relation":"IsA","relatedTo":"Morphology"},{"name":"Embryology","relation":"HasPart","relatedTo":"Morphology"},{"name":"Evolutionary Morphology","relation":"AlsoKnownAs","relatedTo":"Morphology"},{"name":"Form and Function","relation":"HasProperty","relatedTo":"Morphology"},{"name":"Growth","relation":"RelatedByProcess","relatedTo":"Morphology"}]

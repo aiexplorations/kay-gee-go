@@ -1,0 +1,1 @@
+[{"name":"List","relation":"is-a","relatedTo":"Arrays"},{"name":"Collection","relation":"has-member-of","relatedTo":"Arrays"},{"name":"Indexing","relation":"applies-to","relatedTo":"Arrays"},{"name":"Element","relation":"is-an-instance-of","relatedTo":"Arrays"},{"name":"Sequence","relation":"shares-properties-with","relatedTo":"Arrays"}]

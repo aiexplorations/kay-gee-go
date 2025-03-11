@@ -1,0 +1,1 @@
+[{"name":"Periodic","relation":"propertyOf","relatedTo":"Cycle"},{"name":"Repetition","relation":"instanceOf","relatedTo":"Cycle"},{"name":"Inevitability","relation":"hasProperty","relatedTo":"Cycle"},{"name":"Iteration","relation":"typeOf","relatedTo":"Cycle"},{"name":"Frequency","relation":"hasAttribute","relatedTo":"Cycle"}]

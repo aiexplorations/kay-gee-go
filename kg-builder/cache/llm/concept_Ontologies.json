@@ -1,0 +1,1 @@
+[{"name":"Taxonomy","relation":"Includes","relatedTo":"Ontologies"},{"name":"Schema","relation":"AppliesTo","relatedTo":"Ontologies"},{"name":"Data Model","relation":"Involves","relatedTo":"Ontologies"},{"name":"Conceptual Framework","relation":"ConsistsOf","relatedTo":"Ontologies"},{"name":"Vocabulary","relation":"Contains","relatedTo":"Ontologies"}]

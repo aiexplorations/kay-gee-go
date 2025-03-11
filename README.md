@@ -36,104 +36,126 @@ The project consists of two main components:
    - Provides detailed statistics on the enrichment process
    - Implements configurable batch processing with intervals
 
+## Project Structure
+
+```
+.
+├── cmd/                    # Command-line applications
+│   ├── builder/            # Knowledge Graph Builder application
+│   ├── enricher/           # Knowledge Graph Enricher application
+│   └── frontend/           # Knowledge Graph Frontend application
+├── internal/               # Internal packages
+│   ├── builder/            # Builder-specific code
+│   ├── enricher/           # Enricher-specific code
+│   ├── frontend/           # Frontend-specific code
+│   └── common/             # Shared code
+│       ├── config/         # Configuration handling
+│       ├── errors/         # Error handling
+│       ├── llm/            # LLM service interactions
+│       ├── models/         # Data models
+│       └── neo4j/          # Neo4j connection and operations
+├── build/                  # Build-related files
+│   ├── builder/            # Builder Dockerfile
+│   ├── enricher/           # Enricher Dockerfile
+│   └── frontend/           # Frontend Dockerfile
+├── config/                 # Configuration files
+│   ├── builder.yaml        # Builder configuration
+│   └── enricher.yaml       # Enricher configuration
+├── cache/                  # Cache directory
+│   ├── builder/            # Builder cache
+│   └── enricher/           # Enricher cache
+├── scripts/                # Scripts for running the application
+│   ├── run.sh              # Script to run the application
+│   ├── stop.sh             # Script to stop the application
+│   └── status.sh           # Script to show the status of the application
+├── public/                 # Frontend static files
+├── docker-compose.yml      # Docker Compose configuration
+├── Makefile                # Makefile for building and running the application
+├── go.mod                  # Go module file
+├── go.sum                  # Go module checksum file
+├── run.sh                  # Symbolic link to scripts/run.sh
+├── stop.sh                 # Symbolic link to scripts/stop.sh
+└── status.sh               # Symbolic link to scripts/status.sh
+```
+
 ## Setup
 
 1. Ensure Docker and Docker Compose are installed on your system.
 2. Navigate to the project directory.
-3. You can run the components separately or together:
-   - Run `./start.sh` to run tests and start the Knowledge Graph Builder only.
-   - Run `./start-enricher.sh` to start the Knowledge Graph Enricher only.
-   - Run `./start-all.sh` to start both components together.
+3. Run `./run.sh` to start the application.
 
 ## Usage
 
-### Integrated Deployment
+### Running the Application
 
-You can run both the Knowledge Graph Builder and Enricher together using the integrated deployment:
+You can run the application using the provided scripts:
 
 ```bash
-./start-all.sh
+# Start the application
+./run.sh
+
+# Stop the application
+./stop.sh
+
+# Show the status of the application
+./status.sh
 ```
 
-This will start both services with their default configurations. You can also pass command-line arguments to customize the behavior of both services:
+### Command-line Arguments
+
+You can customize the behavior of the application using command-line arguments:
 
 ```bash
-./start-all.sh --seed="Machine Learning" --max-nodes=200 --run-once --count=20
+# Start the application with custom settings
+./run.sh --seed="Machine Learning" --max-nodes=200 --timeout=60
+
+# Start only specific components
+./run.sh --skip-neo4j --skip-frontend
+
+# Run the enricher once and exit
+./run.sh --skip-builder --skip-frontend --run-once --count=20
 ```
 
-To stop both services:
+### Using the Makefile
+
+You can also use the Makefile to build and run the application:
 
 ```bash
-./stop-all.sh
-```
+# Build all components
+make build
 
-### Knowledge Graph Builder
+# Run all components
+make run
 
-The Knowledge Graph Builder will automatically start building the knowledge graph from the seed concept "Artificial Intelligence" (default).
+# Run only specific components
+make builder
+make enricher
+make frontend
 
-#### Scripts
+# Stop the application
+make stop
 
-The following scripts are provided for convenience:
+# Show the status of the application
+make status
 
-- `start.sh`: Runs tests and starts the application
-  - Accepts command-line arguments: `./start.sh --seed="Machine Learning" --max-nodes=200 --timeout=60`
-- `stop.sh`: Stops the application
-- `status.sh`: Checks the status of the application and shows statistics
-- `update-model.sh`: Updates the LLM model in the configuration file
-  - Usage: `./update-model.sh <model_name>`
-  - Example: `./update-model.sh llama3.1:latest`
+# Clean up build artifacts
+make clean
 
-#### Command-line Arguments
+# Run tests
+make test
 
-You can customize the behavior of the Knowledge Graph Builder using the following command-line arguments:
-
-- `--seed`: Seed concept for graph building (default: "Artificial Intelligence")
-- `--max-nodes`: Maximum number of nodes to build (default: 100)
-- `--timeout`: Timeout in minutes for graph building (default: 30)
-- `--random-relationships`: Number of random relationships to mine (default: 50)
-- `--concurrency`: Number of concurrent workers for mining random relationships (default: 5)
-- `--stats-only`: Only show statistics without building the graph
-- `--version`: Show version information and exit
-
-Example:
-```bash
-docker-compose run kg-builder /kg-builder --seed "Machine Learning" --max-nodes 200 --timeout 60
-```
-
-Or using the start.sh script:
-```bash
-./start.sh --seed="Machine Learning" --max-nodes=200 --timeout=60
-```
-
-### Knowledge Graph Enricher
-
-The Knowledge Graph Enricher will automatically start enriching the knowledge graph based on the configuration in `config.yaml`.
-
-#### Scripts
-
-The following scripts are provided for convenience:
-
-- `start-enricher.sh`: Starts the enricher application
-  - Accepts command-line arguments: `./start-enricher.sh --run-once --count=20`
-- `stop-enricher.sh`: Stops the enricher application
-
-#### Command-line Arguments
-
-You can customize the behavior of the Knowledge Graph Enricher using the following command-line arguments:
-
-- `--run-once`: Run once and exit
-- `--count`: Number of relationships to mine when running once (default: 10)
-- `--stats`: Show statistics and exit
-- `--version`: Show version information and exit
-
-Example:
-```bash
-./start-enricher.sh --run-once --count=20
+# Show help
+make help
 ```
 
 ## Configuration
 
-Both components can be configured using environment variables or configuration files.
+The application can be configured using YAML configuration files or environment variables.
+
+### Configuration Files
+
+- `config/builder.yaml`: Configuration for the Knowledge Graph Builder
+- `config/enricher.yaml`: Configuration for the Knowledge Graph Enricher
 
 ### Environment Variables
 
@@ -144,7 +166,6 @@ Both components can be configured using environment variables or configuration f
 - `NEO4J_PASSWORD`: Password for the Neo4j database (default: "password")
 - `LLM_URL`: URL for the LLM service (default: "http://host.docker.internal:11434/api/generate")
 - `LLM_MODEL`: Model to use for the LLM service (default: "qwen2.5:3b")
-- `CONFIG_FILE`: Path to the configuration file (default: "config.yaml")
 
 #### Knowledge Graph Enricher
 
@@ -158,65 +179,7 @@ Both components can be configured using environment variables or configuration f
 - `ENRICHER_MAX_RELATIONSHIPS`: Maximum number of relationships to create (default: 100)
 - `ENRICHER_CONCURRENCY`: Number of concurrent workers for mining relationships (default: 5)
 
-### Configuration Files
-
-Both components can also be configured using YAML configuration files. By default, they look for files named `config.yaml` in their respective directories.
-
-#### Knowledge Graph Builder
-
-```yaml
-# Neo4j Configuration
-neo4j:
-  uri: "bolt://neo4j:7687"
-  user: "neo4j"
-  password: "password"
-  max_retries: 5
-  retry_interval_seconds: 5
-
-# LLM Configuration
-llm:
-  url: "http://host.docker.internal:11434/api/generate"
-  model: "qwen2.5:3b"
-  cache_dir: "./cache/llm"
-
-# Graph Configuration
-graph:
-  seed_concept: "Artificial Intelligence"
-  max_nodes: 100
-  timeout_minutes: 30
-  worker_count: 10
-  random_relationships: 50
-  concurrency: 5
-```
-
-#### Knowledge Graph Enricher
-
-```yaml
-# Neo4j Configuration
-neo4j:
-  uri: "bolt://neo4j:7687"
-  user: "neo4j"
-  password: "password"
-  max_retries: 5
-  retry_interval_seconds: 5
-
-# LLM Configuration
-llm:
-  url: "http://host.docker.internal:11434/api/generate"
-  model: "qwen2.5:3b"
-  cache_dir: "./cache/llm"
-
-# Enricher Configuration
-enricher:
-  batch_size: 10
-  interval_seconds: 60
-  max_relationships: 100
-  concurrency: 5
-```
-
 ## Persistence
-
-### Neo4j Data
 
 The Neo4j database data is persisted in Docker volumes, so the graph will be preserved even if the containers are stopped or removed.
 
@@ -230,8 +193,8 @@ Responses from the LLM service are cached in the `cache` directory, which is mou
 
 To clear the cache, run:
 ```bash
-rm -rf kg-builder/cache/*.json
-rm -rf kg-enricher/cache/*.json
+rm -rf cache/builder/*.json
+rm -rf cache/enricher/*.json
 ```
 
 ## Testing
@@ -240,140 +203,27 @@ The project includes a comprehensive test suite to ensure the application is cor
 
 ### Running Tests
 
-You can run the tests using the provided Makefile or the run-tests.sh script:
+You can run the tests using the provided Makefile:
 
 ```bash
-# Using the run-tests.sh script (automatically chooses local or Docker based on Go installation)
-./kg-builder/run-tests.sh
-./kg-enricher/run-tests.sh
-
-# Test application build and basic functionality
-cd kg-builder
-./test-build.sh
-# or
-make test-build
-
-# Using Makefile (requires Go installation)
-cd kg-builder
+# Run all tests
 make test
-
-# Run tests in short mode (skip integration tests)
-make test-short
-
-# Run tests with verbose output
-make test-verbose
 
 # Run tests with coverage report
 make test-coverage
-
-# Run tests in Docker (no Go installation required)
-make docker-test
-
-# Clean Docker test containers
-make docker-test-clean
 ```
 
-### Test Coverage
+## Troubleshooting
 
-The test suite covers the following areas:
+### Debugging Build Issues
 
-1. **Error Handling**: Tests for the custom error types and retry mechanisms
-2. **LLM Service**: Tests for the LLM service integration and caching
-3. **Neo4j Integration**: Tests for the Neo4j database connection and operations
-4. **Graph Building**: Tests for the graph building logic
-5. **Configuration**: Tests for environment variables and command-line arguments
-6. **Enricher**: Tests for the enricher functionality and statistics
-7. **End-to-End**: Integration tests for the complete workflow
+If you encounter issues when starting the system, you can run the start script with the debug flag:
 
-## Project Structure
+```bash
+./run.sh --debug
+```
 
-### Knowledge Graph Builder
-- `cmd/kg-builder/`: Main application entry point
-- `internal/neo4j/`: Neo4j connection and operations
-- `internal/llm/`: LLM service interactions
-- `internal/graph/`: Graph operations and data structures
-- `internal/models/`: Data models
-- `internal/errors/`: Error handling
-- `internal/config/`: Configuration handling
-- `internal/tests/`: Test suite
-- `cache/`: Cached LLM responses
-
-### Knowledge Graph Enricher
-- `cmd/kg-enricher/`: Main application entry point
-- `internal/neo4j/`: Neo4j connection and operations
-- `internal/llm/`: LLM service interactions
-- `internal/enricher/`: Enricher operations
-- `internal/models/`: Data models
-- `internal/config/`: Configuration handling
-- `cache/`: Cached LLM responses
-
-## File Descriptions
-
-### Knowledge Graph Builder
-
-#### `internal/graph/graph.go`
-This file contains the implementation of the `GraphBuilder` struct, which is responsible for building a knowledge graph using concepts and their relationships. 
-
-- **GraphBuilder Struct**: Holds the Neo4j driver, functions for retrieving related concepts and mining relationships, a map of processed concepts, a node count, and a mutex for thread safety.
-  
-- **BuildGraph**: The main method that builds the knowledge graph starting from a seed concept. It uses goroutines to process concepts concurrently, managing a queue of concepts to explore.
-
-- **MineRandomRelationships**: This method mines relationships between random pairs of concepts, using concurrency to speed up the process.
-
-#### `internal/llm/llm.go`
-This file contains functions that interact with a language model (LLM) service to retrieve related concepts and mine relationships between concepts.
-
-- **GetRelatedConcepts**: Sends a request to the LLM service with a prompt to get related concepts for a given concept.
-
-- **MineRelationship**: Similar to `GetRelatedConcepts`, this function sends a request to the LLM service to determine if there is a relationship between two concepts.
-
-- **Caching**: Implements in-memory and file-based caching of LLM responses for improved performance and offline access.
-
-#### `internal/neo4j/neo4j.go`
-This file handles the connection to the Neo4j database and provides functions to create relationships between concepts.
-
-- **SetupNeo4jConnection**: Establishes a connection to the Neo4j database with retry logic to handle connection failures.
-
-- **CreateRelationship**: A function that creates a relationship between two concepts in the Neo4j database using a Cypher query.
-
-- **QueryConcepts**: Retrieves all concepts from the Neo4j database.
-
-- **QueryRelationships**: Retrieves all relationships from the Neo4j database.
-
-### Knowledge Graph Enricher
-
-#### `internal/enricher/enricher.go`
-This file contains the implementation of the `Enricher` struct, which is responsible for enriching the knowledge graph with new relationships.
-
-- **Enricher Struct**: Holds the Neo4j driver, configuration, and statistics about the enrichment process.
-
-- **Start**: Starts the enricher service, which runs in a loop processing batches of concept pairs.
-
-- **RunOnce**: Runs the enricher once, processing a specified number of concept pairs.
-
-- **processBatch**: Processes a batch of concept pairs, finding and creating relationships between them.
-
-#### `internal/llm/llm.go`
-This file contains functions that interact with a language model (LLM) service to find relationships between concepts.
-
-- **FindRelationship**: Sends a request to the LLM service to determine if there is a relationship between two concepts.
-
-- **Caching**: Implements in-memory and file-based caching of LLM responses for improved performance and offline access.
-
-#### `internal/neo4j/neo4j.go`
-This file handles the connection to the Neo4j database and provides functions to query and create relationships.
-
-- **SetupNeo4jConnection**: Establishes a connection to the Neo4j database with retry logic to handle connection failures.
-
-- **QueryRandomConceptPairs**: Retrieves random pairs of concepts from the Neo4j database.
-
-- **CreateRelationship**: Creates a relationship between two concepts in the Neo4j database.
-
-## Build process
-
-1. Run `docker-compose up --build` to start the application and Neo4j.
-2. The application will automatically start building the knowledge graph from the seed concept "Artificial Intelligence" (or the one specified via command-line arguments).
-3. The graph will be persisted in the Neo4j database, and LLM responses will be cached in the `cache` directory.
+This will provide more detailed error messages and show the Docker logs for any containers that fail to start.
 
 
 

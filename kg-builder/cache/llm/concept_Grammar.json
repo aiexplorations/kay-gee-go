@@ -1,0 +1,1 @@
+[{"name":"Syntax","relation":"IS_SUBSUMED_BY","relatedTo":"Grammar"},{"name":"Semantics","relation":"IS_SUPPLEMENTED_BY","relatedTo":"Grammar"},{"name":"Pragmatics","relation":"COVERED_BY","relatedTo":"Grammar"},{"name":"Lexicon","relation":"USEFUL_FOR","relatedTo":"Grammar"},{"name":"Stylistics","relation":"APPLICATION_OF","relatedTo":"Grammar"}]

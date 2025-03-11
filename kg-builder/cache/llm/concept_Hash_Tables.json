@@ -1,0 +1,1 @@
+[{"name":"Data Structures","relation":"IS_A","relatedTo":"Hash Tables"},{"name":"Associative Arrays","relation":"PART_OF","relatedTo":"Hash Tables"},{"name":"Dictionaries","relation":"SIMILAR_TO","relatedTo":"Hash Tables"},{"name":"Faster Lookup","relation":"USES","relatedTo":"Hash Tables"},{"name":"Memory Usage","relation":"IMPACTS","relatedTo":"Hash Tables"}]

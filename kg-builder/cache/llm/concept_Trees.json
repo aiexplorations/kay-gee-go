@@ -1,0 +1,1 @@
+[{"name":"Vegetation","relation":"includes","relatedTo":"Trees"},{"name":"Forest","relation":"contains","relatedTo":"Trees"},{"name":"Shrublands","relation":"coexistsWith","relatedTo":"Trees"},{"name":"Biodiversity","relation":"influences","relatedTo":"Trees"},{"name":"Soil Health","relation":"requiresFor","relatedTo":"Trees"}]

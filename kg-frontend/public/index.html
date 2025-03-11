@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph Visualizer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Knowledge Graph</h1>
+            
+            <div class="control-panel">
+                <h2>Graph Builder</h2>
+                <div class="form-group">
+                    <label for="seed-concept">Seed Concept:</label>
+                    <input type="text" id="seed-concept" value="Artificial Intelligence">
+                </div>
+                <div class="form-group">
+                    <label for="max-nodes">Max Nodes:</label>
+                    <input type="number" id="max-nodes" value="100" min="1" max="1000">
+                </div>
+                <div class="form-group">
+                    <label for="timeout">Timeout (minutes):</label>
+                    <input type="number" id="timeout" value="30" min="1" max="120">
+                </div>
+                <div class="form-group">
+                    <label for="random-relationships">Random Relationships:</label>
+                    <input type="number" id="random-relationships" value="50" min="0" max="500">
+                </div>
+                <div class="form-group">
+                    <label for="concurrency">Concurrency:</label>
+                    <input type="number" id="concurrency" value="5" min="1" max="20">
+                </div>
+                <div class="button-group">
+                    <button id="start-builder" class="btn btn-primary">Start Builder</button>
+                    <button id="stop-builder" class="btn btn-danger">Stop Builder</button>
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <h2>Graph Enricher</h2>
+                <div class="form-group">
+                    <label for="batch-size">Batch Size:</label>
+                    <input type="number" id="batch-size" value="10" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="interval">Interval (seconds):</label>
+                    <input type="number" id="interval" value="60" min="10" max="3600">
+                </div>
+                <div class="form-group">
+                    <label for="max-relationships">Max Relationships:</label>
+                    <input type="number" id="max-relationships" value="100" min="1" max="1000">
+                </div>
+                <div class="form-group">
+                    <label for="enricher-concurrency">Concurrency:</label>
+                    <input type="number" id="enricher-concurrency" value="5" min="1" max="20">
+                </div>
+                <div class="button-group">
+                    <button id="start-enricher" class="btn btn-primary">Start Enricher</button>
+                    <button id="stop-enricher" class="btn btn-danger">Stop Enricher</button>
+                </div>
+            </div>
+            
+            <div class="control-panel">
+                <h2>Manual Linking</h2>
+                <div class="form-group">
+                    <label for="concept-search">Search Concepts:</label>
+                    <input type="text" id="concept-search" placeholder="Type to search...">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+                <div class="selected-concepts">
+                    <h3>Selected Concepts</h3>
+                    <div id="selected-concept-1" class="selected-concept">None</div>
+                    <div id="selected-concept-2" class="selected-concept">None</div>
+                </div>
+                <div class="form-group">
+                    <label for="relationship-type">Relationship Type:</label>
+                    <input type="text" id="relationship-type" placeholder="e.g., RELATES_TO">
+                </div>
+                <button id="link-concepts" class="btn btn-primary">Link Concepts</button>
+            </div>
+            
+            <div class="stats-panel">
+                <h2>Statistics</h2>
+                <div id="graph-stats">
+                    <p>Concepts: <span id="concept-count">0</span></p>
+                    <p>Relationships: <span id="relationship-count">0</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="graph-container">
+            <div id="graph-canvas"></div>
+            <div class="graph-controls">
+                <button id="reset-camera" class="btn btn-secondary">Reset View</button>
+                <button id="refresh-graph" class="btn btn-secondary">Refresh Graph</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="js/graph-visualizer.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

@@ -2,6 +2,85 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2025-03-15
+
+### Added
+- Created a clean, modular directory structure with clear separation of concerns
+- Added a unified Makefile with targets for building, testing, and running the application
+- Created a centralized configuration system with dedicated config directory
+- Added symbolic links for convenience (run.sh, stop.sh, status.sh)
+
+### Changed
+- Completely reorganized the project structure for better maintainability
+  - Moved command-line applications to `cmd/` directory
+  - Moved internal packages to `internal/` directory
+  - Created `build/` directory for Dockerfiles
+  - Created `config/` directory for configuration files
+  - Created `cache/` directory for caching LLM responses
+  - Created `scripts/` directory for scripts to run the application
+- Consolidated multiple scripts into a single set of scripts in the `scripts/` directory
+- Created a unified docker-compose.yml file for all components
+- Updated the README.md with the new project structure and simplified instructions
+- Improved the .gitignore file with more comprehensive patterns
+
+### Removed
+- Eliminated redundant scripts and consolidated functionality
+- Removed duplicate configuration files
+- Removed nested project directories for cleaner organization
+
+## [0.4.1] - 2025-03-12
+
+### Fixed
+- Fixed routing conflict in the frontend Go API server that caused the application to crash
+- Removed unused import (net/http) in main.go that was causing build failures
+- Fixed static file serving configuration to avoid conflicts with API routes
+- Updated check-system.sh to correctly identify Docker networks with prefixed names
+- Enhanced error detection and reporting in the frontend container
+- Fixed Go dependency issues by improving the fix-go-deps.sh script
+- Added better error handling in start-all.sh with --debug flag to show detailed logs
+- Fixed container startup sequence to ensure proper initialization
+
+### Changed
+- Modified static file serving path from root ("/") to "/static" to avoid routing conflicts
+- Updated NoRoute handler to properly serve index.html for client-side routing
+- Improved system check to provide more accurate status information
+- Enhanced Docker network detection in check-system.sh
+
+## [0.4.0] - 2025-03-12
+
+### Added
+- Implemented a Three.js frontend with Go backend API server for visualizing the knowledge graph
+- Added 3D visualization of the knowledge graph with interactive nodes and relationships
+- Created a Go-based API server to serve the frontend and communicate with Neo4j
+- Added RESTful API endpoints for retrieving graph data, statistics, and managing concepts
+- Implemented unit tests for all API handlers (concepts, graph, statistics, utils, builder, enricher)
+- Created a Makefile for building, testing, and running the frontend application
+- Added Docker support for the frontend with multi-stage build process
+- Added new system management scripts:
+  - `check-system.sh`: Checks the status of all components and reports any issues
+  - `fix-go-deps.sh`: Fixes Go dependency issues for the frontend
+- Enhanced existing scripts to include frontend component:
+  - Updated `start-all.sh` to include frontend startup with debug mode
+  - Updated `stop-all.sh` to properly stop the frontend
+  - Updated `test-all.sh` to run frontend tests
+  - Updated `update-all.sh` to update frontend dependencies
+
+### Changed
+- Refactored system architecture to include the frontend as a separate container
+- Updated docker-compose.yml to include the frontend service
+- Enhanced error reporting in all scripts with colored output
+- Improved system startup process with better error handling and debugging
+- Updated README.md with frontend documentation and troubleshooting information
+
+### Fixed
+- Fixed Go dependency issues in the frontend by adding proper dependency verification
+- Fixed Docker build process for the frontend to ensure proper dependency resolution
+- Fixed issues with go.mod and go.sum synchronization
+- Enhanced error detection and reporting in start-all.sh script
+- Added dependency checks to prevent build failures
+- Improved test coverage to catch dependency issues before deployment
+- Fixed container networking to ensure proper communication between services
+
 ## [0.3.0] - 2025-03-11
 
 ### Added

@@ -1,0 +1,1 @@
+[{"name":"SyntaxError","relation":"IS_A","relatedTo":"CompilerError"},{"name":"SemanticError","relation":"HAS_SUBSET","relatedTo":"CompilerError"},{"name":"RuntimeError","relation":"HAS_SUPerset","relatedTo":"CompilerError"},{"name":"ParsingError","relation":"IS_A","relatedTo":"CompilerError"},{"name":"LexicalError","relation":"IS_A","relatedTo":"CompilerError"}]

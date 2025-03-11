@@ -15,4 +15,17 @@
 *.out
 
 # Dependency directories
-vendor/
+# vendor/
+
+# Go workspace file
+go.work
+
+# Cache files
+cache/**/*.json
+
+# Configuration backups
+*.yaml.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db

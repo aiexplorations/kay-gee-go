@@ -1,0 +1,1 @@
+[{"name":"Software Development","relation":"uses","relatedTo":"Program"},{"name":"Source Code","relation":"contains","relatedTo":"Program"},{"name":"Compiler","relation":"transforms","relatedTo":"Program"},{"name":"Debugging Tools","relation":"assist","relatedTo":"Program"},{"name":"Computer Hardware","relation":"runsOn","relatedTo":"Program"}]

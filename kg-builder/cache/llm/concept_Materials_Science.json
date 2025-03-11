@@ -1,0 +1,1 @@
+[{"name":"Chemistry","relation":"uses","relatedTo":"Materials Science"},{"name":"Engineering","relation":"applies","relatedTo":"Materials Science"},{"name":"Physics","relation":"influences","relatedTo":"Materials Science"},{"name":"Metallurgy","relation":"focusesOn","relatedTo":"Materials Science"},{"name":"Ceramics","relation":"includes","relatedTo":"Materials Science"}]

@@ -1,0 +1,1 @@
+[{"name":"Natural Language Processing (NLP)","relation":"Uses","relatedTo":"Parsing"},{"name":"Syntax Analysis","relation":"Part Of","relatedTo":"Parsing"},{"name":"Machine Learning","relation":"Enables","relatedTo":"Parsing"},{"name":"Compiler Design","relation":"Applies To","relatedTo":"Parsing"},{"name":"Text Mining","relation":"Involves","relatedTo":"Parsing"}]

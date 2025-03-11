@@ -1,0 +1,1 @@
+[{"name":"Machine Learning","relation":"uses","relatedTo":"Data Science"},{"name":"Statistics","relation":"requires","relatedTo":"Data Science"},{"name":"Programming","relation":"employs","relatedTo":"Data Science"},{"name":"Big Data","relation":"works_with","relatedTo":"Data Science"},{"name":"Visualization","relation":"produces_outputs_for","relatedTo":"Data Science"}]
