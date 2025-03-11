@@ -14,9 +14,13 @@ import (
 	neo4jdriver "github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
 
+// Variable that can be mocked in tests
+var findRelationship = llm.FindRelationship
+
 // Enricher is responsible for enriching the knowledge graph with new relationships
 type Enricher struct {
 	driver      neo4jdriver.Driver
+	neo4jService neo4j.Neo4jService
 	config      *config.EnricherConfig
 	stopChan    chan struct{}
 	wg          sync.WaitGroup
@@ -37,10 +41,16 @@ type EnricherStats struct {
 
 // NewEnricher creates a new Enricher instance
 func NewEnricher(driver neo4jdriver.Driver, config *config.EnricherConfig) *Enricher {
+	return NewEnricherWithService(driver, neo4j.NewNeo4jService(driver), config)
+}
+
+// NewEnricherWithService creates a new Enricher instance with a custom Neo4j service
+func NewEnricherWithService(driver neo4jdriver.Driver, service neo4j.Neo4jService, config *config.EnricherConfig) *Enricher {
 	return &Enricher{
-		driver:   driver,
-		config:   config,
-		stopChan: make(chan struct{}),
+		driver:      driver,
+		neo4jService: service,
+		config:      config,
+		stopChan:    make(chan struct{}),
 		stats: EnricherStats{
 			StartTime: time.Now(),
 		},
@@ -128,7 +138,7 @@ func (e *Enricher) processBatch() {
 	e.mutex.Unlock()
 
 	// Get random nodes
-	nodes, err := neo4j.GetRandomNodes(e.driver, e.config.BatchSize*2)
+	nodes, err := e.neo4jService.GetRandomNodes(e.config.BatchSize*2)
 	if err != nil {
 		log.Printf("Failed to get random nodes: %v", err)
 		return
@@ -153,7 +163,7 @@ func (e *Enricher) processBatch() {
 		}
 
 		// Check if a relationship already exists
-		exists, err := neo4j.CheckExistingRelationship(e.driver, nodes[i].Name, nodes[i+1].Name)
+		exists, err := e.neo4jService.CheckExistingRelationship(nodes[i].Name, nodes[i+1].Name)
 		if err != nil {
 			log.Printf("Failed to check existing relationship: %v", err)
 			continue
@@ -191,9 +201,9 @@ func (e *Enricher) processBatch() {
 
 			// Mine relationship
 			log.Printf("Mining relationship between %s and %s", source, target)
-			relationship, err := llm.MineRelationship(source, target)
+			relation, err := findRelationship(source, target)
 			if err != nil {
-				log.Printf("Failed to mine relationship: %v", err)
+				log.Printf("Failed to find relationship: %v", err)
 				return
 			}
 
@@ -202,7 +212,7 @@ func (e *Enricher) processBatch() {
 			mutex.Unlock()
 
 			// If no relationship was found, skip
-			if relationship == nil {
+			if relation == "" {
 				log.Printf("No relationship found between %s and %s", source, target)
 				return
 			}
@@ -213,7 +223,7 @@ func (e *Enricher) processBatch() {
 			mutex.Unlock()
 
 			// Create relationship in Neo4j
-			err = neo4j.CreateRelationship(e.driver, source, target, relationship.Relation)
+			err = e.neo4jService.CreateRelationship(source, target, relation)
 			if err != nil {
 				log.Printf("Failed to create relationship: %v", err)
 				return
@@ -224,7 +234,7 @@ func (e *Enricher) processBatch() {
 			e.stats.TotalRelationsCreated++
 			mutex.Unlock()
 
-			log.Printf("Created relationship: %s -[%s]-> %s", source, relationship.Relation, target)
+			log.Printf("Created relationship: %s -[%s]-> %s", source, relation, target)
 		}(pair[0], pair[1])
 	}
 
@@ -255,7 +265,7 @@ func (e *Enricher) RunOnce(count int) error {
 	}()
 
 	// Get random nodes
-	nodes, err := neo4j.GetRandomNodes(e.driver, count*2)
+	nodes, err := e.neo4jService.GetRandomNodes(count*2)
 	if err != nil {
 		return fmt.Errorf("failed to get random nodes: %w", err)
 	}
@@ -278,7 +288,7 @@ func (e *Enricher) RunOnce(count int) error {
 		}
 
 		// Check if a relationship already exists
-		exists, err := neo4j.CheckExistingRelationship(e.driver, nodes[i].Name, nodes[i+1].Name)
+		exists, err := e.neo4jService.CheckExistingRelationship(nodes[i].Name, nodes[i+1].Name)
 		if err != nil {
 			log.Printf("Failed to check existing relationship: %v", err)
 			continue
@@ -308,9 +318,9 @@ func (e *Enricher) RunOnce(count int) error {
 
 			// Mine relationship
 			log.Printf("Mining relationship between %s and %s", source, target)
-			relationship, err := llm.MineRelationship(source, target)
+			relation, err := findRelationship(source, target)
 			if err != nil {
-				log.Printf("Failed to mine relationship: %v", err)
+				log.Printf("Failed to find relationship: %v", err)
 				return
 			}
 
@@ -319,7 +329,7 @@ func (e *Enricher) RunOnce(count int) error {
 			mutex.Unlock()
 
 			// If no relationship was found, skip
-			if relationship == nil {
+			if relation == "" {
 				log.Printf("No relationship found between %s and %s", source, target)
 				return
 			}
@@ -330,7 +340,7 @@ func (e *Enricher) RunOnce(count int) error {
 			mutex.Unlock()
 
 			// Create relationship in Neo4j
-			err = neo4j.CreateRelationship(e.driver, source, target, relationship.Relation)
+			err = e.neo4jService.CreateRelationship(source, target, relation)
 			if err != nil {
 				log.Printf("Failed to create relationship: %v", err)
 				return
@@ -341,7 +351,7 @@ func (e *Enricher) RunOnce(count int) error {
 			e.stats.TotalRelationsCreated++
 			mutex.Unlock()
 
-			log.Printf("Created relationship: %s -[%s]-> %s", source, relationship.Relation, target)
+			log.Printf("Created relationship: %s -[%s]-> %s", source, relation, target)
 		}(pair[0], pair[1])
 	}
 

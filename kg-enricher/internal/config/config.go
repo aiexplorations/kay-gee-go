@@ -21,6 +21,7 @@ type Config struct {
 type Neo4jConfig struct {
 	URI                string        `yaml:"uri"`
 	User               string        `yaml:"user"`
+	Username           string        `yaml:"-"` // Alias for User for backward compatibility
 	Password           string        `yaml:"password"`
 	MaxRetries         int           `yaml:"max_retries"`
 	RetryInterval      time.Duration `yaml:"-"`
@@ -67,6 +68,9 @@ func LoadConfig() (*Config, error) {
 		},
 	}
 
+	// Set Username as an alias for User
+	config.Neo4j.Username = config.Neo4j.User
+
 	// Try to load configuration from YAML file
 	configFile := getEnv("CONFIG_FILE", "config.yaml")
 	if _, err := os.Stat(configFile); err == nil {
@@ -87,6 +91,7 @@ func LoadConfig() (*Config, error) {
 		}
 		if yamlConfig.Neo4j.User != "" {
 			config.Neo4j.User = yamlConfig.Neo4j.User
+			config.Neo4j.Username = yamlConfig.Neo4j.User // Update Username alias
 		}
 		if yamlConfig.Neo4j.Password != "" {
 			config.Neo4j.Password = yamlConfig.Neo4j.Password

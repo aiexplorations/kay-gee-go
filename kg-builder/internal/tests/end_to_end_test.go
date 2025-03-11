@@ -63,7 +63,9 @@ func TestEndToEndWorkflow(t *testing.T) {
 	defer driver.Close()
 	
 	// Clean up any existing data
-	session := driver.NewSession(neo4jdriver.AccessModeWrite)
+	session := driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeWrite,
+	})
 	_, err = session.Run("MATCH (n) DETACH DELETE n", nil)
 	if err != nil {
 		t.Fatalf("Failed to clean up existing data: %v", err)
@@ -143,7 +145,9 @@ func TestEndToEndWorkflow(t *testing.T) {
 	// between random pairs of concepts
 	
 	// Get all concepts
-	session = driver.NewSession(neo4jdriver.AccessModeRead)
+	session = driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeRead,
+	})
 	result, err := session.Run("MATCH (n:Concept) RETURN n.name AS name", nil)
 	if err != nil {
 		t.Fatalf("Failed to query concepts: %v", err)
@@ -159,7 +163,9 @@ func TestEndToEndWorkflow(t *testing.T) {
 	
 	// Create relationships between random pairs of concepts
 	if len(conceptNames) >= 2 {
-		session = driver.NewSession(neo4jdriver.AccessModeWrite)
+		session = driver.NewSession(neo4jdriver.SessionConfig{
+			AccessMode: neo4jdriver.AccessModeWrite,
+		})
 		for i := 0; i < 3; i++ {
 			source := conceptNames[i%len(conceptNames)]
 			target := conceptNames[(i+1)%len(conceptNames)]
@@ -210,7 +216,9 @@ func TestEndToEndWorkflow(t *testing.T) {
 	t.Logf("Found %d relationships in the enriched graph", len(relationships))
 	
 	// Clean up the test data
-	session = driver.NewSession(neo4jdriver.AccessModeWrite)
+	session = driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeWrite,
+	})
 	_, err = session.Run("MATCH (n) DETACH DELETE n", nil)
 	if err != nil {
 		t.Fatalf("Failed to clean up test data: %v", err)

@@ -1,16 +1,15 @@
 package tests
 
 import (
-	"flag"
+	"io/ioutil"
 	"os"
 	"testing"
-	"io/ioutil"
 	"time"
-
-	"kg-builder/internal/llm"
+	
 	"kg-builder/internal/config"
-	"kg-builder/internal/neo4j"
 	"kg-builder/internal/graph"
+	"kg-builder/internal/llm"
+	"kg-builder/internal/neo4j"
 
 	neo4jdriver "github.com/neo4j/neo4j-go-driver/v4/neo4j"
 )
@@ -259,7 +258,9 @@ func TestGraphBuildingWorkflow(t *testing.T) {
 	}
 	
 	// Clean up the test data
-	session := driver.NewSession(neo4jdriver.AccessModeWrite)
+	session := driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeWrite,
+	})
 	defer session.Close()
 	
 	_, err = session.Run("MATCH (n) DETACH DELETE n", nil)

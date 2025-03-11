@@ -177,13 +177,33 @@ graph:
 	}
 
 	// Save current environment variables
+	oldNeo4jURI := os.Getenv("NEO4J_URI")
+	oldNeo4jUser := os.Getenv("NEO4J_USER")
+	oldNeo4jPassword := os.Getenv("NEO4J_PASSWORD")
+	oldLLMURL := os.Getenv("LLM_URL")
+	oldLLMModel := os.Getenv("LLM_MODEL")
+	oldLLMCacheDir := os.Getenv("LLM_CACHE_DIR")
 	oldConfigFile := os.Getenv("CONFIG_FILE")
 
-	// Set environment variables
+	// Unset environment variables to ensure they don't interfere
+	os.Unsetenv("NEO4J_URI")
+	os.Unsetenv("NEO4J_USER")
+	os.Unsetenv("NEO4J_PASSWORD")
+	os.Unsetenv("LLM_URL")
+	os.Unsetenv("LLM_MODEL")
+	os.Unsetenv("LLM_CACHE_DIR")
+	
+	// Set config file environment variable
 	os.Setenv("CONFIG_FILE", tmpfile.Name())
 
 	// Restore environment variables after test
 	defer func() {
+		os.Setenv("NEO4J_URI", oldNeo4jURI)
+		os.Setenv("NEO4J_USER", oldNeo4jUser)
+		os.Setenv("NEO4J_PASSWORD", oldNeo4jPassword)
+		os.Setenv("LLM_URL", oldLLMURL)
+		os.Setenv("LLM_MODEL", oldLLMModel)
+		os.Setenv("LLM_CACHE_DIR", oldLLMCacheDir)
 		os.Setenv("CONFIG_FILE", oldConfigFile)
 	}()
 
@@ -268,20 +288,26 @@ llm:
 	// Save current environment variables
 	oldNeo4jURI := os.Getenv("NEO4J_URI")
 	oldNeo4jUser := os.Getenv("NEO4J_USER")
+	oldNeo4jPassword := os.Getenv("NEO4J_PASSWORD")
 	oldLLMURL := os.Getenv("LLM_URL")
+	oldLLMModel := os.Getenv("LLM_MODEL")
 	oldConfigFile := os.Getenv("CONFIG_FILE")
 
 	// Set environment variables
 	os.Setenv("NEO4J_URI", "bolt://env-neo4j:7687")
 	os.Setenv("NEO4J_USER", "env-user")
+	os.Setenv("NEO4J_PASSWORD", "env-password")
 	os.Setenv("LLM_URL", "http://env-llm:11434/api/generate")
+	os.Setenv("LLM_MODEL", "env-model")
 	os.Setenv("CONFIG_FILE", tmpfile.Name())
 
 	// Restore environment variables after test
 	defer func() {
 		os.Setenv("NEO4J_URI", oldNeo4jURI)
 		os.Setenv("NEO4J_USER", oldNeo4jUser)
+		os.Setenv("NEO4J_PASSWORD", oldNeo4jPassword)
 		os.Setenv("LLM_URL", oldLLMURL)
+		os.Setenv("LLM_MODEL", oldLLMModel)
 		os.Setenv("CONFIG_FILE", oldConfigFile)
 	}()
 
@@ -298,13 +324,13 @@ llm:
 	if config.Neo4j.User != "env-user" {
 		t.Errorf("Expected Neo4j User to be 'env-user', got '%s'", config.Neo4j.User)
 	}
-	if config.Neo4j.Password != "file-password" {
-		t.Errorf("Expected Neo4j Password to be 'file-password', got '%s'", config.Neo4j.Password)
+	if config.Neo4j.Password != "env-password" {
+		t.Errorf("Expected Neo4j Password to be 'env-password', got '%s'", config.Neo4j.Password)
 	}
 	if config.LLM.URL != "http://env-llm:11434/api/generate" {
 		t.Errorf("Expected LLM URL to be 'http://env-llm:11434/api/generate', got '%s'", config.LLM.URL)
 	}
-	if config.LLM.Model != "file-model" {
-		t.Errorf("Expected LLM Model to be 'file-model', got '%s'", config.LLM.Model)
+	if config.LLM.Model != "env-model" {
+		t.Errorf("Expected LLM Model to be 'env-model', got '%s'", config.LLM.Model)
 	}
 } 

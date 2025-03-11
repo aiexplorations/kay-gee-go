@@ -263,4 +263,20 @@ func saveRelationshipCache(cacheKey string, concept *models.Concept) {
 	if err := ioutil.WriteFile(filepath, data, 0644); err != nil {
 		log.Printf("Failed to write cache file %s: %v", filepath, err)
 	}
+}
+
+// FindRelationship finds a relationship between two concepts using the LLM service.
+// It returns the relationship name or an empty string if no relationship is found.
+func FindRelationship(concept1, concept2 string) (string, error) {
+	concept, err := MineRelationship(concept1, concept2)
+	if err != nil {
+		return "", fmt.Errorf("failed to mine relationship: %w", err)
+	}
+	
+	// If no relationship was found, return an empty string
+	if concept == nil || concept.Relation == "" {
+		return "", nil
+	}
+	
+	return concept.Relation, nil
 } 

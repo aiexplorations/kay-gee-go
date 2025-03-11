@@ -68,11 +68,11 @@ func TestLoadConfigDefaults(t *testing.T) {
 	assert.NoError(t, err)
 	
 	// Assert that the config was loaded with default values
-	assert.Equal(t, "bolt://localhost:7687", cfg.Neo4j.URI)
+	assert.Equal(t, "bolt://neo4j:7687", cfg.Neo4j.URI)
 	assert.Equal(t, "neo4j", cfg.Neo4j.Username)
 	assert.Equal(t, "password", cfg.Neo4j.Password)
-	assert.Equal(t, "http://localhost:11434/api/generate", cfg.LLM.URL)
-	assert.Equal(t, "llama3.1:latest", cfg.LLM.Model)
+	assert.Equal(t, "http://host.docker.internal:11434/api/generate", cfg.LLM.URL)
+	assert.Equal(t, "qwen2.5:3b", cfg.LLM.Model)
 	assert.Equal(t, 10, cfg.Enricher.BatchSize)
 	assert.Equal(t, time.Second*60, cfg.Enricher.Interval)
 	assert.Equal(t, 100, cfg.Enricher.MaxRelationships)

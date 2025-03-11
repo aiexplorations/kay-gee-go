@@ -161,7 +161,9 @@ func TestGetRandomNodes(t *testing.T) {
 	}
 	
 	// Create the test nodes in Neo4j
-	session := driver.NewSession(neo4j.AccessModeWrite)
+	session := driver.NewSession(neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeWrite,
+	})
 	defer session.Close()
 	
 	for _, nodeName := range testNodes {
@@ -213,10 +215,11 @@ func TestCheckExistingRelationship(t *testing.T) {
 	// Create some test nodes and relationships
 	source := "TestSource"
 	target := "TestTarget"
-	relation := "TestRelation"
 	
 	// Create the test nodes and relationship in Neo4j
-	session := driver.NewSession(neo4j.AccessModeWrite)
+	session := driver.NewSession(neo4j.SessionConfig{
+		AccessMode: neo4j.AccessModeWrite,
+	})
 	defer session.Close()
 	
 	_, err = session.Run("CREATE (s:Concept {name: $source}), (t:Concept {name: $target}) RETURN s, t", map[string]interface{}{

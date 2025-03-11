@@ -1,6 +1,7 @@
 package llm
 
 import (
+	"os"
 	"testing"
 
 	"kg-enricher/internal/config"
@@ -9,22 +10,28 @@ import (
 )
 
 func TestInitialize(t *testing.T) {
+	// Create a temporary directory for testing
+	tempDir, err := os.MkdirTemp("", "llm-test-cache")
+	assert.NoError(t, err)
+	defer os.RemoveAll(tempDir)
+	
 	// Create a config
-	cfg := &config.LLMConfig{
-		URL:   "http://localhost:11434/api/generate",
-		Model: "qwen2.5:3b",
+	testCfg := &config.LLMConfig{
+		URL:      "http://localhost:11434/api/generate",
+		Model:    "qwen2.5:3b",
+		CacheDir: tempDir,
 	}
 	
 	// Initialize the LLM service
-	err := Initialize(cfg)
+	err = Initialize(testCfg)
 	
 	// Assert that there was no error
 	assert.NoError(t, err)
 	
 	// Assert that the config was set correctly
-	assert.Equal(t, cfg, config)
-	assert.Equal(t, "http://localhost:11434/api/generate", config.URL)
-	assert.Equal(t, "qwen2.5:3b", config.Model)
+	assert.Equal(t, testCfg, cfg)
+	assert.Equal(t, "http://localhost:11434/api/generate", cfg.URL)
+	assert.Equal(t, "qwen2.5:3b", cfg.Model)
 }
 
 func TestFindRelationship(t *testing.T) {

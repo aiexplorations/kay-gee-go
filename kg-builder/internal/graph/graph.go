@@ -184,7 +184,7 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 			defer wg.Done()
 			defer func() { <-semaphore }()
 
-			concepts := gb.getRandomPair()
+			concepts := gb.GetRandomPair()
 			if concepts[0] == concepts[1] || concepts[0] == "" || concepts[1] == "" {
 				return
 			}
@@ -234,8 +234,8 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 	return nil
 }
 
-// getRandomPair returns a random pair of concepts from the processed concepts
-func (gb *GraphBuilder) getRandomPair() [2]string {
+// GetRandomPair returns a random pair of concepts from the processed concepts
+func (gb *GraphBuilder) GetRandomPair() [2]string {
 	gb.mutex.Lock()
 	defer gb.mutex.Unlock()
 

@@ -299,6 +299,56 @@ func QueryRelationships(driver neo4j.Driver) ([]models.Relationship, error) {
 	return relationships, nil
 }
 
+// QueryRandomConceptPairs retrieves random pairs of concepts from the database
+// that don't already have a relationship between them.
+func QueryRandomConceptPairs(driver neo4j.Driver, batchSize int) ([][2]string, error) {
+	if batchSize <= 0 {
+		batchSize = 10 // Default batch size
+	}
+
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+	defer session.Close()
+
+	// Query to find random pairs of concepts that don't have a relationship
+	query := `
+		MATCH (a:Concept), (b:Concept)
+		WHERE a <> b
+		AND NOT (a)-[]->(b)
+		AND NOT (b)-[]->(a)
+		WITH a, b, rand() AS r
+		ORDER BY r
+		LIMIT $batchSize
+		RETURN a.name AS source, b.name AS target
+	`
+
+	result, err := session.Run(query, map[string]interface{}{
+		"batchSize": batchSize,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("failed to query random concept pairs: %w", err)
+	}
+
+	pairs := make([][2]string, 0, batchSize)
+	for result.Next() {
+		record := result.Record()
+		source, _ := record.Get("source")
+		target, _ := record.Get("target")
+		
+		sourceStr, ok1 := source.(string)
+		targetStr, ok2 := target.(string)
+		
+		if ok1 && ok2 {
+			pairs = append(pairs, [2]string{sourceStr, targetStr})
+		}
+	}
+
+	if err = result.Err(); err != nil {
+		return nil, fmt.Errorf("error while processing query results: %w", err)
+	}
+
+	return pairs, nil
+}
+
 // Helper function to format relation type for Neo4j
 func formatRelationType(relation string) string {
 	// Convert spaces to underscores and make lowercase

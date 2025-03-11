@@ -1,7 +1,6 @@
 package neo4j_test
 
 import (
-	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -138,7 +137,9 @@ func TestQueryConcepts(t *testing.T) {
 	}
 	
 	// Clean up the test concepts
-	session := driver.NewSession(neo4jdriver.AccessModeWrite)
+	session := driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeWrite,
+	})
 	defer session.Close()
 	
 	_, err = session.Run("MATCH (n) WHERE n.name IN $names DETACH DELETE n", map[string]interface{}{
@@ -209,7 +210,9 @@ func TestQueryRelationships(t *testing.T) {
 	}
 	
 	// Clean up the test relationships
-	session := driver.NewSession(neo4jdriver.AccessModeWrite)
+	session := driver.NewSession(neo4jdriver.SessionConfig{
+		AccessMode: neo4jdriver.AccessModeWrite,
+	})
 	defer session.Close()
 	
 	_, err = session.Run("MATCH (n) WHERE n.name IN $names DETACH DELETE n", map[string]interface{}{
