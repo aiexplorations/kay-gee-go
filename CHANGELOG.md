@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2025-03-11
+
+### Added
+- Created a Neo4j service interface (`Neo4jService`) to abstract Neo4j operations
+- Implemented a real Neo4j service (`RealNeo4jService`) that uses the Neo4j driver
+- Created a mock Neo4j service (`MockNeo4jService`) for testing without a real Neo4j connection
+- Added dependency injection for Neo4j service in the Enricher
+- Added proper timeout handling in tests to prevent hangs
+
+### Changed
+- Refactored the Enricher to use the Neo4j service interface instead of direct Neo4j calls
+- Updated all tests to use the mock Neo4j service
+- Improved test reliability by properly mocking Neo4j operations
+- Enhanced the test framework to allow tests to run without a real Neo4j connection
+- Increased test coverage for the enricher package to 67.5%
+
+### Fixed
+- Fixed interface conversion panic in tests by properly implementing mock interfaces
+- Fixed test timeouts in the TestStartAndStop function
+- Fixed issues with mock implementations not matching Neo4j driver interfaces
+- Fixed test failures due to incomplete mock implementations
+- Fixed issues with the RunOnce method in tests
+
 ## [0.2.0] - 2025-03-11
 
 ### Added
