@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.1] - 2025-03-11
+
+### Fixed
+- Fixed duplicate node handling in Neo4j database by implementing a robust detection and removal system
+- Added proper error handling for duplicate 'Complexity Theory' nodes that were preventing constraint creation
+- Enhanced the `InitializeSchema` method to gracefully handle existing constraints and duplicate nodes
+- Fixed null value handling in `GetRandomConcepts` and `GetRandomConceptPairs` methods to prevent frontend crashes
+- Improved frontend JavaScript code to better handle errors and display graph data more effectively
+- Added proper error handling in the frontend to display meaningful error messages
+- Enhanced D3.js graph visualization with zoom functionality, node coloring, and tooltips
+- Fixed frontend template creation to ensure HTML, CSS, and JS files are properly generated
+- Added proper directory creation in the frontend container to ensure all required directories exist
+- Implemented a more robust graph data processing pipeline in the frontend JavaScript
+
+### Changed
+- Refactored Neo4j client to handle null values safely with proper type checking
+- Updated the graph visualization to use a force-directed layout with links between nodes
+- Enhanced the frontend UI with better error handling and user feedback
+- Improved the builder service to handle database constraints more gracefully
+
 ## [0.5.0] - 2025-03-15
 
 ### Added
@@ -28,7 +48,7 @@ All notable changes to this project will be documented in this file.
 - Removed duplicate configuration files
 - Removed nested project directories for cleaner organization
 
-## [0.4.1] - 2025-03-12
+## [0.4.1] - 2025-03-11
 
 ### Fixed
 - Fixed routing conflict in the frontend Go API server that caused the application to crash
@@ -46,7 +66,7 @@ All notable changes to this project will be documented in this file.
 - Improved system check to provide more accurate status information
 - Enhanced Docker network detection in check-system.sh
 
-## [0.4.0] - 2025-03-12
+## [0.4.0] - 2025-03-11
 
 ### Added
 - Implemented a Three.js frontend with Go backend API server for visualizing the knowledge graph

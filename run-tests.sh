@@ -1,21 +1,33 @@
 #!/bin/bash
 
-# Exit on error
-set -e
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
-echo "Running tests for kg-enricher..."
+# Function to print colored output
+print_green() {
+    echo -e "${GREEN}$1${NC}"
+}
 
-# Create a temporary file to store the list of packages to test
-packages_file=$(mktemp)
-go list ./internal/... | grep -v "kg-enricher/internal/enricher" > "$packages_file"
+print_yellow() {
+    echo -e "${YELLOW}$1${NC}"
+}
 
-# Run tests for each package
-while read -r package; do
-  echo "Testing $package..."
-  go test -v -cover "$package"
-done < "$packages_file"
+print_red() {
+    echo -e "${RED}$1${NC}"
+}
 
-# Clean up
-rm "$packages_file"
+# Run tests
+print_yellow "Running tests..."
+go test -v ./internal/...
 
-echo "Tests completed successfully!" 
+# Check if tests passed
+if [ $? -eq 0 ]; then
+    print_green "All tests passed!"
+    exit 0
+else
+    print_red "Tests failed!"
+    exit 1
+fi 

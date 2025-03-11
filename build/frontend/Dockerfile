@@ -13,7 +13,7 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /app/frontend /app/frontend
-COPY public /app/public
+RUN mkdir -p /app/public /app/public/css /app/public/js
 
 EXPOSE 8080
 
