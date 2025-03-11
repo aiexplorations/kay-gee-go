@@ -47,8 +47,16 @@ type GraphData struct {
 
 // Statistics represents the statistics about the knowledge graph
 type Statistics struct {
-	ConceptCount      int `json:"conceptCount"`
-	RelationshipCount int `json:"relationshipCount"`
+	NodeCount         int         `json:"nodeCount"`
+	RelationshipCount int         `json:"relationshipCount"`
+	NodeTypes         []TypeCount `json:"nodeTypes"`
+	RelationshipTypes []TypeCount `json:"relationshipTypes"`
+}
+
+// TypeCount represents a count of a specific type
+type TypeCount struct {
+	Type  string `json:"type"`
+	Count int    `json:"count"`
 }
 
 // Response represents a generic API response

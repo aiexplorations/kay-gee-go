@@ -29,7 +29,7 @@ func main() {
 	neo4jPassword := utils.GetEnv("NEO4J_PASSWORD", "password")
 
 	var err error
-	neo4jDriver, err = neo4j.NewDriver(neo4jURI, neo4j.BasicAuth(neo4jUser, neo4jPassword, ""))
+	neo4jDriver, err = createNeo4jDriver(neo4jURI, neo4jUser, neo4jPassword)
 	if err != nil {
 		logger.Fatalf("Failed to connect to Neo4j: %v", err)
 	}
@@ -42,7 +42,27 @@ func main() {
 	}
 	logger.Println("Connected to Neo4j successfully")
 
+	// Create command runner
+	commandRunner := &utils.CommandRunner{}
+
 	// Set up Gin router
+	router := setupRouter(neo4jDriver, commandRunner)
+
+	// Start server
+	port := utils.GetEnv("PORT", "8081")
+	logger.Printf("Server listening on port %s", port)
+	if err := router.Run(":" + port); err != nil {
+		logger.Fatalf("Failed to start server: %v", err)
+	}
+}
+
+// createNeo4jDriver creates a new Neo4j driver
+func createNeo4jDriver(uri, username, password string) (neo4j.Driver, error) {
+	return neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
+}
+
+// setupRouter sets up the Gin router with all routes
+func setupRouter(driver neo4j.Driver, runner utils.CommandRunnerInterface) *gin.Engine {
 	router := gin.Default()
 
 	// Add CORS middleware
@@ -56,39 +76,41 @@ func main() {
 	// API routes
 	api := router.Group("/api")
 	{
+		// Health check
+		api.GET("/health", func(c *gin.Context) {
+			c.JSON(200, gin.H{"status": "ok"})
+		})
+
 		// Graph data
-		api.GET("/graph", handlers.GetGraphData(neo4jDriver))
+		api.GET("/graph", handlers.GetGraphData(driver))
 
 		// Builder controls
-		api.POST("/builder/start", handlers.StartBuilder())
-		api.POST("/builder/stop", handlers.StopBuilder())
+		api.POST("/builder/start", handlers.StartBuilder(runner))
+		api.POST("/builder/stop", handlers.StopBuilder(runner))
 
 		// Enricher controls
-		api.POST("/enricher/start", handlers.StartEnricher())
-		api.POST("/enricher/stop", handlers.StopEnricher())
+		api.POST("/enricher/start", handlers.StartEnricher(runner))
+		api.POST("/enricher/stop", handlers.StopEnricher(runner))
 
 		// Concept search
-		api.GET("/concepts/search", handlers.SearchConcepts(neo4jDriver))
+		api.GET("/concepts/search", handlers.SearchConcepts(driver))
 
 		// Relationship creation
-		api.POST("/relationships", handlers.CreateRelationship(neo4jDriver))
+		api.POST("/relationships", handlers.CreateRelationship(driver))
 
 		// Statistics
-		api.GET("/statistics", handlers.GetStatistics(neo4jDriver))
+		api.GET("/statistics", handlers.GetStatistics(driver))
 	}
 
-	// Serve static files
-	router.Static("/", "./public")
+	// Serve static files from the public directory
+	router.Static("/css", "/app/public/css")
+	router.Static("/js", "/app/public/js")
+	router.Static("/static", "/app/public")
 	
 	// Handle all other routes by serving index.html
 	router.NoRoute(func(c *gin.Context) {
-		c.File("./public/index.html")
+		c.File("/app/public/index.html")
 	})
 
-	// Start server
-	port := utils.GetEnv("PORT", "8080")
-	logger.Printf("Server listening on port %s", port)
-	if err := router.Run(":" + port); err != nil {
-		logger.Fatalf("Failed to start server: %v", err)
-	}
+	return router
 } 

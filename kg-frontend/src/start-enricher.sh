@@ -34,27 +34,29 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Get the project root directory
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
 # Check if the enricher is already running
 if docker ps | grep -q kg-enricher; then
   echo "Knowledge Graph Enricher is already running"
-  exit 0
+else
+  # Start the enricher
+  echo "Starting Knowledge Graph Enricher with the following parameters:"
+  echo "  Batch size: $BATCH_SIZE"
+  echo "  Interval: $INTERVAL seconds"
+  echo "  Max relationships: $MAX_RELATIONSHIPS"
+  echo "  Concurrency: $CONCURRENCY"
+
+  # Use docker-compose to start the enricher
+  cd "$PROJECT_ROOT" && docker-compose up -d kg-enricher
 fi
-
-# Start the enricher
-echo "Starting Knowledge Graph Enricher with the following parameters:"
-echo "  Batch size: $BATCH_SIZE"
-echo "  Interval: $INTERVAL seconds"
-echo "  Max relationships: $MAX_RELATIONSHIPS"
-echo "  Concurrency: $CONCURRENCY"
-
-# Use docker-compose to start the enricher
-cd /app && docker-compose up -d kg-enricher
 
 # Set environment variables for the enricher
 docker exec kg-enricher /bin/sh -c "export ENRICHER_BATCH_SIZE=$BATCH_SIZE && \
   export ENRICHER_INTERVAL_SECONDS=$INTERVAL && \
   export ENRICHER_MAX_RELATIONSHIPS=$MAX_RELATIONSHIPS && \
   export ENRICHER_CONCURRENCY=$CONCURRENCY && \
-  /app/kg-enricher"
+  echo 'Enricher configured with batch size: $BATCH_SIZE, interval: $INTERVAL'"
 
 echo "Knowledge Graph Enricher started successfully" 

@@ -3,7 +3,6 @@ package handlers
 import (
 	"fmt"
 	"net/http"
-	"os/exec"
 
 	"github.com/gin-gonic/gin"
 	"kg-frontend/src/models"
@@ -11,7 +10,7 @@ import (
 )
 
 // StartBuilder starts the knowledge graph builder with the provided parameters
-func StartBuilder() gin.HandlerFunc {
+func StartBuilder(runner utils.CommandRunnerInterface) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var params models.BuilderParams
 		if err := c.ShouldBindJSON(&params); err != nil {
@@ -19,19 +18,21 @@ func StartBuilder() gin.HandlerFunc {
 			return
 		}
 
+		// Get the script path
+		scriptPath := utils.GetScriptPath("start-builder.sh")
+
 		// Build command to start the builder
-		cmd := exec.Command(
-			"/bin/sh",
-			utils.GetScriptPath("start-builder.sh"),
+		args := []string{
+			scriptPath,
 			"--seed", params.SeedConcept,
 			"--max-nodes", fmt.Sprintf("%d", params.MaxNodes),
 			"--timeout", fmt.Sprintf("%d", params.Timeout),
 			"--random-relationships", fmt.Sprintf("%d", params.RandomRelationships),
 			"--concurrency", fmt.Sprintf("%d", params.Concurrency),
-		)
+		}
 
 		// Run the command
-		output, err := cmd.CombinedOutput()
+		output, err := runner.RunCommand("bash", args...)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, models.ErrorResponse{
 				Error: fmt.Sprintf("Failed to start builder: %v - %s", err, string(output)),
@@ -49,13 +50,13 @@ func StartBuilder() gin.HandlerFunc {
 }
 
 // StopBuilder stops the knowledge graph builder
-func StopBuilder() gin.HandlerFunc {
+func StopBuilder(runner utils.CommandRunnerInterface) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Build command to stop the builder
-		cmd := exec.Command("/bin/sh", utils.GetScriptPath("stop-builder.sh"))
+		// Get the script path
+		scriptPath := utils.GetScriptPath("stop-builder.sh")
 
 		// Run the command
-		output, err := cmd.CombinedOutput()
+		output, err := runner.RunCommand("bash", scriptPath)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, models.ErrorResponse{
 				Error: fmt.Sprintf("Failed to stop builder: %v - %s", err, string(output)),

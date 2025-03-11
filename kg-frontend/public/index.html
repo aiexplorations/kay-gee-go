@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowledge Graph Visualizer</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -85,14 +85,29 @@
             <div class="stats-panel">
                 <h2>Statistics</h2>
                 <div id="graph-stats">
-                    <p>Concepts: <span id="concept-count">0</span></p>
+                    <p>Nodes: <span id="concept-count">0</span></p>
                     <p>Relationships: <span id="relationship-count">0</span></p>
+                    
+                    <h3>Node Types</h3>
+                    <div id="node-types" class="type-list"></div>
+                    
+                    <h3>Relationship Types</h3>
+                    <div id="relationship-types" class="type-list"></div>
                 </div>
             </div>
         </div>
         
         <div class="graph-container">
             <div id="graph-canvas"></div>
+            <div class="node-info-panel" id="node-info-panel">
+                <button class="close-btn" id="close-info-panel">&times;</button>
+                <h3 id="node-info-title">Node Information</h3>
+                <div id="node-info-content"></div>
+                <div class="connections">
+                    <h3>Connections</h3>
+                    <div id="node-connections"></div>
+                </div>
+            </div>
             <div class="graph-controls">
                 <button id="reset-camera" class="btn btn-secondary">Reset View</button>
                 <button id="refresh-graph" class="btn btn-secondary">Refresh Graph</button>
@@ -102,8 +117,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="js/graph-visualizer.js"></script>
-    <script src="js/api-client.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/js/graph-visualizer.js"></script>
+    <script src="/js/api-client.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html> 

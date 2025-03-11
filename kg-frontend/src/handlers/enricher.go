@@ -3,7 +3,6 @@ package handlers
 import (
 	"fmt"
 	"net/http"
-	"os/exec"
 
 	"github.com/gin-gonic/gin"
 	"kg-frontend/src/models"
@@ -11,7 +10,7 @@ import (
 )
 
 // StartEnricher starts the knowledge graph enricher with the provided parameters
-func StartEnricher() gin.HandlerFunc {
+func StartEnricher(runner utils.CommandRunnerInterface) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var params models.EnricherParams
 		if err := c.ShouldBindJSON(&params); err != nil {
@@ -19,18 +18,20 @@ func StartEnricher() gin.HandlerFunc {
 			return
 		}
 
+		// Get the script path
+		scriptPath := utils.GetScriptPath("start-enricher.sh")
+
 		// Build command to start the enricher
-		cmd := exec.Command(
-			"/bin/sh",
-			utils.GetScriptPath("start-enricher.sh"),
+		args := []string{
+			scriptPath,
 			"--batch-size", fmt.Sprintf("%d", params.BatchSize),
 			"--interval", fmt.Sprintf("%d", params.Interval),
 			"--max-relationships", fmt.Sprintf("%d", params.MaxRelationships),
 			"--concurrency", fmt.Sprintf("%d", params.Concurrency),
-		)
+		}
 
 		// Run the command
-		output, err := cmd.CombinedOutput()
+		output, err := runner.RunCommand("bash", args...)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, models.ErrorResponse{
 				Error: fmt.Sprintf("Failed to start enricher: %v - %s", err, string(output)),
@@ -48,13 +49,13 @@ func StartEnricher() gin.HandlerFunc {
 }
 
 // StopEnricher stops the knowledge graph enricher
-func StopEnricher() gin.HandlerFunc {
+func StopEnricher(runner utils.CommandRunnerInterface) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Build command to stop the enricher
-		cmd := exec.Command("/bin/sh", utils.GetScriptPath("stop-enricher.sh"))
+		// Get the script path
+		scriptPath := utils.GetScriptPath("stop-enricher.sh")
 
 		// Run the command
-		output, err := cmd.CombinedOutput()
+		output, err := runner.RunCommand("bash", scriptPath)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, models.ErrorResponse{
 				Error: fmt.Sprintf("Failed to stop enricher: %v - %s", err, string(output)),

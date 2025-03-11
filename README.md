@@ -3,7 +3,7 @@
 This project builds a knowledge graph using Neo4j and an LLM service. It is designed to be run in a Docker container.  
 Large language models are used to retrieve related concepts and mine relationships between concepts. The purpose of this project is to build a knowledge graph that can be used for further analysis or as a foundation for a semantic search engine.
 
-Version: 0.2.0 - See [CHANGELOG.md](CHANGELOG.md) for details.
+Version: 0.5.2 - See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## Features
 

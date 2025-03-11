@@ -19,4 +19,4 @@ graph:
   timeout_minutes: 30
   worker_count: 10
   random_relationships: 50
-  concurrency: 5 
+  concurrency: 5

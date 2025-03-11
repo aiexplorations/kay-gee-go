@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.3] - 2025-03-11
+
+### Fixed
+- Fixed LLM client to properly handle Ollama API responses by extracting JSON from markdown-formatted responses
+- Added support for multiline JSON parsing in LLM responses with improved regex patterns
+- Updated LLM prompts to explicitly request JSON in the expected format for better response consistency
+- Fixed frontend graph visualization to directly query Neo4j database through the proxy
+- Implemented proper parsing of Neo4j responses in the frontend API client
+- Updated statistics loading to use direct Neo4j queries for accurate data display
+- Enhanced error handling and logging in the LLM client for better debugging
+- Fixed the graph visualization to properly display nodes and relationships from the Neo4j database
+- Improved node positioning in the 3D visualization with a spherical formation for better visual appeal
+
+### Changed
+- Modified the LLM client to use non-streaming responses for more reliable JSON parsing
+- Updated the frontend API client to bypass the Go backend API and directly access Neo4j
+- Enhanced the graph visualization with better node sizing based on connection counts
+- Improved the frontend statistics display with more accurate data from Neo4j
+
+## [0.5.2] - 2025-03-11
+
+### Fixed
+- Fixed frontend implementation to correctly display the space-like knowledge graph visualization
+- Resolved issue with static file serving by replacing the old frontend with a dedicated Nginx-based solution
+- Corrected CSS and JavaScript file paths in the frontend HTML to ensure proper loading of resources
+- Removed conflicting old frontend implementation to prevent interference with the new visualization
+- Ensured proper serving of Three.js-based graph visualization with correct file references
+
+### Changed
+- Migrated frontend to use Nginx for static file serving instead of the Go-based server
+- Updated docker-compose.yml to use the new frontend implementation from kg-frontend directory
+- Simplified frontend container by removing unnecessary Go dependencies
+
 ## [0.5.1] - 2025-03-11
 
 ### Fixed

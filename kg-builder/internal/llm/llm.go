@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"sync"
 	"time"
@@ -67,34 +68,28 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 	}
 	cacheMutex.RUnlock()
 
-	prompt := fmt.Sprintf(`You are an expert ontologist with an understanding of concepts and the relationships between them. You respond only in JSON. 
-	Given the concept '%s', provide 5 related concepts. 
-	For each, specify the relationship type. 
-	Return ONLY a JSON array with 'name', 'relation', and 'relatedTo' keys. 
-	Do not include any explanations, markdown formatting, or additional text. 
-	The response should be valid JSON that can be directly parsed. Example format:
-    [
-        {
-            "name": "Related Concept 1",
-            "relation": "RelationType",
-            "relatedTo": "%s"
-        },
-        ...
-    ]
-	Do not return any explanations, markdown formatting, or additional text.
-	`, concept, concept)
-
+	// Create a retry function
 	var concepts []models.Concept
-	var err error
-
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
-		// Marshal the request body
-		requestBody, err := json.Marshal(map[string]string{
+		// Create the request body
+		prompt := fmt.Sprintf(`Generate 5 concepts related to "%s". 
+For each concept, provide a name and a specific relation to "%s".
+Return ONLY a JSON array of objects with the following structure:
+[
+  {
+    "name": "Related Concept Name",
+    "relation": "specific relation to %s",
+    "relatedTo": "%s"
+  }
+]
+Do not include any explanations, markdown formatting, or additional text. Return only the JSON array.`, 
+			concept, concept, concept, concept)
+		
+		requestBody, err := json.Marshal(map[string]interface{}{
 			"model":  cfg.Model,
 			"prompt": prompt,
+			"stream": false,
 		})
-
-		// Check if the request body was marshalled successfully
 		if err != nil {
 			return apperrors.NewLLMError(err, "failed to marshal request")
 		}
@@ -106,6 +101,7 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 		}
 		defer resp.Body.Close()
 
+		// Check if the response status code is OK
 		if resp.StatusCode != http.StatusOK {
 			return apperrors.NewLLMError(
 				fmt.Errorf("unexpected status code: %d", resp.StatusCode),
@@ -114,27 +110,26 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 		}
 
 		// Read the response from the LLM service
-		var fullResponse strings.Builder
-		scanner := bufio.NewScanner(resp.Body)
-		for scanner.Scan() {
-			line := scanner.Text()
-			var streamResponse struct {
-				Response string `json:"response"`
-			}
-			if err := json.Unmarshal([]byte(line), &streamResponse); err == nil {
-				fullResponse.WriteString(streamResponse.Response)
-			}
+		var responseData struct {
+			Response string `json:"response"`
 		}
-
-		// Check if there was an error reading the response
-		if err := scanner.Err(); err != nil {
-			return apperrors.NewLLMError(err, "error reading response").WithRetryable(true)
+		
+		if err := json.NewDecoder(resp.Body).Decode(&responseData); err != nil {
+			return apperrors.NewLLMError(err, "error decoding response").WithRetryable(true)
 		}
-
+		
+		// Log the raw response for debugging
+		log.Printf("Raw LLM response: %s", responseData.Response)
+		
 		// Unmarshal the response into a slice of Concept structs
-		if err := json.Unmarshal([]byte(fullResponse.String()), &concepts); err != nil {
-			log.Printf("Raw LLM response: %s", fullResponse.String())
-			return apperrors.NewLLMError(err, "failed to unmarshal concepts").WithRetryable(false)
+		if err := json.Unmarshal([]byte(responseData.Response), &concepts); err != nil {
+			// If direct unmarshaling fails, try to extract JSON from the response
+			jsonStr := extractJSONFromResponse(responseData.Response)
+			log.Printf("Extracted JSON: %s", jsonStr)
+			
+			if err := json.Unmarshal([]byte(jsonStr), &concepts); err != nil {
+				return apperrors.NewLLMError(err, "failed to unmarshal concepts").WithRetryable(false)
+			}
 		}
 
 		return nil
@@ -173,31 +168,25 @@ func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 	}
 	cacheMutex.RUnlock()
 
-	prompt := fmt.Sprintf(`You are an expert ontologist and respond only in JSON. 
-	Determine if there's a relationship between the concepts '%s' and '%s'. If there is, provide the relationship type. 
-	If not, respond with "No relationship". 
-	Return the response as a JSON object with 'name', 'relation', and 'relatedTo' keys. The response should be valid JSON that can be directly parsed. 
-	Example format:
-    {
-        "name": "%s",
-        "relation": "RelationType",
-        "relatedTo": "%s"
-    }
-    Or if there's no relationship:
-    {
-        "name": "",
-        "relation": "",
-        "relatedTo": ""
-    }
-	Do not return any explanations, markdown formatting, or additional text.`, concept1, concept2, concept2, concept1)
-
+	// Create a retry function
 	var concept *models.Concept
-	var err error
-
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
-		requestBody, err := json.Marshal(map[string]string{
+		// Create the request body
+		prompt := fmt.Sprintf(`Determine if there is a specific relationship between "%s" and "%s".
+If there is a relationship, return ONLY a JSON object with the following structure:
+{
+  "name": "%s",
+  "relation": "specific relation to %s",
+  "relatedTo": "%s"
+}
+If there is no clear relationship, return an empty JSON object: {}
+Do not include any explanations, markdown formatting, or additional text. Return only the JSON object.`, 
+			concept1, concept2, concept1, concept2, concept2)
+		
+		requestBody, err := json.Marshal(map[string]interface{}{
 			"model":  cfg.Model,
 			"prompt": prompt,
+			"stream": false,
 		})
 		if err != nil {
 			return apperrors.NewLLMError(err, "failed to marshal request")
@@ -219,28 +208,27 @@ func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 		}
 
 		// Read the response from the LLM service
-		var fullResponse strings.Builder
-		scanner := bufio.NewScanner(resp.Body)
-		for scanner.Scan() {
-			line := scanner.Text()
-			var streamResponse struct {
-				Response string `json:"response"`
-			}
-			if err := json.Unmarshal([]byte(line), &streamResponse); err == nil {
-				fullResponse.WriteString(streamResponse.Response)
-			}
+		var responseData struct {
+			Response string `json:"response"`
 		}
-
-		// Check if there was an error reading the response
-		if err := scanner.Err(); err != nil {
-			return apperrors.NewLLMError(err, "error reading response").WithRetryable(true)
+		
+		if err := json.NewDecoder(resp.Body).Decode(&responseData); err != nil {
+			return apperrors.NewLLMError(err, "error decoding response").WithRetryable(true)
 		}
-
+		
+		// Log the raw response for debugging
+		log.Printf("Raw LLM response: %s", responseData.Response)
+		
 		// Unmarshal the response into a Concept struct
 		var conceptData models.Concept
-		if err := json.Unmarshal([]byte(fullResponse.String()), &conceptData); err != nil {
-			log.Printf("Raw LLM response: %s", fullResponse.String())
-			return apperrors.NewLLMError(err, "failed to unmarshal concept").WithRetryable(false)
+		if err := json.Unmarshal([]byte(responseData.Response), &conceptData); err != nil {
+			// If direct unmarshaling fails, try to extract JSON from the response
+			jsonStr := extractJSONFromResponse(responseData.Response)
+			log.Printf("Extracted JSON: %s", jsonStr)
+			
+			if err := json.Unmarshal([]byte(jsonStr), &conceptData); err != nil {
+				return apperrors.NewLLMError(err, "failed to unmarshal concept").WithRetryable(false)
+			}
 		}
 
 		// Check if the relationship is empty
@@ -438,4 +426,38 @@ func unsanitizeFilename(s string) string {
 	// For now, we just return the string as is
 	// In a real implementation, we might want to reverse some of the sanitization
 	return s
+}
+
+// extractJSONFromResponse extracts JSON from a response that might contain markdown formatting
+func extractJSONFromResponse(response string) string {
+	// Look for JSON array between markdown code blocks
+	arrayRegex := regexp.MustCompile("(?s)```(?:json)?\\s*\\n?(\\[.*?\\])\\s*```")
+	matches := arrayRegex.FindStringSubmatch(response)
+	if len(matches) > 1 {
+		return matches[1]
+	}
+	
+	// Look for JSON object between markdown code blocks
+	objectRegex := regexp.MustCompile("(?s)```(?:json)?\\s*\\n?(\\{.*?\\})\\s*```")
+	matches = objectRegex.FindStringSubmatch(response)
+	if len(matches) > 1 {
+		return matches[1]
+	}
+	
+	// If no markdown blocks found, try to find JSON array directly
+	arrayRegex = regexp.MustCompile("(?s)\\[.*\\]")
+	matches = arrayRegex.FindStringSubmatch(response)
+	if len(matches) > 0 {
+		return matches[0]
+	}
+	
+	// If no array found, try to find JSON object directly
+	objectRegex = regexp.MustCompile("(?s)\\{.*\\}")
+	matches = objectRegex.FindStringSubmatch(response)
+	if len(matches) > 0 {
+		return matches[0]
+	}
+	
+	// Return the original response if no JSON found
+	return response
 }

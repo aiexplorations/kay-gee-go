@@ -39,22 +39,24 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Get the project root directory
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
 # Check if the builder is already running
 if docker ps | grep -q kg-builder; then
   echo "Knowledge Graph Builder is already running"
-  exit 0
+else
+  # Start the builder
+  echo "Starting Knowledge Graph Builder with the following parameters:"
+  echo "  Seed concept: $SEED"
+  echo "  Max nodes: $MAX_NODES"
+  echo "  Timeout: $TIMEOUT minutes"
+  echo "  Random relationships: $RANDOM_RELATIONSHIPS"
+  echo "  Concurrency: $CONCURRENCY"
+
+  # Use docker-compose to start the builder
+  cd "$PROJECT_ROOT" && docker-compose up -d kg-builder
 fi
-
-# Start the builder
-echo "Starting Knowledge Graph Builder with the following parameters:"
-echo "  Seed concept: $SEED"
-echo "  Max nodes: $MAX_NODES"
-echo "  Timeout: $TIMEOUT minutes"
-echo "  Random relationships: $RANDOM_RELATIONSHIPS"
-echo "  Concurrency: $CONCURRENCY"
-
-# Use docker-compose to start the builder
-cd /app && docker-compose up -d kg-builder
 
 # Set environment variables for the builder
 docker exec kg-builder /bin/sh -c "export SEED_CONCEPT=\"$SEED\" && \
@@ -62,6 +64,6 @@ docker exec kg-builder /bin/sh -c "export SEED_CONCEPT=\"$SEED\" && \
   export TIMEOUT=$TIMEOUT && \
   export RANDOM_RELATIONSHIPS=$RANDOM_RELATIONSHIPS && \
   export CONCURRENCY=$CONCURRENCY && \
-  /app/kg-builder -seed=\"$SEED\" -max-nodes=$MAX_NODES -timeout=$TIMEOUT -random-relationships=$RANDOM_RELATIONSHIPS -concurrency=$CONCURRENCY"
+  echo 'Builder configured with seed: $SEED, max nodes: $MAX_NODES'"
 
 echo "Knowledge Graph Builder started successfully" 
