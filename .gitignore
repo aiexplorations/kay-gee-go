@@ -22,6 +22,13 @@ go.work
 
 # Cache files
 cache/**/*.json
+kg-*/cache/**/*.json
+**/cache/llm/*.json
+
+# Recovered and backup files
+recovered_*.go
+*_script.old
+backup_*/
 
 # Configuration backups
 *.yaml.bak
