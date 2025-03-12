@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.6.5] - 2025-03-15
+## [0.6.5] - 2025-03-13
 
 ### Added
 - Added CSS variable integration to the graph visualizer for consistent styling
