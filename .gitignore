@@ -21,9 +21,15 @@
 go.work
 
 # Cache files
+cache/
 cache/**/*.json
 kg-*/cache/**/*.json
 **/cache/llm/*.json
+
+# Build files
+/build
+
+
 
 # Recovered and backup files
 recovered_*.go
