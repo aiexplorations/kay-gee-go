@@ -360,11 +360,24 @@ class GraphVisualizer {
      * @param {Object} node - The node to highlight
      */
     highlightNode(node) {
+        console.log("Highlighting node:", node.id, "with size:", node.size);
+        
         // Reset all nodes and links
         this.nodeObjects.forEach((object, id) => {
+            // Find the node data by ID
+            const nodeData = this.nodes.find(n => n.id === id);
+            
+            // Get the original size, with fallback
+            let originalSize = 5; // Default fallback size
+            if (nodeData && typeof nodeData.size === 'number') {
+                originalSize = nodeData.size;
+            }
+            
+            console.log("Resetting node:", id, "with original size:", originalSize);
+            
             object.material.color.set(0x4080ff);
             object.material.opacity = 0.8;
-            object.scale.set(1, 1, 1);
+            object.scale.set(originalSize, originalSize, originalSize);
         });
         
         this.linkObjects.forEach((object) => {
@@ -375,28 +388,61 @@ class GraphVisualizer {
         // Highlight selected node
         const nodeObject = this.nodeObjects.get(node.id);
         if (nodeObject) {
-            nodeObject.material.color.set(0xff4080);
+            // Get the original size, with fallback
+            let originalSize = 5; // Default fallback size
+            if (node && typeof node.size === 'number') {
+                originalSize = node.size;
+            } else {
+                // Try to find the node in the nodes array
+                const nodeData = this.nodes.find(n => n.id === node.id);
+                if (nodeData && typeof nodeData.size === 'number') {
+                    originalSize = nodeData.size;
+                }
+            }
+            
+            const highlightScale = originalSize * 1.2; // Increase size by 20%
+            
+            console.log("Highlighting selected node:", node.id, "with size:", originalSize, "-> highlighted size:", highlightScale);
+            
+            nodeObject.material.color.set(0xff0000); // Bright red
             nodeObject.material.opacity = 1.0;
-            nodeObject.scale.set(1.2, 1.2, 1.2);
+            nodeObject.scale.set(highlightScale, highlightScale, highlightScale);
         }
         
         // Highlight connected nodes and links
         this.links.forEach(link => {
-            if (link.source === node.id || link.target === node.id) {
+            // Handle both string IDs and object references
+            const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+            const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+            
+            if (sourceId === node.id || targetId === node.id) {
                 // Highlight link
-                const linkObject = this.linkObjects.get(`${link.source}-${link.target}`);
+                const linkObject = this.linkObjects.get(`${sourceId}-${targetId}`);
                 if (linkObject) {
-                    linkObject.material.color.set(0xff4080);
+                    linkObject.material.color.set(0xff0000); // Bright red
                     linkObject.material.opacity = 0.8;
                 }
                 
                 // Highlight connected node
-                const connectedId = link.source === node.id ? link.target : link.source;
+                const connectedId = sourceId === node.id ? targetId : sourceId;
                 const connectedObject = this.nodeObjects.get(connectedId);
                 if (connectedObject) {
+                    // Find the connected node data
+                    const connectedNodeData = this.nodes.find(n => n.id === connectedId);
+                    
+                    // Get the original size, with fallback
+                    let originalSize = 5; // Default fallback size
+                    if (connectedNodeData && typeof connectedNodeData.size === 'number') {
+                        originalSize = connectedNodeData.size;
+                    }
+                    
+                    const highlightScale = originalSize * 1.1; // Increase size by 10%
+                    
+                    console.log("Highlighting connected node:", connectedId, "with size:", originalSize, "-> highlighted size:", highlightScale);
+                    
                     connectedObject.material.color.set(0x40ffff);
                     connectedObject.material.opacity = 0.9;
-                    connectedObject.scale.set(1.1, 1.1, 1.1);
+                    connectedObject.scale.set(highlightScale, highlightScale, highlightScale);
                 }
             }
         });

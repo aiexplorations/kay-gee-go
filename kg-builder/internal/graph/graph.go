@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand" // Keep this import as we'll use it in getRandomPair
+	"strings"
 	"sync"
 	"time"
 
@@ -157,120 +158,243 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 
 			log.Printf("Processing concept: %s (Node count: %d)", concept, currentNodeCount)
 
-			relatedConcepts, err := gb.getRelatedConcepts(concept)
+			err := gb.processRelatedConcepts(ctx, concept)
 			if err != nil {
-				log.Printf("Error getting related concepts for %s: %v", concept, err)
+				log.Printf("Error processing related concepts for %s: %v", concept, err)
 				continue
-			}
-
-			log.Printf("Found %d related concepts for %s", len(relatedConcepts), concept)
-			for _, rc := range relatedConcepts {
-				gb.mutex.Lock()
-				if gb.nodeCount >= gb.config.MaxNodes {
-					gb.mutex.Unlock()
-					return
-				}
-				gb.mutex.Unlock()
-
-				log.Printf("Creating relationship: %s -[%s]-> %s", concept, rc.Relation, rc.Name)
-				err := kgneo4j.CreateRelationship(gb.driver, concept, rc.Name, rc.Relation)
-				if err != nil {
-					log.Printf("Error creating relationship: %v", err)
-					continue
-				}
-				log.Printf("Successfully created relationship: %s -[%s]-> %s", concept, rc.Relation, rc.Name)
-
-				gb.mutex.Lock()
-				if !gb.processedConcepts[rc.Name] && gb.nodeCount < gb.config.MaxNodes {
-					select {
-					case queue <- rc.Name:
-					default:
-						// Queue is full, skip this concept
-					}
-				}
-				gb.mutex.Unlock()
 			}
 		}
 	}
 }
 
-// MineRandomRelationships mines relationships between random pairs of concepts
-func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) error {
-	if count <= 0 {
-		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "count must be greater than 0")
+// isValidConcept checks if a concept appears to be valid
+func isValidConcept(concept models.Concept) bool {
+	// Skip concepts with empty names
+	if concept.Name == "" {
+		return false
 	}
 	
-	if concurrency <= 0 {
-		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "concurrency must be greater than 0")
+	// Skip concepts with very short names (likely abbreviations without context)
+	if len(concept.Name) < 3 {
+		return false
 	}
 	
-	gb.mutex.Lock()
-	conceptCount := len(gb.processedConcepts)
-	gb.mutex.Unlock()
-	
-	if conceptCount < 2 {
-		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "need at least 2 concepts to mine relationships")
+	// Skip concepts with unusual characters that might indicate made-up terms
+	if strings.ContainsAny(concept.Name, "!@#$%^&*()_+={}[]|\\:;\"'<>,?/~`") {
+		return false
 	}
 	
-	semaphore := make(chan struct{}, concurrency)
-	var wg sync.WaitGroup
-	errorsChan := make(chan error, count)
-
-	for i := 0; i < count; i++ {
-		wg.Add(1)
-		semaphore <- struct{}{}
-		go func() {
-			defer wg.Done()
-			defer func() { <-semaphore }()
-
-			concepts := gb.GetRandomPair()
-			if concepts[0] == concepts[1] || concepts[0] == "" || concepts[1] == "" {
-				return
-			}
-
-			log.Printf("Mining relationship between %s and %s", concepts[0], concepts[1])
-			concept, err := gb.mineRelationship(concepts[0], concepts[1])
-			if err != nil {
-				log.Printf("Error mining relationship: %v", err)
-				errorsChan <- apperrors.NewGraphError(err, "failed to mine relationship")
-				return
-			}
-
-			if concept == nil {
-				log.Printf("No relationship found between %s and %s", concepts[0], concepts[1])
-				return
-			}
-
-			log.Printf("Creating relationship: %s -[%s]-> %s", concepts[0], concept.Relation, concepts[1])
-			err = kgneo4j.CreateRelationship(gb.driver, concepts[0], concepts[1], concept.Relation)
-			if err != nil {
-				log.Printf("Error creating relationship: %v", err)
-				errorsChan <- apperrors.NewGraphError(err, "failed to create relationship")
-				return
-			}
-			log.Printf("Successfully created relationship: %s -[%s]-> %s", concepts[0], concept.Relation, concepts[1])
-		}()
+	// Skip concepts with relation types that seem generic or vague
+	if concept.Relation == "" || 
+	   concept.Relation == "related to" || 
+	   concept.Relation == "is related to" ||
+	   concept.Relation == "relates to" {
+		return false
 	}
-
-	go func() {
-		wg.Wait()
-		close(errorsChan)
-	}()
-
-	// Collect errors
-	var errors []error
-	for err := range errorsChan {
-		errors = append(errors, err)
+	
+	// Skip concepts with unusual capitalization patterns (often indicates made-up terms)
+	wordCount := 0
+	capitalCount := 0
+	for _, word := range strings.Fields(concept.Name) {
+		wordCount++
+		if len(word) > 0 && word[0] >= 'A' && word[0] <= 'Z' {
+			capitalCount++
+		}
 	}
+	
+	// If all words are capitalized in a multi-word concept, it might be made up
+	if wordCount > 2 && capitalCount == wordCount {
+		return false
+	}
+	
+	return true
+}
 
-	if len(errors) > 0 {
-		return apperrors.NewGraphError(
-			fmt.Errorf("%d errors occurred during mining", len(errors)),
-			"some relationship mining operations failed",
-		)
+// processRelatedConcepts processes the related concepts for a given concept
+func (gb *GraphBuilder) processRelatedConcepts(ctx context.Context, concept string) error {
+	// Get related concepts from the LLM
+	relatedConcepts, err := gb.getRelatedConcepts(concept)
+	if err != nil {
+		return err
+	}
+	
+	// Filter out potentially invalid concepts
+	var validConcepts []models.Concept
+	for _, relatedConcept := range relatedConcepts {
+		if isValidConcept(relatedConcept) {
+			validConcepts = append(validConcepts, relatedConcept)
+		} else {
+			log.Printf("Filtered out potentially invalid concept: %s", relatedConcept.Name)
+		}
+	}
+	
+	// Process each valid related concept
+	for _, relatedConcept := range validConcepts {
+		gb.mutex.Lock()
+		if gb.nodeCount >= gb.config.MaxNodes {
+			gb.mutex.Unlock()
+			return nil
+		}
+		gb.mutex.Unlock()
+
+		log.Printf("Creating relationship: %s -[%s]-> %s", concept, relatedConcept.Relation, relatedConcept.Name)
+		err := kgneo4j.CreateRelationship(gb.driver, concept, relatedConcept.Name, relatedConcept.Relation)
+		if err != nil {
+			log.Printf("Error creating relationship: %v", err)
+			continue
+		}
+		log.Printf("Successfully created relationship: %s -[%s]-> %s", concept, relatedConcept.Relation, relatedConcept.Name)
+
+		gb.mutex.Lock()
+		if !gb.processedConcepts[relatedConcept.Name] && gb.nodeCount < gb.config.MaxNodes {
+			select {
+			case queue <- relatedConcept.Name:
+			default:
+				// Queue is full, skip this concept
+			}
+		}
+		gb.mutex.Unlock()
 	}
 
 	return nil
+}
+
+// isValidRelationship checks if a relationship appears to be valid
+func isValidRelationship(relationship *models.Concept) bool {
+	// Skip nil relationships
+	if relationship == nil {
+		return false
+	}
+	
+	// Skip relationships with empty fields
+	if relationship.Name == "" || relationship.Relation == "" || relationship.RelatedTo == "" {
+		return false
+	}
+	
+	// Skip relationships with generic or vague relation types
+	if relationship.Relation == "related to" || 
+	   relationship.Relation == "is related to" ||
+	   relationship.Relation == "relates to" {
+		return false
+	}
+	
+	return true
+}
+
+// MineRandomRelationships mines random relationships between concepts
+func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) error {
+	// Get all concepts
+	concepts, err := kgneo4j.GetAllConcepts(gb.driver)
+	if err != nil {
+		return err
+	}
+	
+	if len(concepts) < 2 {
+		return fmt.Errorf("not enough concepts to mine relationships")
+	}
+	
+	log.Printf("Mining %d random relationships between %d concepts", count, len(concepts))
+	
+	// Create a channel for pairs of concepts
+	pairs := make(chan [2]string, count)
+	
+	// Create a channel for results
+	results := make(chan error, count)
+	
+	// Start workers
+	var wg sync.WaitGroup
+	for i := 0; i < concurrency; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for pair := range pairs {
+				conceptA := pair[0]
+				conceptB := pair[1]
+				
+				// Skip if the relationship already exists
+				exists, err := kgneo4j.RelationshipExists(gb.driver, conceptA, conceptB)
+				if err != nil {
+					results <- err
+					continue
+				}
+				
+				if exists {
+					log.Printf("Relationship already exists between %s and %s, skipping", conceptA, conceptB)
+					results <- nil
+					continue
+				}
+				
+				// Mine the relationship
+				relationship, err := gb.mineRelationship(conceptA, conceptB)
+				if err != nil {
+					results <- err
+					continue
+				}
+				
+				// Validate the relationship
+				if !isValidRelationship(relationship) {
+					log.Printf("Filtered out potentially invalid relationship between %s and %s", conceptA, conceptB)
+					results <- nil
+					continue
+				}
+				
+				// Create the relationship
+				err = kgneo4j.CreateRelationship(gb.driver, relationship.Name, relationship.RelatedTo, relationship.Relation)
+				if err != nil {
+					results <- err
+					continue
+				}
+				
+				log.Printf("Created relationship: %s -[%s]-> %s", relationship.Name, relationship.Relation, relationship.RelatedTo)
+				results <- nil
+			}
+		}()
+	}
+	
+	// Generate random pairs of concepts
+	go func() {
+		for i := 0; i < count; i++ {
+			pair := getRandomPair(concepts)
+			pairs <- pair
+		}
+		close(pairs)
+	}()
+	
+	// Collect results
+	var errors []error
+	for i := 0; i < count; i++ {
+		err := <-results
+		if err != nil {
+			errors = append(errors, err)
+		}
+	}
+	
+	// Wait for all workers to finish
+	wg.Wait()
+	
+	if len(errors) > 0 {
+		return fmt.Errorf("encountered %d errors while mining relationships", len(errors))
+	}
+	
+	return nil
+}
+
+// getRandomPair returns a random pair of concepts
+func getRandomPair(concepts []string) [2]string {
+	if len(concepts) < 2 {
+		return [2]string{"", ""}
+	}
+	
+	// Get two random indices
+	idx1 := rand.Intn(len(concepts))
+	idx2 := rand.Intn(len(concepts))
+	
+	// Make sure they're different
+	for idx1 == idx2 {
+		idx2 = rand.Intn(len(concepts))
+	}
+	
+	return [2]string{concepts[idx1], concepts[idx2]}
 }
 
 // GetRandomPair returns a random pair of concepts from the processed concepts

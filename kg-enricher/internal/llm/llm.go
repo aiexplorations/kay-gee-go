@@ -68,22 +68,33 @@ func MineRelationship(concept1, concept2 string) (*models.Concept, error) {
 	cacheMutex.RUnlock()
 
 	prompt := fmt.Sprintf(`You are an expert ontologist and respond only in JSON. 
-	Determine if there's a relationship between the concepts '%s' and '%s'. If there is, provide the relationship type. 
-	If not, respond with "No relationship". 
-	Return the response as a JSON object with 'name', 'relation', and 'relatedTo' keys. The response should be valid JSON that can be directly parsed. 
-	Example format:
-    {
-        "name": "%s",
-        "relation": "RelationType",
-        "relatedTo": "%s"
-    }
-    Or if there's no relationship:
-    {
-        "name": "",
-        "relation": "",
-        "relatedTo": ""
-    }
-	Do not return any explanations, markdown formatting, or additional text.`, concept1, concept2, concept2, concept1)
+	
+Determine if there's a REAL, FACTUAL relationship between the concepts '%s' and '%s'.
+
+IMPORTANT RULES:
+1. ONLY identify relationships that actually exist in the real world
+2. Use standard, established relationship types (e.g., IS_A, PART_OF, USED_IN, DEVELOPED_BY)
+3. If no meaningful relationship exists, return an empty response
+4. Never invent or make up relationships
+5. Be specific and precise in describing the relationship
+
+Return the response as a JSON object with 'name', 'relation', and 'relatedTo' keys. The response should be valid JSON that can be directly parsed. 
+
+Example format for a real relationship:
+{
+    "name": "%s",
+    "relation": "RelationType",
+    "relatedTo": "%s"
+}
+
+Or if there's no relationship:
+{
+    "name": "",
+    "relation": "",
+    "relatedTo": ""
+}
+
+Do not return any explanations, markdown formatting, or additional text.`, concept1, concept2, concept2, concept1)
 
 	var concept *models.Concept
 	var err error

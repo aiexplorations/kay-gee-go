@@ -12,12 +12,10 @@ RUN go mod download
 COPY . .
 
 # Build the API server
-RUN go build -o /app/api-server api-server.go
-
-# Build the enricher
-RUN go build -o /kg-enricher ./cmd/kg-enricher
+RUN go build -o api-server ./cmd/api-server
 
 # Expose the API port
-EXPOSE 5001
+EXPOSE 5000
 
-# No entrypoint, will be set in docker-compose.yml 
+# Run the API server
+CMD ["/app/api-server"] 

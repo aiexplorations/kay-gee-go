@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.3] - 2025-03-12
+
+### Fixed
+- Fixed node highlighting in the graph visualization to properly display selected nodes in bright red
+- Resolved issue with nodes being scaled down to small points when clicked
+- Enhanced the `highlightNode` method in GraphVisualizer to preserve original node sizes
+- Improved handling of node and link highlighting with proper size scaling
+- Added support for both string IDs and object references in link source/target handling
+- Enhanced debugging with detailed console logs for node sizing and highlighting
+- Fixed edge coloring to ensure highlighted edges are clearly visible
+
+### Changed
+- Updated node highlighting color from pink/red (0xff4080) to bright red (0xff0000) for better visibility
+- Improved node scaling logic to scale based on original node size rather than fixed values
+- Enhanced connected node highlighting with better size preservation
+- Added more robust error handling for node and link interactions
+
 ## [0.6.1] - 2025-03-12
 
 ### Added

@@ -9,14 +9,14 @@ neo4j:
 # LLM Configuration
 llm:
   url: "http://host.docker.internal:11434/api/generate"
-  model: "qwen2.5:3b"
+  model: "phi4:latest"
   cache_dir: "./cache"
 
 # Graph Configuration
 graph:
-  seed_concept: "Artificial Intelligence"
+  seed_concept: "Machine Learning"
   max_nodes: 100
   timeout_minutes: 30
-  worker_count: 10
-  random_relationships: 50
+  worker_count: 5
+  random_relationships: 20
   concurrency: 5

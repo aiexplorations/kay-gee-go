@@ -72,8 +72,22 @@ func GetRelatedConcepts(concept string) ([]models.Concept, error) {
 	var err error
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
 		// Create the request body
-		prompt := fmt.Sprintf(`Generate 5 concepts related to "%s". 
-For each concept, provide a name and a specific relation to "%s".
+		prompt := fmt.Sprintf(`You are an expert in the field of knowledge graphs and understand the semantic relationships between concepts.
+		
+Your task is to identify 5 REAL, FACTUAL concepts related to the concept "%s". 
+
+IMPORTANT RULES:
+1. ONLY return concepts that are REAL and FACTUAL - never invent or make up concepts
+2. Each concept must be a specific, well-established term in its field
+3. Avoid generic terms - be specific and precise
+4. Each concept must have a clear, factual relationship to "%s"
+5. Use standard terminology that would appear in academic literature
+6. Concepts should be at a similar level of specificity as "%s"
+
+For each concept, provide:
+- A name (a real, established term)
+- A specific relationship to "%s" (using standard relationship types)
+
 Return ONLY a JSON array of objects with the following structure:
 [
   {
@@ -82,8 +96,9 @@ Return ONLY a JSON array of objects with the following structure:
     "relatedTo": "%s"
   }
 ]
-Do not include any explanations, markdown formatting, or additional text. Return only the JSON array.`, 
-			concept, concept, concept, concept)
+
+Do not include any explanations, markdown formatting, or additional text, and ensure the concepts are factual. Return only the JSON array.`, 
+			concept, concept, concept, concept, concept, concept)
 		
 		requestBody, err := json.Marshal(map[string]interface{}{
 			"model":  cfg.Model,
@@ -173,13 +188,24 @@ func MineRelationship(conceptA, conceptB string) (*models.Concept, error) {
 	var err error
 	err = apperrors.RetryWithBackoff(DefaultMaxRetries, DefaultRetryInterval, DefaultMaxBackoff, func() error {
 		// Create the request body
-		prompt := fmt.Sprintf(`Determine a specific relationship between the concepts "%s" and "%s".
+		prompt := fmt.Sprintf(`You are an expert ontologist with deep knowledge of semantic relationships between concepts.
+
+Determine if there is a REAL, FACTUAL relationship between the concepts "%s" and "%s".
+
+IMPORTANT RULES:
+1. ONLY identify relationships that actually exist in the real world
+2. Use standard, established relationship types (e.g., IS_A, PART_OF, USED_IN, DEVELOPED_BY)
+3. If no meaningful relationship exists, return null
+4. Never invent or make up relationships
+5. Be specific and precise in describing the relationship
+
 If there is a meaningful relationship, return a JSON object with the following structure:
 {
   "name": "%s",
   "relation": "specific relationship type",
   "relatedTo": "%s"
 }
+
 If there is no meaningful relationship, return null.
 Do not include any explanations, markdown formatting, or additional text. Return only the JSON object or null.`,
 			conceptA, conceptB, conceptA, conceptB)

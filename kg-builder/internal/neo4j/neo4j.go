@@ -260,3 +260,55 @@ func GetRandomLowConnectivityConcept(driver neo4j.Driver, limit int) (string, er
 	randomIndex := rand.Intn(len(concepts))
 	return concepts[randomIndex], nil
 }
+
+// RelationshipExists checks if a relationship exists between two concepts
+func RelationshipExists(driver neo4j.Driver, conceptA, conceptB string) (bool, error) {
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+	defer session.Close()
+	
+	query := `
+		MATCH (a:Concept {name: $conceptA})-[r]->(b:Concept {name: $conceptB})
+		RETURN count(r) > 0 as exists
+	`
+	
+	result, err := session.Run(query, map[string]interface{}{
+		"conceptA": conceptA,
+		"conceptB": conceptB,
+	})
+	
+	if err != nil {
+		return false, err
+	}
+	
+	if result.Next() {
+		return result.Record().GetByIndex(0).(bool), nil
+	}
+	
+	return false, nil
+}
+
+// GetAllConcepts returns all concepts in the graph
+func GetAllConcepts(driver neo4j.Driver) ([]string, error) {
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+	defer session.Close()
+	
+	query := `
+		MATCH (c:Concept)
+		RETURN c.name as name
+	`
+	
+	result, err := session.Run(query, nil)
+	if err != nil {
+		return nil, err
+	}
+	
+	var concepts []string
+	for result.Next() {
+		name, _ := result.Record().Get("name")
+		if nameStr, ok := name.(string); ok {
+			concepts = append(concepts, nameStr)
+		}
+	}
+	
+	return concepts, nil
+}

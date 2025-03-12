@@ -26,7 +26,7 @@ print_red() {
 SEED_CONCEPT="Artificial Intelligence"
 MAX_NODES=100
 TIMEOUT=30
-RANDOM_RELATIONSHIPS=50
+RANDOM_RELATIONSHIPS=20
 CONCURRENCY=5
 STATS_ONLY=false
 SKIP_NEO4J=false
@@ -36,6 +36,8 @@ SKIP_FRONTEND=false
 RUN_ONCE=false
 COUNT=10
 SKIP_OPTIMIZATION=false
+CLEAR_DB=false
+FORCE=false
 
 # Function to show help
 show_help() {
@@ -54,7 +56,7 @@ show_help() {
     echo "  --seed=CONCEPT            Seed concept for graph building (default: \"Artificial Intelligence\")"
     echo "  --max-nodes=N             Maximum number of nodes to build (default: 100)"
     echo "  --timeout=N               Timeout in minutes for graph building (default: 30)"
-    echo "  --random-relationships=N  Number of random relationships to mine (default: 50)"
+    echo "  --random-relationships=N  Number of random relationships to mine (default: 20)"
     echo "  --concurrency=N           Number of concurrent workers (default: 5)"
     echo "  --stats-only              Only show statistics without building the graph"
     echo "  --skip-neo4j              Skip starting Neo4j"
@@ -64,6 +66,8 @@ show_help() {
     echo "  --run-once                Run the enricher once and exit"
     echo "  --count=N                 Number of relationships to mine when running once (default: 10)"
     echo "  --skip-optimization       Skip the automatic optimization step"
+    echo "  --clear-db                Clear the Neo4j database and start from scratch"
+    echo "  --force                   Skip confirmation prompts (use with --clear-db)"
     echo ""
     echo "Options for 'logs' command:"
     echo "  --service=NAME            Show logs for a specific service (neo4j, builder, enricher, frontend)"
@@ -76,6 +80,8 @@ show_help() {
     echo "Examples:"
     echo "  $0 start                  Start all services with default settings"
     echo "  $0 start --seed=\"Machine Learning\" --max-nodes=200"
+    echo "  $0 start --clear-db --seed=\"Quantum Computing\"  Clear DB and start with new seed"
+    echo "  $0 start --clear-db --force  Clear DB without confirmation prompt"
     echo "  $0 stop                   Stop all services"
     echo "  $0 status                 Show status of all services"
     echo "  $0 test                   Run all tests"
@@ -226,6 +232,14 @@ start_app() {
                 SKIP_OPTIMIZATION=true
                 shift
                 ;;
+            --clear-db)
+                CLEAR_DB=true
+                shift
+                ;;
+            --force)
+                FORCE=true
+                shift
+                ;;
             *)
                 print_red "Unknown option: $1"
                 show_help
@@ -243,12 +257,30 @@ start_app() {
     if [ "$STATS_ONLY" = false ]; then
         print_yellow "Updating configuration files..."
         
-        # Update builder configuration
+        # Update builder configuration in kg-builder/config.yaml
+        sed -i.bak "s/seed_concept:.*/seed_concept: \"$SEED_CONCEPT\"/" kg-builder/config.yaml
+        sed -i.bak "s/max_nodes:.*/max_nodes: $MAX_NODES/" kg-builder/config.yaml
+        sed -i.bak "s/timeout_minutes:.*/timeout_minutes: $TIMEOUT/" kg-builder/config.yaml
+        sed -i.bak "s/random_relationships:.*/random_relationships: $RANDOM_RELATIONSHIPS/" kg-builder/config.yaml
+        sed -i.bak "s/worker_count:.*/worker_count: $CONCURRENCY/" kg-builder/config.yaml
+        sed -i.bak "s/concurrency:.*/concurrency: $CONCURRENCY/" kg-builder/config.yaml
+        
+        # Also update the config directory version for consistency
         sed -i.bak "s/seed_concept:.*/seed_concept: \"$SEED_CONCEPT\"/" config/builder.yaml
         sed -i.bak "s/max_nodes:.*/max_nodes: $MAX_NODES/" config/builder.yaml
         sed -i.bak "s/timeout_minutes:.*/timeout_minutes: $TIMEOUT/" config/builder.yaml
         sed -i.bak "s/random_relationships:.*/random_relationships: $RANDOM_RELATIONSHIPS/" config/builder.yaml
+        sed -i.bak "s/worker_count:.*/worker_count: $CONCURRENCY/" config/builder.yaml
         sed -i.bak "s/concurrency:.*/concurrency: $CONCURRENCY/" config/builder.yaml
+        
+        # Verify that the configuration was updated correctly
+        print_yellow "Verifying configuration update..."
+        UPDATED_SEED=$(grep "seed_concept:" kg-builder/config.yaml | awk -F'"' '{print $2}')
+        if [ "$UPDATED_SEED" != "$SEED_CONCEPT" ]; then
+            print_red "Warning: Configuration update may have failed. Expected seed concept: $SEED_CONCEPT, found: $UPDATED_SEED"
+        else
+            print_green "Configuration verified: Seed concept set to \"$UPDATED_SEED\""
+        fi
         
         # Update enricher configuration
         if [ "$RUN_ONCE" = true ]; then
@@ -260,6 +292,38 @@ start_app() {
 
     # Start the application
     if [ "$SKIP_NEO4J" = false ]; then
+        if [ "$CLEAR_DB" = true ]; then
+            print_yellow "WARNING: You are about to clear the Neo4j database. All data will be lost."
+            
+            # Skip confirmation if --force is used
+            if [ "$FORCE" = false ]; then
+                read -p "Are you sure you want to continue? (y/n): " confirm
+                
+                if [[ $confirm != [yY] && $confirm != [yY][eE][sS] ]]; then
+                    print_red "Database clearing aborted."
+                    exit 1
+                fi
+            else
+                print_yellow "Skipping confirmation due to --force option."
+            fi
+            
+            print_yellow "Clearing Neo4j database..."
+            
+            # Stop Neo4j if it's running
+            if docker ps | grep -q kaygeego-neo4j; then
+                print_yellow "Stopping Neo4j..."
+                docker-compose stop neo4j
+                print_green "Neo4j stopped."
+            fi
+            
+            # Remove Neo4j data volume
+            print_yellow "Removing Neo4j data volume..."
+            docker volume rm kay-gee-go_neo4j_data || true
+            print_green "Neo4j data volume removed."
+            
+            print_green "Database cleared successfully. Starting with a fresh database."
+        fi
+        
         print_yellow "Starting Neo4j..."
         docker-compose up -d neo4j
         print_green "Neo4j started."
@@ -270,8 +334,16 @@ start_app() {
         print_green "Neo4j is ready."
     fi
 
+    # Set environment variables for the builder service
+    export SEED_CONCEPT="$SEED_CONCEPT"
+    export MAX_NODES="$MAX_NODES"
+    export TIMEOUT_MINUTES="$TIMEOUT"
+    export RANDOM_RELATIONSHIPS="$RANDOM_RELATIONSHIPS"
+    export CONCURRENCY="$CONCURRENCY"
+    
     if [ "$SKIP_BUILDER" = false ]; then
         print_yellow "Starting Knowledge Graph Builder..."
+        print_yellow "Using seed concept: \"$SEED_CONCEPT\""
         docker-compose up -d builder
         print_green "Knowledge Graph Builder started."
     fi
