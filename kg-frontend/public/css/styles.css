@@ -1,3 +1,69 @@
+/* CSS Variables for Graph Styling */
+:root {
+    /* Node Colors */
+    --node-base-color: #0088ff;
+    --node-highlight-color: #00ccff;
+    --node-selected-color: #ff3333;
+    --node-emissive-intensity-normal: 0.3;
+    --node-emissive-intensity-hover: 0.8;
+    --node-emissive-intensity-selected: 1.0;
+    --node-shininess: 50;
+    
+    /* Edge Colors */
+    --edge-base-color: #88aaff;
+    --edge-selected-color: #ff5555;
+    --edge-opacity: 0.7;
+    --edge-width: 1;
+    
+    /* Node Sizes */
+    --node-size-min: 4;
+    --node-size-max: 12;
+    --node-size-multiplier: 0.7;
+    
+    /* Force Simulation Parameters */
+    --force-charge-strength: -200;
+    --force-link-strength: 0.7;
+    --force-center-strength: 1;
+    --force-position-strength: 0.05;
+    --force-collision-strength: 0.8;
+    --force-cluster-strength: 0.3;
+    
+    /* Animation Parameters */
+    --camera-animation-duration: 1000;
+    --alpha-decay: 0.02;
+    --velocity-decay: 0.3;
+}
+
+/* Graph Node Classes */
+.graph-node {
+    /* Base styling for all nodes */
+}
+
+.graph-node-default {
+    /* Default node styling */
+}
+
+.graph-node-hover {
+    /* Styling for hovered nodes */
+}
+
+.graph-node-selected {
+    /* Styling for selected nodes */
+}
+
+/* Graph Edge Classes */
+.graph-edge {
+    /* Base styling for all edges */
+}
+
+.graph-edge-default {
+    /* Default edge styling */
+}
+
+.graph-edge-highlighted {
+    /* Styling for highlighted edges */
+}
+
 /* Global Styles */
 * {
     margin: 0;

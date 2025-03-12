@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.5] - 2025-03-15
+
+### Added
+- Added CSS variable integration to the graph visualizer for consistent styling
+- Implemented a new feature to highlight selected nodes and their connected edges in red
+- Added new CSS variable `--edge-selected-color` for styling selected edges
+- Added helper methods for edge color management: `resetEdgeColors()` and `highlightConnectedEdges()`
+
+### Changed
+- Modified the graph visualizer to use CSS variables instead of hardcoded styles
+- Updated node and edge styling to use values from CSS variables
+- Changed selected node color to red for better visibility
+- Improved node highlighting behavior to maintain consistent styling during hover and selection
+- Enhanced the node info panel to properly highlight connected nodes when clicked
+
+### Fixed
+- Fixed inconsistent styling issues in the graph visualizer
+- Resolved issues with node highlighting during hover and selection
+- Fixed edge coloring to properly highlight connections to selected nodes
+- Improved color consistency across the visualization
+
 ## [0.6.3] - 2025-03-12
 
 ### Fixed

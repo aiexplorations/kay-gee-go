@@ -1,0 +1,28 @@
+{
+  "name": "knowledge-graph-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Knowledge Graph Visualizer",
+  "main": "public/js/main.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "http-server public -p 3000"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleDirectories": [
+      "node_modules",
+      "public/js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  }
+} 

@@ -1,55 +1,88 @@
-# Knowledge Graph Visualizer
+# Knowledge Graph Frontend
 
-A Three.js-based frontend for visualizing and interacting with the knowledge graph.
+This is the frontend for the Knowledge Graph Visualizer application. It provides a user interface for interacting with the knowledge graph, including building, enriching, and visualizing the graph.
 
 ## Features
 
-- 3D visualization of the knowledge graph using Three.js
-- Controls for starting and stopping the knowledge graph builder
-- Controls for starting and stopping the knowledge graph enricher
-- Manual concept linking interface
-- Real-time statistics about the knowledge graph
+- Graph visualization with 3D force-directed layout
+- Graph builder for creating new knowledge graphs
+- Graph enricher for adding relationships to existing concepts
+- Manual linking of concepts
+- Statistics about the knowledge graph
 
-## Architecture
+## Prerequisites
 
-The frontend consists of two main components:
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
-1. **Go Backend API Server**: Handles API requests from the frontend, communicates with Neo4j, and manages the knowledge graph builder and enricher.
-2. **HTML/CSS/JS Frontend**: Provides the user interface and 3D visualization using Three.js.
+## Installation
 
-## API Endpoints
+1. Clone the repository
+2. Navigate to the `kg-frontend` directory
+3. Install dependencies:
 
-- `GET /api/graph`: Get the current graph data from Neo4j
-- `POST /api/builder/start`: Start the knowledge graph builder
-- `POST /api/builder/stop`: Stop the knowledge graph builder
-- `POST /api/enricher/start`: Start the knowledge graph enricher
-- `POST /api/enricher/stop`: Stop the knowledge graph enricher
-- `GET /api/concepts/search`: Search for concepts in the graph
-- `POST /api/relationships`: Create a relationship between two concepts
-- `GET /api/statistics`: Get statistics about the graph
+```bash
+npm install
+```
 
-## Development
+## Running the Application
 
-### Prerequisites
+To start the application, run:
 
-- Go 1.19 or higher
-- Docker and Docker Compose
-- Neo4j 4.4
+```bash
+npm start
+```
 
-### Building and Running
+This will start a local server on port 3000. You can access the application at http://localhost:3000.
 
-1. Build the Docker image:
-   ```
-   docker-compose build kg-frontend
-   ```
+## Running Tests
 
-2. Run the frontend:
-   ```
-   docker-compose up -d kg-frontend
-   ```
+To run the tests, use:
 
-3. Access the frontend at http://localhost:8080
+```bash
+npm test
+```
 
-## License
+To run the tests in watch mode (automatically re-run when files change):
 
-MIT 
+```bash
+npm run test:watch
+```
+
+## Test Coverage
+
+The tests cover the following aspects of the application:
+
+1. API client functionality
+   - Connecting to backend endpoints
+   - Handling responses and errors
+
+2. Button click handlers
+   - Graph Builder buttons (Start/Stop)
+   - Graph Enricher buttons (Start/Stop)
+   - Manual Linking button
+   - Graph controls (Reset Camera, Refresh Graph)
+
+3. Integration tests
+   - Verifying that the UI correctly interacts with the backend
+   - Validating input before making API calls
+   - Handling API responses and errors
+
+## Backend Integration
+
+The frontend communicates with the backend through the following endpoints:
+
+- `/api/graph` - Get graph data
+- `/api/builder/start` - Start the graph builder
+- `/api/builder/stop` - Stop the graph builder
+- `/api/enricher/start` - Start the graph enricher
+- `/api/enricher/stop` - Stop the graph enricher
+- `/api/concepts/search` - Search for concepts
+- `/api/relationships` - Create relationships between concepts
+- `/api/statistics` - Get statistics about the knowledge graph
+
+## Known Issues
+
+- The builder and enricher functionality may not be available in all environments
+- The graph visualization may be slow for large graphs
+- The manual linking functionality requires exact concept names 

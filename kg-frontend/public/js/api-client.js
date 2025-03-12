@@ -5,6 +5,7 @@ class ApiClient {
     constructor() {
         this.neo4jUrl = '/db/data/transaction/commit';
         this.neo4jAuth = btoa('neo4j:password'); // Base64 encode neo4j:password
+        this.baseUrl = '/api'; // Base URL for REST API endpoints
     }
 
     /**
@@ -122,8 +123,19 @@ class ApiClient {
      */
     async startBuilder(params) {
         try {
-            alert('Builder functionality is not available in this version. Please use the command line tools.');
-            return { success: false, message: 'Builder functionality is not available in this version.' };
+            const response = await fetch(`${this.baseUrl}/builder/start`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(params),
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to start builder: ${response.statusText}`);
+            }
+            
+            return await response.json();
         } catch (error) {
             console.error('Error starting builder:', error);
             throw error;
@@ -136,8 +148,15 @@ class ApiClient {
      */
     async stopBuilder() {
         try {
-            alert('Builder functionality is not available in this version. Please use the command line tools.');
-            return { success: false, message: 'Builder functionality is not available in this version.' };
+            const response = await fetch(`${this.baseUrl}/builder/stop`, {
+                method: 'POST',
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to stop builder: ${response.statusText}`);
+            }
+            
+            return await response.json();
         } catch (error) {
             console.error('Error stopping builder:', error);
             throw error;
@@ -155,8 +174,19 @@ class ApiClient {
      */
     async startEnricher(params) {
         try {
-            alert('Enricher functionality is not available in this version. Please use the command line tools.');
-            return { success: false, message: 'Enricher functionality is not available in this version.' };
+            const response = await fetch(`${this.baseUrl}/enricher/start`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(params),
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to start enricher: ${response.statusText}`);
+            }
+            
+            return await response.json();
         } catch (error) {
             console.error('Error starting enricher:', error);
             throw error;
@@ -169,8 +199,15 @@ class ApiClient {
      */
     async stopEnricher() {
         try {
-            alert('Enricher functionality is not available in this version. Please use the command line tools.');
-            return { success: false, message: 'Enricher functionality is not available in this version.' };
+            const response = await fetch(`${this.baseUrl}/enricher/stop`, {
+                method: 'POST',
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to stop enricher: ${response.statusText}`);
+            }
+            
+            return await response.json();
         } catch (error) {
             console.error('Error stopping enricher:', error);
             throw error;
@@ -290,81 +327,21 @@ class ApiClient {
      */
     async getStatistics() {
         try {
-            const nodeCountQuery = 'MATCH (n) RETURN count(n) as nodeCount';
-            const relationshipCountQuery = 'MATCH ()-[r]->() RETURN count(r) as relationshipCount';
-            const nodeTypesQuery = 'MATCH (n) RETURN labels(n) as type, count(*) as count';
-            const relationshipTypesQuery = 'MATCH ()-[r]->() RETURN type(r) as type, count(*) as count';
-            
-            const response = await fetch(this.neo4jUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Basic ${this.neo4jAuth}`,
-                    'Accept': 'application/json; charset=UTF-8'
-                },
-                body: JSON.stringify({
-                    statements: [
-                        { statement: nodeCountQuery },
-                        { statement: relationshipCountQuery },
-                        { statement: nodeTypesQuery },
-                        { statement: relationshipTypesQuery }
-                    ]
-                })
-            });
+            const response = await fetch(`${this.baseUrl}/statistics`);
             
             if (!response.ok) {
                 throw new Error(`Failed to fetch statistics: ${response.statusText}`);
             }
             
-            const data = await response.json();
-            
-            const statistics = {
-                nodeCount: 0,
-                relationshipCount: 0,
-                nodeTypes: [],
-                relationshipTypes: []
-            };
-            
-            if (data.results && data.results.length >= 4) {
-                // Node count
-                if (data.results[0].data && data.results[0].data.length > 0) {
-                    statistics.nodeCount = data.results[0].data[0].row[0];
-                }
-                
-                // Relationship count
-                if (data.results[1].data && data.results[1].data.length > 0) {
-                    statistics.relationshipCount = data.results[1].data[0].row[0];
-                }
-                
-                // Node types
-                if (data.results[2].data) {
-                    data.results[2].data.forEach(row => {
-                        if (row.row && row.row.length >= 2) {
-                            statistics.nodeTypes.push({
-                                type: row.row[0].join(':'),
-                                count: row.row[1]
-                            });
-                        }
-                    });
-                }
-                
-                // Relationship types
-                if (data.results[3].data) {
-                    data.results[3].data.forEach(row => {
-                        if (row.row && row.row.length >= 2) {
-                            statistics.relationshipTypes.push({
-                                type: row.row[0],
-                                count: row.row[1]
-                            });
-                        }
-                    });
-                }
-            }
-            
-            return statistics;
+            return await response.json();
         } catch (error) {
             console.error('Error fetching statistics:', error);
             throw error;
         }
     }
-} 
+}
+
+// Export for use in tests
+if (typeof module !== 'undefined') {
+    module.exports = ApiClient;
+}

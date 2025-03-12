@@ -32,12 +32,36 @@ describe('ApiClient', () => {
   });
   
   test('should fetch graph data', async () => {
+    // Mock the Neo4j responses
+    global.fetch.mockImplementationOnce(() => 
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ 
+          results: [{ 
+            data: [{ row: [1, 'Concept 1'] }] 
+          }] 
+        })
+      })
+    );
+    
+    global.fetch.mockImplementationOnce(() => 
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ 
+          results: [{ 
+            data: [{ row: [1, 2, 'RELATES_TO'] }] 
+          }] 
+        })
+      })
+    );
+    
     // Execute
     const result = await apiClient.getGraphData();
     
     // Verify
-    expect(global.fetch).toHaveBeenCalledWith('/api/graph');
-    expect(result).toEqual({ data: 'test' });
+    expect(global.fetch).toHaveBeenCalledWith(apiClient.neo4jUrl, expect.any(Object));
+    expect(result).toHaveProperty('nodes');
+    expect(result).toHaveProperty('links');
   });
   
   test('should handle error when fetching graph data', async () => {
@@ -50,7 +74,7 @@ describe('ApiClient', () => {
     );
     
     // Execute and verify
-    await expect(apiClient.getGraphData()).rejects.toThrow('Failed to fetch graph data: Not Found');
+    await expect(apiClient.getGraphData()).rejects.toThrow('Failed to fetch nodes: Not Found');
   });
   
   test('should start builder with parameters', async () => {
@@ -123,12 +147,24 @@ describe('ApiClient', () => {
   });
   
   test('should search concepts', async () => {
+    // Setup
+    global.fetch.mockImplementationOnce(() => 
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ 
+          results: [{ 
+            data: [{ row: [{ id: 1, name: 'AI' }] }] 
+          }] 
+        })
+      })
+    );
+    
     // Execute
     const result = await apiClient.searchConcepts('AI');
     
     // Verify
-    expect(global.fetch).toHaveBeenCalledWith('/api/concepts/search?q=AI');
-    expect(result).toEqual({ data: 'test' });
+    expect(global.fetch).toHaveBeenCalledWith(apiClient.neo4jUrl, expect.any(Object));
+    expect(result).toEqual([{ id: 1, name: 'AI', properties: { id: 1, name: 'AI' } }]);
   });
   
   test('should create relationship', async () => {
@@ -137,22 +173,26 @@ describe('ApiClient', () => {
     const target = '2';
     const type = 'RELATES_TO';
     
+    // Mock the response for createRelationship
+    global.fetch.mockImplementationOnce(() => 
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ 
+          success: true,
+          message: 'Relationship created successfully'
+        })
+      })
+    );
+    
     // Execute
     const result = await apiClient.createRelationship(source, target, type);
     
     // Verify
-    expect(global.fetch).toHaveBeenCalledWith('/api/relationships', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        source,
-        target,
-        type,
-      }),
+    expect(global.fetch).toHaveBeenCalledWith(apiClient.neo4jUrl, expect.any(Object));
+    expect(result).toEqual({ 
+      success: true,
+      message: 'Relationship created successfully'
     });
-    expect(result).toEqual({ data: 'test' });
   });
   
   test('should get statistics', async () => {

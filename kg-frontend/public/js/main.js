@@ -5,31 +5,107 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded, initializing application");
     
     // Initialize API client
-    const apiClient = new ApiClient();
+    let apiClient;
+    let graphVisualizer;
     
-    // Initialize graph visualizer
-    console.log("Creating graph visualizer");
-    const graphVisualizer = new GraphVisualizer('graph-canvas');
+    try {
+        // Check if ApiClient is defined (for testing)
+        if (typeof ApiClient !== 'undefined') {
+            apiClient = new ApiClient();
+        } else {
+            console.error("ApiClient is not defined");
+            return;
+        }
+        
+        // Initialize graph visualizer
+        console.log("Creating graph visualizer");
+        if (typeof GraphVisualizer !== 'undefined') {
+            graphVisualizer = new GraphVisualizer('graph-canvas');
+        } else {
+            console.error("GraphVisualizer is not defined");
+            return;
+        }
+        
+        // Add D3.js for force simulation
+        console.log("Loading D3.js");
+        Promise.all([
+            loadScript('https://d3js.org/d3.v7.min.js'),
+            loadScript('https://unpkg.com/d3-force-3d')
+        ])
+            .then(() => {
+                console.log("D3.js and D3-force-3d loaded successfully");
+                // Load initial graph data
+                refreshGraph();
+                // Load initial statistics
+                loadStatistics();
+                // Create space particles
+                createSpaceParticles();
+            })
+            .catch(error => {
+                console.error('Error loading D3.js or D3-force-3d:', error);
+                alert('Failed to load required libraries. The graph visualization may not work properly.');
+            });
+            
+        // Set up event listeners
+        setupEventListeners();
+    } catch (error) {
+        console.error("Error initializing application:", error);
+    }
     
-    // Add D3.js for force simulation
-    console.log("Loading D3.js");
-    Promise.all([
-        loadScript('https://d3js.org/d3.v7.min.js'),
-        loadScript('https://unpkg.com/d3-force-3d')
-    ])
-        .then(() => {
-            console.log("D3.js and D3-force-3d loaded successfully");
-            // Load initial graph data
-            refreshGraph();
-            // Load initial statistics
-            loadStatistics();
-            // Create space particles
-            createSpaceParticles();
-        })
-        .catch(error => {
-            console.error('Error loading D3.js or D3-force-3d:', error);
-            alert('Failed to load required libraries. The graph visualization may not work properly.');
-        });
+    // Set up event listeners
+    function setupEventListeners() {
+        // Get DOM elements
+        const startBuilderBtn = document.getElementById('start-builder');
+        const stopBuilderBtn = document.getElementById('stop-builder');
+        const startEnricherBtn = document.getElementById('start-enricher');
+        const stopEnricherBtn = document.getElementById('stop-enricher');
+        const resetCameraBtn = document.getElementById('reset-camera');
+        const refreshGraphBtn = document.getElementById('refresh-graph');
+        const linkConceptsBtn = document.getElementById('link-concepts');
+        const conceptSearch = document.getElementById('concept-search');
+        
+        // Event listener for builder start button
+        if (startBuilderBtn) {
+            startBuilderBtn.addEventListener('click', startBuilder);
+        }
+        
+        // Event listener for builder stop button
+        if (stopBuilderBtn) {
+            stopBuilderBtn.addEventListener('click', stopBuilder);
+        }
+        
+        // Event listener for enricher start button
+        if (startEnricherBtn) {
+            startEnricherBtn.addEventListener('click', startEnricher);
+        }
+        
+        // Event listener for enricher stop button
+        if (stopEnricherBtn) {
+            stopEnricherBtn.addEventListener('click', stopEnricher);
+        }
+        
+        // Event listener for reset camera button
+        if (resetCameraBtn) {
+            resetCameraBtn.addEventListener('click', () => {
+                graphVisualizer.resetCamera();
+            });
+        }
+        
+        // Event listener for refresh graph button
+        if (refreshGraphBtn) {
+            refreshGraphBtn.addEventListener('click', refreshGraph);
+        }
+        
+        // Event listener for concept search
+        if (conceptSearch) {
+            conceptSearch.addEventListener('input', debounce(searchConcepts, 300));
+        }
+        
+        // Event listener for linking concepts
+        if (linkConceptsBtn) {
+            linkConceptsBtn.addEventListener('click', linkConcepts);
+        }
+    }
     
     // Create space particles
     function createSpaceParticles() {
@@ -129,18 +205,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.source === node.id || link.target === node.id
                     ).length;
                     
-                    // Scale size based on connections (min 3, max 10)
-                    node.size = Math.max(3, Math.min(10, 3 + connections * 0.5));
+                    // Scale size based on connections (min 4, max 12)
+                    node.size = Math.max(4, Math.min(12, 4 + connections * 0.7));
                     
-                    // Create initial positions in a sphere formation rather than a cube
-                    // This helps prevent the "flying through" effect
-                    const phi = Math.acos(-1 + (2 * Math.random()));
-                    const theta = Math.random() * Math.PI * 2;
-                    const radius = 150 + Math.random() * 50; // Radius between 150-200
-                    
-                    node.x = radius * Math.sin(phi) * Math.cos(theta);
-                    node.y = radius * Math.sin(phi) * Math.sin(theta);
-                    node.z = radius * Math.cos(phi);
+                    // Create initial positions in a sphere formation if not already set
+                    if (!node.x || !node.y || !node.z) {
+                        // Use golden ratio distribution for more even spacing
+                        const i = data.nodes.indexOf(node);
+                        const phi = Math.acos(1 - 2 * (i + 0.5) / data.nodes.length);
+                        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+                        const radius = 120 + Math.random() * 30; // Radius between 120-150
+                        
+                        node.x = radius * Math.sin(phi) * Math.cos(theta);
+                        node.y = radius * Math.sin(phi) * Math.sin(theta);
+                        node.z = radius * Math.cos(phi);
+                    }
+                });
+                
+                // Process links to ensure they have type property
+                data.links.forEach(link => {
+                    if (!link.type) {
+                        link.type = 'RELATED_TO';
+                    }
                 });
                 
                 // Set data to visualizer
@@ -270,50 +356,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Get DOM elements
-    const startBuilderBtn = document.getElementById('start-builder');
-    const stopBuilderBtn = document.getElementById('stop-builder');
-    const startEnricherBtn = document.getElementById('start-enricher');
-    const stopEnricherBtn = document.getElementById('stop-enricher');
-    const resetCameraBtn = document.getElementById('reset-camera');
-    const refreshGraphBtn = document.getElementById('refresh-graph');
-    const conceptSearch = document.getElementById('concept-search');
-    const searchResults = document.getElementById('search-results');
-    const selectedConcept1 = document.getElementById('selected-concept-1');
-    const selectedConcept2 = document.getElementById('selected-concept-2');
-    const linkConceptsBtn = document.getElementById('link-concepts');
-    
-    // Selected concepts for manual linking
-    let selectedConcepts = [];
-    
-    // Event listeners for builder controls
-    startBuilderBtn.addEventListener('click', startBuilder);
-    stopBuilderBtn.addEventListener('click', stopBuilder);
-    
-    // Event listeners for enricher controls
-    startEnricherBtn.addEventListener('click', startEnricher);
-    stopEnricherBtn.addEventListener('click', stopEnricher);
-    
-    // Event listeners for graph controls
-    resetCameraBtn.addEventListener('click', () => {
-        graphVisualizer.resetCamera();
-        console.log("Camera reset");
-    });
-    
-    refreshGraphBtn.addEventListener('click', () => {
-        refreshGraph();
-        loadStatistics();
-        console.log("Graph and statistics refreshed");
-    });
-    
-    // Event listener for concept search
-    conceptSearch.addEventListener('input', debounce(searchConcepts, 300));
-    
-    // Event listener for linking concepts
-    linkConceptsBtn.addEventListener('click', linkConcepts);
-    
     // Function to start the builder
     function startBuilder() {
+        console.log("Starting builder");
+        
+        // Get parameters from form
         const seedConcept = document.getElementById('seed-concept').value;
         const maxNodes = parseInt(document.getElementById('max-nodes').value);
         const timeout = parseInt(document.getElementById('timeout').value);
@@ -328,29 +375,15 @@ document.addEventListener('DOMContentLoaded', () => {
             concurrency: concurrency
         };
         
-        // Disable buttons during operation
-        const startBtn = document.getElementById('start-builder');
-        startBtn.disabled = true;
-        startBtn.textContent = 'Starting...';
-        
-        console.log("Starting builder with params:", params);
+        // Call API
         apiClient.startBuilder(params)
             .then(response => {
                 console.log('Builder started:', response);
-                if (response.status === 'success') {
-                    alert(response.message || 'Knowledge Graph Builder started successfully.');
-                } else {
-                    alert('Error starting Knowledge Graph Builder: ' + (response.error || 'Unknown error'));
-                }
+                alert('Builder started successfully');
             })
             .catch(error => {
                 console.error('Error starting builder:', error);
-                alert('Error starting Knowledge Graph Builder: ' + error.message);
-            })
-            .finally(() => {
-                // Re-enable button
-                startBtn.disabled = false;
-                startBtn.textContent = 'Start Builder';
+                alert(`Error starting builder: ${error}`);
             });
     }
     
