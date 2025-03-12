@@ -8,8 +8,11 @@ KayGeeGo is a comprehensive knowledge graph generation and visualization system 
 
 KayGeeGo builds a knowledge graph starting from a seed concept, using LLMs to discover related concepts and relationships. The graph is stored in a Neo4j database and can be visualized through an interactive 3D interface. The system is designed to run in Docker containers and is managed through a unified shell script.
 
-## Features
+<div align="center">
+  <img src="img/kg_1.png" alt="Knowledge Graph Visualization" width="1024">
+</div>
 
+## Features
 - **Automated Knowledge Graph Construction**: Builds a knowledge graph starting from a seed concept
 - **LLM-Powered Relationship Mining**: Uses LLMs to discover relationships between concepts
 - **Interactive 3D Visualization**: Visualizes the graph in an interactive 3D interface
@@ -18,37 +21,52 @@ KayGeeGo builds a knowledge graph starting from a seed concept, using LLMs to di
 - **Caching System**: Caches LLM responses for offline access and faster rebuilding
 - **Comprehensive Configuration**: Configurable via command-line arguments and configuration files
 - **Unified Management**: Single script (`kg.sh`) for all operations
+- **Concurrent Processing**: Implements multi-worker architecture for faster graph building
+- **Statistics Dashboard**: Provides real-time metrics on graph structure and growth
+- **Search Functionality**: Enables finding specific concepts within the knowledge graph
+- **Manual Relationship Creation**: Allows users to manually define relationships between concepts
+- **Configurable LLM Integration**: Supports different LLM providers and models
+- **Docker Containerization**: Runs all components in isolated Docker containers
+- **Neo4j Database Backend**: Leverages the power of graph databases for efficient storage and querying
 
 ## System Requirements
-
 - **Docker** and **Docker Compose**
 - **LLM Service**: Local or remote LLM service (default configuration uses Ollama with qwen2.5:3b model)
-- **Disk Space**: At least 2GB of free disk space for Docker images and volumes
-- **Memory**: At least 4GB of RAM (8GB recommended for optimal performance)
+- **Disk Space**: At least 4GB of free disk space for Docker images, volumes, and cached LLM responses
+- **Memory**: At least 6GB of RAM (12GB recommended for optimal performance with larger graphs)
+- **CPU**: Multi-core processor recommended for concurrent processing operations
+- **Network**: Internet connection required for remote LLM services (not needed for local Ollama setup)
+- **Browser**: Modern web browser with WebGL support for 3D visualization
 
 ## Components
 
 The project consists of three main components:
-
 1. **Builder (`kg-builder`)**: Builds the initial knowledge graph from a seed concept
    - Discovers related concepts and creates nodes and relationships
    - Implements concurrent workers for faster graph building
    - Supports timeout and maximum node count limits
    - Mines random relationships between existing concepts
    - Uses low connectivity concepts as seeds for balanced graph expansion
+   - Caches LLM responses for faster rebuilding and offline operation
+   - Provides detailed logging of the building process
 
 2. **Enricher (`kg-enricher`)**: Enriches the existing knowledge graph
    - Runs as a continuous service or in one-shot mode
    - Selects random pairs of concepts and finds relationships between them
    - Provides detailed statistics on the enrichment process
    - Implements configurable batch processing with intervals
+   - Focuses on low-connectivity nodes to improve graph cohesion
+   - Supports different enrichment strategies (random, targeted, similarity-based)
 
 3. **Frontend (`kg-frontend`)**: Visualizes the knowledge graph
-   - Displays nodes and relationships in a 3D space
-   - Allows for interactive exploration of the graph
-   - Provides statistics on the graph structure
-   - Supports searching and filtering of concepts
-   - Enables manual linking of concepts
+   - Displays nodes and relationships in an interactive 3D space
+   - Supports zooming, panning, and rotating the visualization
+   - Provides real-time statistics on the graph structure
+   - Enables searching and filtering of concepts
+   - Allows manual creation of relationships between concepts
+   - Features a dark/light theme toggle for better visibility
+   - Displays node details and relationship information on hover/click
+   - Includes a mini-map for easier navigation of large graphs
 
 ## Quick Start
 
