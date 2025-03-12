@@ -30,6 +30,7 @@ func main() {
 	statsOnly := flag.Bool("stats-only", false, "Only show statistics without building the graph")
 	showVersion := flag.Bool("version", false, "Show version information and exit")
 	useLowConnectivity := flag.Bool("use-low-connectivity", false, "Use low connectivity concepts as seeds for subsequent graph building")
+	cleanupOrphans := flag.Bool("cleanup", false, "Clean up orphan relationships and nodes")
 	flag.Parse()
 
 	// Load configuration from environment variables
@@ -88,6 +89,7 @@ func main() {
 	log.Printf("  Random Relationships: %d", cfg.Graph.RandomRelationships)
 	log.Printf("  Concurrency: %d", cfg.Graph.Concurrency)
 	log.Printf("  Use Low Connectivity: %t", *useLowConnectivity)
+	log.Printf("  Cleanup Orphans: %t", *cleanupOrphans)
 
 	// Set up Neo4j connection
 	neo4jDriver, err := neo4j.SetupNeo4jConnection(&cfg.Neo4j) // Set up connection to Neo4j database
@@ -95,6 +97,26 @@ func main() {
 		log.Fatalf("Failed to connect to Neo4j: %v", err) // Log fatal error if connection fails
 	}
 	defer neo4jDriver.Close() // Ensure the Neo4j driver is closed when main exits
+
+	// If cleanup flag is set, clean up orphan relationships and nodes
+	if *cleanupOrphans {
+		log.Println("Cleaning up orphan relationships...")
+		startTime := time.Now()
+		count, err := neo4j.CleanupOrphanRelationships(neo4jDriver)
+		if err != nil {
+			log.Fatalf("Error cleaning up orphan relationships: %v", err)
+		}
+		log.Printf("Removed %d orphan relationships in %v", count, time.Since(startTime))
+
+		log.Println("Cleaning up orphan nodes...")
+		startTime = time.Now()
+		count, err = neo4j.CleanupOrphanNodes(neo4jDriver)
+		if err != nil {
+			log.Fatalf("Error cleaning up orphan nodes: %v", err)
+		}
+		log.Printf("Removed %d orphan nodes in %v", count, time.Since(startTime))
+		return
+	}
 
 	// If stats-only flag is set, only show statistics and exit
 	if *statsOnly {

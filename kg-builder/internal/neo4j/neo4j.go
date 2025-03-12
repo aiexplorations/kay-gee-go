@@ -19,6 +19,16 @@ const (
 	DefaultMaxBackoff    = 30 * time.Second
 )
 
+// Function types for cleanup operations
+type CleanupOrphanRelationshipsFunc func(driver neo4j.Driver) (int, error)
+type CleanupOrphanNodesFunc func(driver neo4j.Driver) (int, error)
+type GetAllConceptsFunc func(driver neo4j.Driver) ([]string, error)
+
+// Exported variables for functions that can be mocked in tests
+var CleanupOrphanRelationships CleanupOrphanRelationshipsFunc = cleanupOrphanRelationships
+var CleanupOrphanNodes CleanupOrphanNodesFunc = cleanupOrphanNodes
+var GetAllConcepts GetAllConceptsFunc = getAllConcepts
+
 // SetupNeo4jConnection establishes a connection to the Neo4j database with retry logic to handle connection failures.
 func SetupNeo4jConnection(cfg *config.Neo4jConfig) (neo4j.Driver, error) {
 	log.Printf("Connecting to Neo4j at %s", cfg.URI)
@@ -59,25 +69,115 @@ func SetupNeo4jConnection(cfg *config.Neo4jConfig) (neo4j.Driver, error) {
 	return nil, apperrors.NewDatabaseError(lastErr, fmt.Sprintf("failed to connect to Neo4j after %d attempts", cfg.MaxRetries))
 }
 
+// ConceptExists checks if a concept exists in the Neo4j database
+func ConceptExists(driver neo4j.Driver, conceptName string) (bool, error) {
+	if driver == nil {
+		return false, apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "Neo4j driver is nil")
+	}
+
+	if conceptName == "" {
+		return false, apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "concept name must not be empty")
+	}
+
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
+	defer session.Close()
+
+	result, err := session.ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		query := `
+			MATCH (c:Concept {name: $name})
+			RETURN count(c) AS count
+		`
+		params := map[string]interface{}{
+			"name": conceptName,
+		}
+		result, err := tx.Run(query, params)
+		if err != nil {
+			return false, apperrors.NewDatabaseError(err, "failed to execute Cypher query")
+		}
+		
+		record, err := result.Single()
+		if err != nil {
+			return false, apperrors.NewDatabaseError(err, "failed to get query result")
+		}
+		
+		count, _ := record.Get("count")
+		return count.(int64) > 0, nil
+	})
+
+	if err != nil {
+		return false, err
+	}
+
+	return result.(bool), nil
+}
+
 // CreateRelationship creates a relationship between two concepts in the Neo4j database using a Cypher query.
 func CreateRelationship(driver neo4j.Driver, from, to, relation string) error {
 	if driver == nil {
 		return apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "Neo4j driver is nil")
 	}
 
-	if from == "" || to == "" || relation == "" {
-		return apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "from, to, and relation must not be empty")
+	if from == "" || to == "" {
+		return apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "from and to must not be empty")
+	}
+	
+	// Enhanced validation for relationship type
+	if relation == "" {
+		return apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "relation must not be empty")
+	}
+	
+	// Skip generic or vague relation types
+	if relation == "related to" || relation == "is related to" || relation == "relates to" {
+		return apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "relation type is too generic")
+	}
+
+	// Check if both concepts exist or create them
+	fromExists, err := ConceptExists(driver, from)
+	if err != nil {
+		return err
+	}
+
+	toExists, err := ConceptExists(driver, to)
+	if err != nil {
+		return err
 	}
 
 	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
 	defer session.Close()
 
-	_, err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
-		query := `
-			MERGE (a:Concept {name: $from})
-			MERGE (b:Concept {name: $to})
-			MERGE (a)-[r:RELATED_TO {type: $relation}]->(b)
-		`
+	_, err = session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		var query string
+		
+		if !fromExists && !toExists {
+			// Create both nodes and the relationship
+			query = `
+				CREATE (a:Concept {name: $from})
+				CREATE (b:Concept {name: $to})
+				CREATE (a)-[r:RELATED_TO {type: $relation}]->(b)
+			`
+		} else if !fromExists {
+			// Create only the 'from' node and the relationship
+			query = `
+				CREATE (a:Concept {name: $from})
+				MATCH (b:Concept {name: $to})
+				CREATE (a)-[r:RELATED_TO {type: $relation}]->(b)
+			`
+		} else if !toExists {
+			// Create only the 'to' node and the relationship
+			query = `
+				MATCH (a:Concept {name: $from})
+				CREATE (b:Concept {name: $to})
+				CREATE (a)-[r:RELATED_TO {type: $relation}]->(b)
+			`
+		} else {
+			// Both nodes exist, just create the relationship
+			query = `
+				MATCH (a:Concept {name: $from})
+				MATCH (b:Concept {name: $to})
+				CREATE (a)-[r:RELATED_TO {type: $relation}]->(b)
+			`
+		}
+		
 		params := map[string]interface{}{
 			"from":     from,
 			"to":       to,
@@ -287,8 +387,8 @@ func RelationshipExists(driver neo4j.Driver, conceptA, conceptB string) (bool, e
 	return false, nil
 }
 
-// GetAllConcepts returns all concepts in the graph
-func GetAllConcepts(driver neo4j.Driver) ([]string, error) {
+// getAllConcepts returns all concepts in the graph
+func getAllConcepts(driver neo4j.Driver) ([]string, error) {
 	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead})
 	defer session.Close()
 	
@@ -311,4 +411,130 @@ func GetAllConcepts(driver neo4j.Driver) ([]string, error) {
 	}
 	
 	return concepts, nil
+}
+
+// cleanupOrphanRelationships removes relationships that connect to non-existent nodes
+func cleanupOrphanRelationships(driver neo4j.Driver) (int, error) {
+	if driver == nil {
+		return 0, apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "Neo4j driver is nil")
+	}
+
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+	defer session.Close()
+
+	result, err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		// Find and delete relationships where either the start or end node doesn't exist
+		query := `
+			MATCH ()-[r:RELATED_TO]->()
+			WHERE NOT EXISTS(r.type) OR r.type = ""
+			WITH r, count(r) as count
+			DELETE r
+			RETURN count
+		`
+		result, err := tx.Run(query, nil)
+		if err != nil {
+			return 0, apperrors.NewDatabaseError(err, "failed to execute cleanup query")
+		}
+		
+		record, err := result.Single()
+		if err != nil {
+			if err.Error() == "neo4j: no records returned" {
+				return 0, nil
+			}
+			return 0, apperrors.NewDatabaseError(err, "failed to get query result")
+		}
+		
+		count, _ := record.Get("count")
+		// Handle different types of count (int or int64)
+		switch c := count.(type) {
+		case int64:
+			return c, nil
+		case int:
+			return int64(c), nil
+		case float64:
+			return int64(c), nil
+		default:
+			// Return the count as is and let the caller handle the conversion
+			return count, nil
+		}
+	})
+
+	if err != nil {
+		return 0, err
+	}
+
+	// Handle the result based on its type
+	switch v := result.(type) {
+	case int64:
+		return int(v), nil
+	case int:
+		return v, nil
+	case float64:
+		return int(v), nil
+	default:
+		return 0, apperrors.NewDatabaseError(nil, "unexpected count type")
+	}
+}
+
+// cleanupOrphanNodes removes nodes that don't have any relationships
+func cleanupOrphanNodes(driver neo4j.Driver) (int, error) {
+	if driver == nil {
+		return 0, apperrors.NewDatabaseError(apperrors.ErrInvalidInput, "Neo4j driver is nil")
+	}
+
+	session := driver.NewSession(neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+	defer session.Close()
+
+	result, err := session.WriteTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+		// Find and delete nodes that don't have any relationships
+		query := `
+			MATCH (n:Concept)
+			WHERE NOT (n)-[]-() 
+			WITH n, count(n) as count
+			DELETE n
+			RETURN count
+		`
+		result, err := tx.Run(query, nil)
+		if err != nil {
+			return 0, apperrors.NewDatabaseError(err, "failed to execute cleanup query")
+		}
+		
+		record, err := result.Single()
+		if err != nil {
+			if err.Error() == "neo4j: no records returned" {
+				return 0, nil
+			}
+			return 0, apperrors.NewDatabaseError(err, "failed to get query result")
+		}
+		
+		count, _ := record.Get("count")
+		// Handle different types of count (int or int64)
+		switch c := count.(type) {
+		case int64:
+			return c, nil
+		case int:
+			return int64(c), nil
+		case float64:
+			return int64(c), nil
+		default:
+			// Return the count as is and let the caller handle the conversion
+			return count, nil
+		}
+	})
+
+	if err != nil {
+		return 0, err
+	}
+
+	// Handle the result based on its type
+	switch v := result.(type) {
+	case int64:
+		return int(v), nil
+	case int:
+		return v, nil
+	case float64:
+		return int(v), nil
+	default:
+		return 0, apperrors.NewDatabaseError(nil, "unexpected count type")
+	}
 }

@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const refreshGraphBtn = document.getElementById('refresh-graph');
         const linkConceptsBtn = document.getElementById('link-concepts');
         const conceptSearch = document.getElementById('concept-search');
+        const cleanupGraphBtn = document.getElementById('cleanup-graph');
         
         // Event listener for builder start button
         if (startBuilderBtn) {
@@ -104,6 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener for linking concepts
         if (linkConceptsBtn) {
             linkConceptsBtn.addEventListener('click', linkConcepts);
+        }
+        
+        // Event listener for cleanup graph button
+        if (cleanupGraphBtn) {
+            cleanupGraphBtn.addEventListener('click', cleanupGraph);
         }
     }
     
@@ -574,6 +580,36 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error creating relationship:', error);
                 alert('Error creating relationship. Check the console for details.');
+            });
+    }
+    
+    // Function to cleanup orphan relationships and nodes
+    function cleanupGraph() {
+        // Disable button during operation
+        const cleanupBtn = document.getElementById('cleanup-graph');
+        cleanupBtn.disabled = true;
+        cleanupBtn.textContent = 'Cleaning...';
+        
+        console.log("Cleaning up orphan relationships and nodes");
+        
+        apiClient.cleanupGraph()
+            .then(result => {
+                console.log('Cleanup completed:', result);
+                const message = `Cleanup completed successfully.\n\nRemoved ${result.relationshipsRemoved} orphan relationships and ${result.nodesRemoved} orphan nodes.`;
+                alert(message);
+                
+                // Refresh graph and statistics
+                refreshGraph();
+                loadStatistics();
+            })
+            .catch(error => {
+                console.error('Error during cleanup:', error);
+                alert('Error during cleanup: ' + (error.message || 'Unknown error'));
+            })
+            .finally(() => {
+                // Re-enable button
+                cleanupBtn.disabled = false;
+                cleanupBtn.textContent = 'Cleanup Graph';
             });
     }
     

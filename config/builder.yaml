@@ -14,7 +14,7 @@ llm:
 
 # Graph Configuration
 graph:
-  seed_concept: "Artificial Intelligence"
+  seed_concept: "Machine Learning"
   max_nodes: 100
   timeout_minutes: 30
   worker_count: 5

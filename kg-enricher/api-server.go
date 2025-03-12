@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"syscall"
 )
 
 // StartRequest represents the request to start the enricher
@@ -57,7 +58,7 @@ func startHandler(w http.ResponseWriter, r *http.Request) {
 	// Check if the enricher is already running
 	if enricherProcess != nil && enricherProcess.Process != nil {
 		// Check if the process is still running
-		if err := enricherProcess.Process.Signal(os.Signal(0)); err == nil {
+		if err := enricherProcess.Process.Signal(syscall.Signal(0)); err == nil {
 			sendErrorResponse(w, "Enricher is already running")
 			return
 		}

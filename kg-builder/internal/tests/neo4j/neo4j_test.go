@@ -4,6 +4,7 @@ import (
 	"os"
 	"testing"
 	"time"
+	"net/url"
 
 	"kg-builder/internal/config"
 	"kg-builder/internal/neo4j"
@@ -56,23 +57,138 @@ func TestNeo4jConfiguration(t *testing.T) {
 	}
 }
 
+// MockNeo4jDriver implements the Neo4j driver interface for testing
+type MockNeo4jDriver struct{}
+
+func (m *MockNeo4jDriver) Close() error {
+	return nil
+}
+
+func (m *MockNeo4jDriver) NewSession(config neo4jdriver.SessionConfig) neo4jdriver.Session {
+	return &MockNeo4jSession{}
+}
+
+func (m *MockNeo4jDriver) Session(accessMode neo4jdriver.AccessMode, bookmarks ...string) (neo4jdriver.Session, error) {
+	return &MockNeo4jSession{}, nil
+}
+
+func (m *MockNeo4jDriver) Target() url.URL {
+	u, _ := url.Parse("bolt://localhost:7687")
+	return *u
+}
+
+func (m *MockNeo4jDriver) VerifyConnectivity() error {
+	return nil
+}
+
+// MockNeo4jSession implements the Neo4j session interface for testing
+type MockNeo4jSession struct{}
+
+func (s *MockNeo4jSession) LastBookmark() string {
+	return ""
+}
+
+func (s *MockNeo4jSession) BeginTransaction(configurers ...func(*neo4jdriver.TransactionConfig)) (neo4jdriver.Transaction, error) {
+	return nil, nil
+}
+
+func (s *MockNeo4jSession) ReadTransaction(work neo4jdriver.TransactionWork, configurers ...func(*neo4jdriver.TransactionConfig)) (interface{}, error) {
+	return true, nil // Return true for ConceptExists
+}
+
+func (s *MockNeo4jSession) WriteTransaction(work neo4jdriver.TransactionWork, configurers ...func(*neo4jdriver.TransactionConfig)) (interface{}, error) {
+	return nil, nil
+}
+
+func (s *MockNeo4jSession) Run(cypher string, params map[string]interface{}, configurers ...func(*neo4jdriver.TransactionConfig)) (neo4jdriver.Result, error) {
+	return nil, nil
+}
+
+func (s *MockNeo4jSession) Close() error {
+	return nil
+}
+
 func TestCreateRelationshipValidation(t *testing.T) {
-	// Test with empty source
-	err := neo4j.CreateRelationship(nil, "", "target", "relation")
+	driver := &MockNeo4jDriver{}
+	
+	// Test with nil driver
+	err := neo4j.CreateRelationship(nil, "from", "to", "relation")
 	if err == nil {
-		t.Error("Expected error with empty source, got nil")
+		t.Error("Expected error with nil driver, got nil")
 	}
-
-	// Test with empty target
-	err = neo4j.CreateRelationship(nil, "source", "", "relation")
+	
+	// Test with empty from
+	err = neo4j.CreateRelationship(driver, "", "to", "relation")
 	if err == nil {
-		t.Error("Expected error with empty target, got nil")
+		t.Error("Expected error with empty from, got nil")
 	}
-
+	
+	// Test with empty to
+	err = neo4j.CreateRelationship(driver, "from", "", "relation")
+	if err == nil {
+		t.Error("Expected error with empty to, got nil")
+	}
+	
 	// Test with empty relation
-	err = neo4j.CreateRelationship(nil, "source", "target", "")
+	err = neo4j.CreateRelationship(driver, "from", "to", "")
 	if err == nil {
 		t.Error("Expected error with empty relation, got nil")
+	}
+	
+	// Test with generic relation type "related to"
+	err = neo4j.CreateRelationship(driver, "from", "to", "related to")
+	if err == nil {
+		t.Error("Expected error with generic relation type 'related to', got nil")
+	}
+	
+	// Test with generic relation type "is related to"
+	err = neo4j.CreateRelationship(driver, "from", "to", "is related to")
+	if err == nil {
+		t.Error("Expected error with generic relation type 'is related to', got nil")
+	}
+	
+	// Test with generic relation type "relates to"
+	err = neo4j.CreateRelationship(driver, "from", "to", "relates to")
+	if err == nil {
+		t.Error("Expected error with generic relation type 'relates to', got nil")
+	}
+	
+	// Test with valid inputs
+	err = neo4j.CreateRelationship(driver, "from", "to", "specific_relation")
+	if err != nil {
+		t.Errorf("Expected no error with valid inputs, got %v", err)
+	}
+	
+	// Test with same source and target
+	err = neo4j.CreateRelationship(driver, "same", "same", "specific_relation")
+	if err != nil {
+		t.Errorf("Expected no error with same source and target, got %v", err)
+	}
+	
+	// Test with very long names
+	longName := "very_long_name_" + string(make([]byte, 1000))
+	err = neo4j.CreateRelationship(driver, longName, "to", "specific_relation")
+	if err != nil {
+		t.Errorf("Expected no error with very long source name, got %v", err)
+	}
+	
+	// Test with special characters in names
+	specialName := "name-with-special_characters!@#$%^&*()_+"
+	err = neo4j.CreateRelationship(driver, specialName, "to", "specific_relation")
+	if err != nil {
+		t.Errorf("Expected no error with special characters in source name, got %v", err)
+	}
+	
+	// Test with uppercase relation type
+	err = neo4j.CreateRelationship(driver, "from", "to", "SPECIFIC_RELATION")
+	if err != nil {
+		t.Errorf("Expected no error with uppercase relation type, got %v", err)
+	}
+	
+	// Test with mixed case relation type
+	err = neo4j.CreateRelationship(driver, "from", "to", "SpecificRelation")
+	if err != nil {
+		t.Errorf("Expected no error with mixed case relation type, got %v", err)
 	}
 }
 

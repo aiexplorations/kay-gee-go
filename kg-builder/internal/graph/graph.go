@@ -52,47 +52,81 @@ func NewGraphBuilder(driver neo4j.Driver, getRelatedConcepts func(string) ([]mod
 	}
 }
 
-// BuildGraph builds the knowledge graph
+// BuildGraph builds a knowledge graph starting from a seed concept
 func (gb *GraphBuilder) BuildGraph(seedConcept string, maxNodes int, timeout time.Duration) error {
-	if seedConcept == "" {
-		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "seed concept cannot be empty")
-	}
-	
-	if maxNodes <= 0 {
-		return apperrors.NewGraphError(apperrors.ErrInvalidInput, "maxNodes must be greater than 0")
-	}
-	
+	// Set up context with timeout
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
-
-	queue := make(chan string, maxNodes) // Create a channel to hold concepts
-	queue <- seedConcept                 // Add the seed concept to the queue
-
+	
+	// Initialize the graph with the seed concept
+	gb.processedConcepts = make(map[string]bool)
+	gb.nodeCount = 0
+	gb.config.MaxNodes = maxNodes
+	
+	// Create a queue for BFS traversal
+	queue := make(chan string, maxNodes)
+	queue <- seedConcept
+	gb.processedConcepts[seedConcept] = true
+	gb.nodeCount++
+	
+	// Create a wait group for worker goroutines
 	var wg sync.WaitGroup
-	workerCount := gb.config.WorkerCount // Use the configured worker count
-
+	
+	// Start worker goroutines
+	workerCount := gb.config.WorkerCount
 	for i := 0; i < workerCount; i++ {
 		wg.Add(1)
-		go gb.worker(ctx, &wg, queue)
+		go gb.Worker(ctx, &wg, queue)
 	}
-
-	done := make(chan struct{})
-	go func() {
-		wg.Wait()
-		close(done)
-	}()
-
-	select {
-	case <-ctx.Done():
-		if ctx.Err() == context.DeadlineExceeded {
-			log.Printf("Timeout reached after processing %d concepts", gb.nodeCount)
-			return apperrors.NewGraphError(apperrors.ErrTimeout, "graph building timed out")
+	
+	// Wait for all workers to finish
+	wg.Wait()
+	
+	// Perform thorough cleanup at the end of graph building
+	log.Println("Graph building completed. Performing thorough cleanup...")
+	
+	// First cleanup pass: orphan relationships
+	log.Println("Cleaning up orphan relationships (first pass)...")
+	relCount, err := kgneo4j.CleanupOrphanRelationships(gb.driver)
+	if err != nil {
+		log.Printf("Error cleaning up orphan relationships: %v", err)
+	} else {
+		log.Printf("Removed %d orphan relationships in first pass", relCount)
+	}
+	
+	// First cleanup pass: orphan nodes
+	log.Println("Cleaning up orphan nodes (first pass)...")
+	nodeCount, err := kgneo4j.CleanupOrphanNodes(gb.driver)
+	if err != nil {
+		log.Printf("Error cleaning up orphan nodes: %v", err)
+	} else {
+		log.Printf("Removed %d orphan nodes in first pass", nodeCount)
+	}
+	
+	// Second cleanup pass to catch any remaining issues
+	if relCount > 0 || nodeCount > 0 {
+		log.Println("Running second cleanup pass...")
+		
+		// Second cleanup pass: orphan relationships
+		relCount, err = kgneo4j.CleanupOrphanRelationships(gb.driver)
+		if err != nil {
+			log.Printf("Error cleaning up orphan relationships: %v", err)
+		} else if relCount > 0 {
+			log.Printf("Removed %d additional orphan relationships in second pass", relCount)
 		}
-		return apperrors.NewGraphError(ctx.Err(), "context cancelled")
-	case <-done:
-		log.Printf("Graph building completed, processed %d concepts", gb.nodeCount)
-		return nil
+		
+		// Second cleanup pass: orphan nodes
+		nodeCount, err = kgneo4j.CleanupOrphanNodes(gb.driver)
+		if err != nil {
+			log.Printf("Error cleaning up orphan nodes: %v", err)
+		} else if nodeCount > 0 {
+			log.Printf("Removed %d additional orphan nodes in second pass", nodeCount)
+		}
 	}
+	
+	log.Println("Cleanup completed. Graph building process finished.")
+	
+	return nil
 }
 
 // BuildGraphWithLowConnectivitySeeds builds the knowledge graph using low connectivity concepts as seeds
@@ -134,7 +168,8 @@ func (gb *GraphBuilder) BuildGraphWithLowConnectivitySeeds(initialSeedConcept st
 	return nil
 }
 
-func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue chan string) {
+// Worker processes concepts from the queue and builds the graph
+func (gb *GraphBuilder) Worker(ctx context.Context, wg *sync.WaitGroup, queue chan string) {
 	defer wg.Done()
 
 	for {
@@ -158,10 +193,29 @@ func (gb *GraphBuilder) worker(ctx context.Context, wg *sync.WaitGroup, queue ch
 
 			log.Printf("Processing concept: %s (Node count: %d)", concept, currentNodeCount)
 
-			err := gb.processRelatedConcepts(ctx, concept)
+			err := gb.processRelatedConcepts(ctx, concept, queue)
 			if err != nil {
 				log.Printf("Error processing related concepts for %s: %v", concept, err)
 				continue
+			}
+			
+			// Run cleanup after processing each concept
+			// Only do this periodically (every 5 concepts) to avoid excessive cleanup operations
+			if currentNodeCount % 5 == 0 {
+				log.Println("Running scheduled cleanup after concept generation...")
+				relCount, err := kgneo4j.CleanupOrphanRelationships(gb.driver)
+				if err != nil {
+					log.Printf("Error cleaning up orphan relationships: %v", err)
+				} else if relCount > 0 {
+					log.Printf("Removed %d orphan relationships during scheduled cleanup", relCount)
+				}
+				
+				nodeCount, err := kgneo4j.CleanupOrphanNodes(gb.driver)
+				if err != nil {
+					log.Printf("Error cleaning up orphan nodes: %v", err)
+				} else if nodeCount > 0 {
+					log.Printf("Removed %d orphan nodes during scheduled cleanup", nodeCount)
+				}
 			}
 		}
 	}
@@ -211,7 +265,7 @@ func isValidConcept(concept models.Concept) bool {
 }
 
 // processRelatedConcepts processes the related concepts for a given concept
-func (gb *GraphBuilder) processRelatedConcepts(ctx context.Context, concept string) error {
+func (gb *GraphBuilder) processRelatedConcepts(ctx context.Context, concept string, queue chan string) error {
 	// Get related concepts from the LLM
 	relatedConcepts, err := gb.getRelatedConcepts(concept)
 	if err != nil {
@@ -301,6 +355,9 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 	// Create a channel for results
 	results := make(chan error, count)
 	
+	// Create a channel to track progress
+	progress := make(chan int, count)
+	
 	// Start workers
 	var wg sync.WaitGroup
 	for i := 0; i < concurrency; i++ {
@@ -315,12 +372,14 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 				exists, err := kgneo4j.RelationshipExists(gb.driver, conceptA, conceptB)
 				if err != nil {
 					results <- err
+					progress <- 1
 					continue
 				}
 				
 				if exists {
 					log.Printf("Relationship already exists between %s and %s, skipping", conceptA, conceptB)
 					results <- nil
+					progress <- 1
 					continue
 				}
 				
@@ -328,6 +387,7 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 				relationship, err := gb.mineRelationship(conceptA, conceptB)
 				if err != nil {
 					results <- err
+					progress <- 1
 					continue
 				}
 				
@@ -335,6 +395,7 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 				if !isValidRelationship(relationship) {
 					log.Printf("Filtered out potentially invalid relationship between %s and %s", conceptA, conceptB)
 					results <- nil
+					progress <- 1
 					continue
 				}
 				
@@ -342,11 +403,13 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 				err = kgneo4j.CreateRelationship(gb.driver, relationship.Name, relationship.RelatedTo, relationship.Relation)
 				if err != nil {
 					results <- err
+					progress <- 1
 					continue
 				}
 				
 				log.Printf("Created relationship: %s -[%s]-> %s", relationship.Name, relationship.Relation, relationship.RelatedTo)
 				results <- nil
+				progress <- 1
 			}
 		}()
 	}
@@ -360,17 +423,57 @@ func (gb *GraphBuilder) MineRandomRelationships(count int, concurrency int) erro
 		close(pairs)
 	}()
 	
-	// Collect results
+	// Collect results and run periodic cleanup
 	var errors []error
+	processedCount := 0
+	cleanupInterval := 10 // Run cleanup every 10 relationships
+	
 	for i := 0; i < count; i++ {
 		err := <-results
 		if err != nil {
 			errors = append(errors, err)
 		}
+		
+		processedCount += <-progress
+		
+		// Run cleanup periodically
+		if processedCount % cleanupInterval == 0 {
+			log.Printf("Running scheduled cleanup after processing %d relationships...", processedCount)
+			
+			relCount, err := kgneo4j.CleanupOrphanRelationships(gb.driver)
+			if err != nil {
+				log.Printf("Error cleaning up orphan relationships: %v", err)
+			} else if relCount > 0 {
+				log.Printf("Removed %d orphan relationships during scheduled cleanup", relCount)
+			}
+			
+			nodeCount, err := kgneo4j.CleanupOrphanNodes(gb.driver)
+			if err != nil {
+				log.Printf("Error cleaning up orphan nodes: %v", err)
+			} else if nodeCount > 0 {
+				log.Printf("Removed %d orphan nodes during scheduled cleanup", nodeCount)
+			}
+		}
 	}
 	
 	// Wait for all workers to finish
 	wg.Wait()
+	
+	// Final cleanup after all relationships are processed
+	log.Println("Running final cleanup after relationship mining...")
+	relCount, err := kgneo4j.CleanupOrphanRelationships(gb.driver)
+	if err != nil {
+		log.Printf("Error cleaning up orphan relationships: %v", err)
+	} else {
+		log.Printf("Removed %d orphan relationships in final cleanup", relCount)
+	}
+	
+	nodeCount, err := kgneo4j.CleanupOrphanNodes(gb.driver)
+	if err != nil {
+		log.Printf("Error cleaning up orphan nodes: %v", err)
+	} else {
+		log.Printf("Removed %d orphan nodes in final cleanup", nodeCount)
+	}
 	
 	if len(errors) > 0 {
 		return fmt.Errorf("encountered %d errors while mining relationships", len(errors))

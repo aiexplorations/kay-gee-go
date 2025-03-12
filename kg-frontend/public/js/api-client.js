@@ -339,6 +339,76 @@ class ApiClient {
             throw error;
         }
     }
+
+    /**
+     * Clean up orphan relationships and nodes in the graph
+     * @returns {Promise<Object>} The cleanup result
+     */
+    async cleanupGraph() {
+        try {
+            // First, clean up orphan relationships
+            const relationshipQuery = `
+                MATCH ()-[r:RELATED_TO]->()
+                WHERE NOT EXISTS(r.type) OR r.type = ""
+                DELETE r
+                RETURN count(r) AS count
+            `;
+            
+            const relationshipResponse = await fetch(this.neo4jUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${this.neo4jAuth}`,
+                    'Accept': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify({
+                    statements: [{ statement: relationshipQuery }]
+                })
+            });
+            
+            if (!relationshipResponse.ok) {
+                throw new Error(`Failed to clean up orphan relationships: ${relationshipResponse.statusText}`);
+            }
+            
+            const relationshipData = await relationshipResponse.json();
+            const relationshipsRemoved = relationshipData.results[0].data[0].row[0];
+            
+            // Then, clean up orphan nodes
+            const nodeQuery = `
+                MATCH (n:Concept)
+                WHERE NOT (n)-[]-() 
+                DELETE n
+                RETURN count(n) AS count
+            `;
+            
+            const nodeResponse = await fetch(this.neo4jUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${this.neo4jAuth}`,
+                    'Accept': 'application/json; charset=UTF-8'
+                },
+                body: JSON.stringify({
+                    statements: [{ statement: nodeQuery }]
+                })
+            });
+            
+            if (!nodeResponse.ok) {
+                throw new Error(`Failed to clean up orphan nodes: ${nodeResponse.statusText}`);
+            }
+            
+            const nodeData = await nodeResponse.json();
+            const nodesRemoved = nodeData.results[0].data[0].row[0];
+            
+            return {
+                relationshipsRemoved,
+                nodesRemoved
+            };
+        } catch (error) {
+            console.error('Error cleaning up graph:', error);
+            throw error;
+        }
+    }
 }
 
 // Export for use in tests
